@@ -1,8 +1,9 @@
 /* General Styling */
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
-    background: linear-gradient(to right, #2471a3, #d0d3d4);
+    font-family: "Work Sans", sans-serif;
+	background: linear-gradient (to right, 60B5FF, AFDDFF);
+    /*background: linear-gradient(to right, #2471a3, #d0d3d4); */
 	/*background: linear-gradient(to right, #2874a6, #00f2fe); */
     color: white;
     text-align: center;
@@ -11,8 +12,8 @@ body {
 /* Header Section */
 header {
     /*overflow: hidden;*/
-    /*background: rgba(0, 0, 0, 0.7);*/
-	background: linear-gradient(to left, #5499c7, #2471a3);
+    /*background: rgba(0, 0, 0, 0.7);#5499c7*/
+	background: linear-gradient(to left, #34495e, #2471a3);
     padding: 10px 0;
     /*height: 80px;*/
 	height: auto; /* Adjust height dynamically */
@@ -64,8 +65,8 @@ header {
 
 /* Footer */
 footer {
-    /*background: rgba(0, 0, 0, 0.8);*/
-	background: #2874a6 ;
+    /*background: rgba(0, 0, 0, 0.8);#2874a6*/
+	background: #34495e ;
     padding: 15px 0;
     position: fixed;
     bottom: 0;
@@ -113,3 +114,32 @@ video {
     color: white;
     font-size: 24px;
 }
+
+/*fontawesome*/
+i {
+    font-family: "Font Awesome 6 Free"; /* Ensures icons use the correct font */
+    font-style: normal;
+	font-size: 18px; /* Adjust icon size */
+    margin-right: 5px; /* Space between icon and text */
+}
+
+/*Lins Styling*/
+a {
+	color: white;
+}
+a:link {
+  color: white;
+  background-color: transparent;
+  text-decoration: none;
+}
+a:hover {
+  color: orange;
+  background-color: transparent;
+  text-decoration: underline;
+}
+a:active {
+  color: yellow;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
