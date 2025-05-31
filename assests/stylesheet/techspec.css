@@ -54,7 +54,8 @@
     position: relative;
     width: 190px;
     height: 190px;
-    background: linear-gradient(to bottom, #FEFF86, #FF9149);
+    background: #2471a3;
+    /*background: linear-gradient(to bottom, #FEFF86, #FF9149);*/
     /*clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); *//*For Hexagonal Shape*/
     display: flex;
     justify-content: center;
@@ -62,9 +63,10 @@
     font-size: 16px;
     font-weight: bold;
     color: #5499c7;
-    box-shadow: 0px 0px 0px 4px #FF9149, 4px 4px 12px rgba(0, 0, 0, 0.4); /* Creates a visible border */
+    box-shadow: 0px 3px 3px 4px #FF9149, 4px 4px 12px rgba(0, 0, 0, 0.4); /* Creates a visible border */
     transform: perspective(500px) rotateX(0deg);
 	background-size: cover;
+    border-radius: 15%;
 }
 
 
