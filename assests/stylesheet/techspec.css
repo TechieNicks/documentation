@@ -30,6 +30,13 @@
     object-fit: cover;
  }
 
+img {
+    width: 100px;
+    height: 100px;
+    align-items: center;
+    align-content: flex-start;
+}
+
 .text-row {
 
     background-color: #f0f0f0;
@@ -44,7 +51,9 @@
 
 /********************/
 
-
+p {
+    color: #f0f0f0;
+}
 
 
 
