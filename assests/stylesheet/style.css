@@ -1,0 +1,115 @@
+/* General Styling */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #2471a3, #d0d3d4);
+	/*background: linear-gradient(to right, #2874a6, #00f2fe); */
+    color: white;
+    text-align: center;
+}
+
+/* Header Section */
+header {
+    /*overflow: hidden;*/
+    /*background: rgba(0, 0, 0, 0.7);*/
+	background: linear-gradient(to left, #5499c7, #2471a3);
+    padding: 10px 0;
+    /*height: 80px;*/
+	height: auto; /* Adjust height dynamically */
+	width: 100%;
+    position: relative; /* Ensures it stays in place */
+    z-index: 1000; /* Keeps it above other elements */
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 50px;
+    height: 60px;
+	flex-wrap: wrap; /* Allows content to adapt on smaller screens */
+}
+
+/* Navigation Links */
+/* Ensure menu aligns properly */
+.header-right {
+    display: flex;
+    gap: 20px;
+	flex-wrap: wrap; /* Prevents items from overflowing */
+}
+
+.header-right a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 12px;
+}
+
+.header-right a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+.header-right a.active {
+    background-color: dodgerblue;
+    color: white;
+}
+
+/* Logo */
+.logo {
+    height: 70px;
+    width: auto;
+    flex-shrink: 0;
+}
+
+/* Footer */
+footer {
+    /*background: rgba(0, 0, 0, 0.8);*/
+	background: #2874a6 ;
+    padding: 15px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        justify-content: center; /* Centers items neatly */
+        height: auto; /* Adjust height dynamically */
+    }
+
+    .header-right {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+
+    .logo {
+        margin-bottom: 10px; /* Adds space below the logo */
+    }
+}
+
+/*Video Background*/
+.video-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the video scales and fills the page */
+}
+
+.content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: white;
+    font-size: 24px;
+}
