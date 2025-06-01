@@ -2,7 +2,7 @@
 body {
     margin: 0;
     font-family: "Work Sans", sans-serif;
-	background: linear-gradient (to right, 60B5FF, AFDDFF);
+	background: linear-gradient (to right, #154360, #AFDDFF); /* #60B5FF*/
     /*background: linear-gradient(to right, #2471a3, #d0d3d4); */
 	/*background: linear-gradient(to right, #2874a6, #00f2fe); */
     color: white;
@@ -123,7 +123,7 @@ i {
     margin-right: 5px; /* Space between icon and text */
 }
 
-/*Lins Styling*/
+/*Link Styling*/
 a {
 	color: white;
 }
@@ -143,3 +143,22 @@ a:active {
   text-decoration: underline;
 }
 
+/*Paragraph responsiveness*/
+p {
+  font-size: 1.1rem; /* Adjusts based on screen size */
+  line-height: 1.6; /* Improves readability */
+  word-wrap: break-word; /* Prevents overflow issues */
+}
+
+/* Adjust font size for smaller screens */
+@media screen and (max-width: 768px) {
+  p {
+    font-size: 1rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  p {
+    font-size: 0.9rem;
+  }
+}

@@ -10,15 +10,15 @@
 }
 
 /*******************/
-.square-box {
-    width: 200px; /* Set the width and height */
+/* .square-box {
+    width: 200px; 
     height: 200px;
     display: flex;
     flex-direction: column;
     border: 2px solid #000;
     text-align: center;
     overflow: hidden;
-}
+} */
 
  .row {
     flex: 1; /* Each row takes equal space */
@@ -63,7 +63,8 @@ p {
     position: relative;
     width: 190px;
     height: 190px;
-    background: #2471a3;
+    background-color: white;
+    /* background: #2471a3; */
     /*background: linear-gradient(to bottom, #FEFF86, #FF9149);*/
     /*clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); *//*For Hexagonal Shape*/
     display: flex;
@@ -72,10 +73,19 @@ p {
     font-size: 16px;
     font-weight: bold;
     color: #5499c7;
-    box-shadow: 0px 3px 3px 4px #FF9149, 4px 4px 12px rgba(0, 0, 0, 0.4); /* Creates a visible border */
+    box-shadow: 0 5px 10px 0 rgba(0, 1, 0, 1), 0 0px 0px 0 rgba(0, 0, 0, 1);
+    /* box-shadow: 0px 3px 3px 4px #FF9149, 4px 4px 12px rgba(0, 0, 0, 0.4); Creates a visible border */
     transform: perspective(500px) rotateX(0deg);
 	background-size: cover;
     border-radius: 15%;
+}
+
+/* Content */
+.content-pf {
+  /* background-color: white; */
+  padding:20px 5px 0 5px;
+  /* box-shadow: 0 5px 5px 0 rgba(0, 1, 0, 1), 0 0px 0px 0 rgba(0, 0, 0, 1); */
+  /* border-radius: 3%; */
 }
 
 
@@ -84,7 +94,12 @@ p {
     transform: perspective(500px) rotateX(0deg) scale(1.1);
     background: linear-gradient(to bottom, #00C9A7, #00F5D4); /* Bright teal to neon green */
     box-shadow: 5px 5px 20px rgba(0, 249, 160, 0.8);
+    color: white;
 }
 
+/*Link Styling*/
+a {
+	color: #60B5FF;
+}
 
 
