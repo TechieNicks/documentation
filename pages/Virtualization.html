@@ -35,6 +35,7 @@
             height: auto;
             border-radius: 8px;
         }
+
         .profile-container {
             position: absolute;
             margin-top: -125px;
@@ -46,7 +47,6 @@
             border-radius: 15%;
             border: 5px solid orange;
         }
-
     </style>
 </head>
 
@@ -79,18 +79,18 @@
     </div>
     <!-------------------------BODY---------------------------------------------->
     <div class="newspaper-container">
-        <h1>Virtualization</h1>
+        <h2 style="text-align: center;">Virtualization</h2>
         <main>
-            <section class="article">
-                <h2>Latest Updates</h2>
+            <section class=" article">
+                <h3 style="text-align: center;">Latest Updates</h3>
 
-            <div class="profile-container">
-                <img src="../images/5261261.png" alt="Virtualization" class="profile-pic">
-            </div>
+                <div class="profile-container">
+                    <img src=" ../images/5261261.png" alt="Virtualization" class="profile-pic">
+                </div>
 
-            <br><br>
-            
-<p class="newspaper-text">
+                <br><br>
+
+                <p class="newspaper-text">
                     This is a sample paragraph where the image is aligned next to the text. You can use this layout to
                     display images alongside descriptive content, making your webpage more visually appealing.
                     This is a sample paragraph where the image is aligned next to the text. You can use this layout to
@@ -100,7 +100,7 @@
                     This is a sample paragraph where the image is aligned next to the text. You can use this layout to
                     display images alongside descriptive content, making your webpage more visually appealing.
                 </p>
-    <p class="newspaper-text">
+                <p class="newspaper-text">
                     This is a sample paragraph where the image is aligned next to the text. You can use this layout to
                     display images alongside descriptive content, making your webpage more visually appealing.
                     This is a sample paragraph where the image is aligned next to the text. You can use this layout to
@@ -121,17 +121,59 @@
                     This is a sample paragraph where the image is aligned next to the text. You can use this layout to
                     display images alongside descriptive content, making your webpage more visually appealing.
                 </p>
+                <p class="newspaper-text">This is styled like a newspaper article.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sed lacus vehicula, efficitur justo
+                    id, efficitur est. Fusce facilisis lorem at sapien sagittis, nec rhoncus erat volutpat. Etiam
+                    commodo nunc id augue consequat, ac sollicitudin erat pellentesque. Curabitur euismod dui nec justo
+                    suscipit, ac facilisis orci interdum. Duis bibendum lacinia quam, a varius sapien facilisis eget.
+                    Vestibulum tristique nibh non elit maximus rhoncus.
+
+                    Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+                    Suspendisse nec lorem eu mi venenatis tincidunt. Maecenas placerat orci nunc, et suscipit velit
+                    efficitur ut. In hac habitasse platea dictumst. Ut consequat turpis id elit viverra, sed facilisis
+                    lectus bibendum.
+
+                    [Repeated patterns of text]
+
+                    Vivamus malesuada id lorem id viverra. Maecenas faucibus tincidunt justo, eu lobortis leo ultricies
+                    eget. Fusce gravida ut nulla vel porta. Quisque vulputate justo a massa gravida, sed eleifend nulla
+                    scelerisque. Sed ornare efficitur semper. Aenean sit amet semper dui, a gravida ligula.
+
+                    Nunc consectetur faucibus libero, nec pretium ligula fermentum sed. Integer nec nisl ut lacus
+                    pharetra malesuada vel at leo. Cras pulvinar erat non purus feugiat, sed tincidunt elit interdum.
+                    Phasellus sagittis euismod tincidunt. Sed id augue id diam aliquet consequat id vel massa.
+
+                    Sed sagittis massa vel libero fermentum, ut vehicula massa volutpat. Pellentesque habitant morbi
+                    tristique senectus et netus et malesuada fames ac turpis egestas. Duis tempor risus id metus
+                    tincidunt convallis. Nulla facilisi.
+
+                    [This pattern can repeat to generate more lines up to 500]
+                </p>
+
+                <!--Just replace the id of the video that's all. Leave other things as it is-->
+                <iframe width="500" height="345"
+                    src="https://www.youtube.com/embed/FxMWN3YdkBQ?autoplay=1&mute=1"></iframe>
+                <p class="newspaper-text">
+                    This is a sample paragraph where the image is aligned next to the text. You can use this layout to
+                    display images alongside descriptive content, making your webpage more visually appealing.
+                    This is a sample paragraph where the image is aligned next to the text. You can use this layout to
+                    display images alongside descriptive content, making your webpage more visually appealing.
+                    This is a sample paragraph where the image is aligned next to the text. You can use this layout to
+                    display images alongside descriptive content, making your webpage more visually appealing.
+                    This is a sample paragraph where the image is aligned next to the text. You can use this layout to
+                    display images alongside descriptive content, making your webpage more visually appealing.
+                </p>
 
 
 
 
-            
 
 
 
-                
 
-               
+
+
+
 
 
 
@@ -164,14 +206,15 @@
                     [This pattern can repeat to generate more lines up to 500]
                 </p>
             </section>
-            
+
         </main>
     </div>
     <!----------------------------------Footer----------------------------------->
     <footer>
         <p>©
             <script>document.write(new Date().getFullYear())</script> Copyright by
-            <i class="fas fa-heartbeat"></i><a class= "footera" href="https://github.com/nicks9188" target="_blank">TechieNicks</a>
+            <i class="fas fa-heartbeat"></i><a class="footera" href="https://github.com/nicks9188"
+                target="_blank">TechieNicks</a>
         </p>
     </footer>
     <!------------------------------------------------------------------------->
@@ -204,7 +247,7 @@
             });
         }
         /*Remove Extra whitesace from pre*/
-        window.addEventListener("load", function() {
+        window.addEventListener("load", function () {
             const codeBlock = document.getElementById("code-block");
             // Split the code into lines.
             const lines = codeBlock.textContent.split('\n');

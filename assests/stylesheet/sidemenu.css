@@ -34,17 +34,32 @@
 }
 
 #main {
-  position: relative; /* Makes it free-floating */
-  /*margin-top: 10px; /* Adjust this value to match your header height */
-  padding: 16px; /* Maintains some spacing */
-  width: auto; /* Adjusts width dynamically */
-  transition: margin-left .5s; /* Ensures smooth sliding when sidenav opens */
-  text-align: left; /* Aligns text content to the left */
+  /*position: relative;*/
+  /* Makes it free-floating */
+  position: fixed;
+  left: 0;
+  z-index: 9;
+  margin-top: 10px;
+  /* Adjust this value to match your header height */
+  padding: 16px;
+  /* Maintains some spacing */
+  width: 100%;
+  /*width: auto; */
+  /* Adjusts width dynamically */
+  transition: margin-left .5s;
+  /* Ensures smooth sliding when sidenav opens */
+  text-align: left;
+  /* Aligns text content to the left */
   color: black;
 }
 
 
 @media screen and (max-height: 450px) {
-  .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 18px;}
+  .sidenav {
+    padding-top: 15px;
+  }
+
+  .sidenav a {
+    font-size: 18px;
+  }
 }

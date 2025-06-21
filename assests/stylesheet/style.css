@@ -22,6 +22,11 @@ ol {
     font-size: 1rem;
 }
 
+li {
+    margin-bottom: 15px;
+    /* Adjust value as needed */
+}
+
 
 /* Header Section */
 header {
@@ -278,7 +283,7 @@ iframe {
     border: none;
 }
 
-/* Table */
+/* Table Starts*/
 .table-container {
     width: 60%;
     overflow-x: auto;
@@ -288,7 +293,9 @@ iframe {
 table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
+    max-width: 90%;
     width: 100%;
+    table-layout: fixed;
     font-size: 15px;
     border: 1px solid black;
     border-collapse: collapse;
@@ -299,6 +306,12 @@ th {
     border: 1px solid #2E86C1;
     text-align: left;
     padding: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+    word-break: break-word;
+    max-width: 1px;
+    /* This allows content to shrink inside */
 }
 
 tr:nth-child(even) {
@@ -320,6 +333,13 @@ tr:nth-child(even) {
 }
 
 /*Table End*/
+/*Scroll Starts*/
+.code-scroll {
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+/*Scroll Ends*/
 /*Code block starts*/
 .code-wrapper {
     display: flex;
@@ -377,3 +397,56 @@ code {
 }
 
 /*Code block ends*/
+/*Cover Page starts*/
+.cover-page {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 1rem;
+    height: 300px;
+    /* Fixed height */
+    /*background-color: #f9f9f9;*/
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow-y: auto;
+    box-sizing: border-box;
+}
+
+.column {
+    /*background-color: #e0e0e0;*/
+    padding: 1rem;
+    border-radius: 4px;
+    flex: 1 1 200px;
+    /* Grow and shrink, min width of 200px */
+    box-sizing: border-box;
+}
+
+/*Cover page ends*/
+/*Like Button Starts*/
+.like-box {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+    margin-top: 1rem;
+    margin-right: 16px;
+}
+
+#like-button {
+    background-color: #ff4081;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    box-shadow: 0 4px #c2185b;
+    transition: all 0.1s ease-in-out;
+}
+
+#like-button:active {
+    box-shadow: 0 2px #c2185b;
+    transform: translateY(2px);
+}
+
+/*Like Button Ends*/

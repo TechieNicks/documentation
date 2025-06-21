@@ -1,4 +1,9 @@
 .topnavheader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
   overflow: hidden;
   background-color: #333;
 }
@@ -28,7 +33,10 @@
 }
 
 @media screen and (max-width: 600px) {
-  .topnavheader a:not(:first-child) {display: none;}
+  .topnavheader a:not(:first-child) {
+    display: none;
+  }
+
   .topnavheader a.icon {
     float: right;
     display: block;
@@ -36,12 +44,16 @@
 }
 
 @media screen and (max-width: 600px) {
-  .topnavheader.responsive {position: relative;}
+  .topnavheader.responsive {
+    position: relative;
+  }
+
   .topnavheader.responsive .icon {
     position: absolute;
     right: 0;
     top: 0;
   }
+
   .topnavheader.responsive a {
     float: none;
     display: block;

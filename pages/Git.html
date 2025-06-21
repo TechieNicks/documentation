@@ -45,7 +45,19 @@
             margin-top: -125px;
         }
 
+        .image-column {
+            display: flex;
+            justify-content: center;
+            /* centers horizontally */
+            align-items: center;
+            /* centers vertically */
+        }
+
         .profile-pic {
+            display: block;
+            margin: 0 auto;
+            max-width: 100%;
+            /*height: auto;*/
             width: 150px;
             height: 115px;
             border-radius: 15%;
@@ -83,604 +95,658 @@
             <li><a href="#4">Conclusion</a></li>
         </ul>
     </div>
-    <!----------------------------------Content---------------------------------->
+    <!----------------------------------Side Menu---------------------------------->
     <div id="main" style="margin-left: 5px;">
-        <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
+        <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
     </div>
-    <!-------------------------BODY---------------------------------------------->
+    <!-------------------------Cover---------------------------------------------->
     <div class="newspaper-container">
+        <div class="cover-page">
+            <div class="column">
+                <h1 style="text-align: center;color: red" ;>Git</h1>
+                <h2 style="text-align: center;color: orangered;">History & Basics</h2>
+            </div>
+            <div class="column image-column">
+                <img src="../images/1color-orange-lightbg@2x.png" alt="Git" class="profile-pic">
+            </div>
+            <!--div class="column">Column 3</div-->
+            <!-- Add or remove <div class="column"> elements as needed -->
+        </div>
+        <!--------------------------Like Button------------------------------------------>
+        <div class="like-box">
+            <button id="like-button" onclick="incrementLikes()">👍 Like</button>
+            <span id="like-count">0</span>
+        </div>
 
-        <div class="table-of-contents">
+
+        <!--<div class="table-of-contents">
+            <div class="toc-item"></div>
+            <div class="toc-item"></div>
             <div class="toc-item">
-                <img src="../images/1color-orange-lightbg@2x.png" alt="Git" class="profile-pic" style="
-                margin-top: 50px;
-            ">
-            </div>
-            <div class="toc-item">
-                <h1 style="text-align: left;color: red" ;>Git</h1>
-                <h2 style="text-align: left;color: orangered;">History & Basics</h2>
-            </div>
-            <div class="toc-item">
-                <!--
 				<h2>Table of Contents</h2>
 				<ul>
 					<li><a href="#whatisgit" style="color:#333;">What is Git?</a></li>
 					<li><a href="#2" style="color:#333;">How it is different from Github?</a></li>
 					<li><a href="#4" style="color:#333;">Download and Installation</a></li>
 				</ul>
-				-->
+				
             </div>
-        </div>
+        </div>-->
 
         <!--Back to top-->
         <button onclick="topFunction()" id="myBtn" title="Go to top">Back to Top</button>
 
-        <main>
+        <br><br>
 
-            <section class="article">
-                <h2 style="text-align: left;">What is version control?</h2>
-                <p class="newspaper-text">
-                    <strong>Version control</strong> is a system that helps track and manage changes to files,
-                    especially in software development. It allows multiple people to collaborate on a project
-                    without overwriting each other's work and provides a history of modifications. Version control
-                    helps in:
-                </p>
-                <ul>
-                    <li><strong>Tracking Changes</strong>: Every modification is recorded, making it easy to revert to
-                        previous versions
-                        if needed.</li>
-                    <li><strong>Collaboration</strong>: Multiple developers can work on the same project simultaneously
-                        without
-                        conflicts.</li>
-                    <li><strong>Backup & Recovery</strong>: If something goes wrong, you can restore an earlier version.
-                    </li>
-                    <li><strong>Branching & Merging</strong>: Developers can create separate branches for new features
-                        or bug fixes, then merge them back into the main project.
-                    </li>
-                </ul>
-                <p class="newspaper-text">
-                    Version control systems (VCS) help developers track changes, collaborate efficiently, and manage
-                    different versions of a
-                    project. There are three main types:
-                </p>
-                <ol>
-                    <li><strong>Local Version Control Systems (LVCS)</strong>:
-                        <ul>
-                            <li>Changes are stored locally on a single computer.</li>
-                            <li>Each modification is saved as a patch, making it difficult to collaborate with others.
-                            </li>
-                            <li>Risk of losing data if the local system fails.</li>
-                        </ul>
-                    </li>
-                    <li><strong>Centralized Version Control Systems (CVCS)</strong>:
-                        <ul>
-                            <li>A single repository stores all versions, and users must connect to it to access or
-                                modify files.</li>
-                            <li>Examples: <strong>Subversion (SVN)</strong>, <strong>Microsoft Team Foundation Server
-                                    (TFS).</strong></li>
-                            <li>Easier collaboration but has a single point of failure—if the central server crashes,
-                                all history
-                                could be lost.</li>
-                        </ul>
-                    </li>
-                    <li><strong>Distributed Version Control Systems (DVCS)</strong>:
-                        <ul>
-                            <li>Each user has a full copy of the repository, allowing offline work and better
-                                redundancy.</li>
-                            <li>Examples: <strong>Git</strong>, <strong>Mercurial.</strong></li>
-                            <li>More flexible and resilient, as changes can be merged from multiple sources.</li>
-                        </ul>
-                    </li>
-                </ol>
-                <br>
-                <h2 style="text-align: left;font-size: 2.5em;color: #34495e;">Limitations of Version control</h2>
-                <p class="newspaper-text">
-                    Before <strong>Git</strong>, developers relied on centralized version control system.
-                    It had limitations like single points of failure and restricted offline work.
-                    Developers cannot have their own copy of the repository and hence, cannot work offline
-                    independently.
-                </p>
+        <section class="article">
 
-                <ul>
-                    <li><strong>Single Point of Failure</strong>: If the central server crashes, all version history
-                        and collaboration are lost unless backups exist.
-                    </li>
-                    <li><strong>Requires Constant Connectivity</strong>: Developers must be connected to the central
-                        server to commit changes or access previous versions.</li>
-                    <li><strong>Limited Offline Work</strong>: Unlike DVCS, developers cannot work independently without
-                        access to the central repository.</li>
-                    <li><strong>Slower Performance</strong>: Every operation requires communication with the central
-                        server, which can slow down workflows.</li>
-                    <li><strong>Risk of Data Loss</strong>: If the central repository is corrupted or compromised, all
-                        data could be lost unless proper backups are maintained. </li>
-                </ul>
-                <p class="newspaper-text">
-                    These drawbacks led to the rise of Git, which offers a distributed approach for better flexibility
-                    and resilience. <strong>Git</strong>
-                    was created to address the challenges of managing code efficiently, especially in large-scale
-                    projects with multiple contributors.
-                </p>
+            <h2 style="text-align: left;">What is version control?</h2>
+            <p class="newspaper-text">
+                <strong>Version control</strong> is a system that helps track and manage changes to files,
+                especially in software development. It allows multiple people to collaborate on a project
+                without overwriting each other's work and provides a history of modifications. Version control
+                helps in:
+            </p>
+            <ul>
+                <li><strong>Tracking Changes</strong>: Every modification is recorded, making it easy to revert to
+                    previous versions
+                    if needed.</li>
+                <li><strong>Collaboration</strong>: Multiple developers can work on the same project simultaneously
+                    without
+                    conflicts.</li>
+                <li><strong>Backup & Recovery</strong>: If something goes wrong, you can restore an earlier version.
+                </li>
+                <li><strong>Branching & Merging</strong>: Developers can create separate branches for new features
+                    or bug fixes, then merge them back into the main project.
+                </li>
+            </ul>
+            <p class="newspaper-text">
+                Version control systems (VCS) help developers track changes, collaborate efficiently, and manage
+                different versions of a
+                project. There are three main types:
+            </p>
+            <ol>
+                <li><strong>Local Version Control Systems (LVCS)</strong>:
+                    <ul>
+                        <li>Changes are stored locally on a single computer.</li>
+                        <li>Each modification is saved as a patch, making it difficult to collaborate with others.
+                        </li>
+                        <li>Risk of losing data if the local system fails.</li>
+                    </ul>
+                </li>
+                <li><strong>Centralized Version Control Systems (CVCS)</strong>:
+                    <ul>
+                        <li>A single repository stores all versions, and users must connect to it to access or
+                            modify files.</li>
+                        <li>Examples: <strong>Subversion (SVN)</strong>, <strong>Microsoft Team Foundation Server
+                                (TFS).</strong></li>
+                        <li>Easier collaboration but has a single point of failure—if the central server crashes,
+                            all history
+                            could be lost.</li>
+                    </ul>
+                </li>
+                <li><strong>Distributed Version Control Systems (DVCS)</strong>:
+                    <ul>
+                        <li>Each user has a full copy of the repository, allowing offline work and better
+                            redundancy.</li>
+                        <li>Examples: <strong>Git</strong>, <strong>Mercurial.</strong></li>
+                        <li>More flexible and resilient, as changes can be merged from multiple sources.</li>
+                    </ul>
+                </li>
+            </ol>
+            <br>
+            <h2 style="text-align: left;font-size: 2.5em;color: #34495e;">Limitations of Version control</h2>
+            <p class="newspaper-text">
+                Before <strong>Git</strong>, developers relied on centralized version control system.
+                It had limitations like single points of failure and restricted offline work.
+                Developers cannot have their own copy of the repository and hence, cannot work offline
+                independently.
+            </p>
 
-                <h2 style="text-align: left;font-size: 2.5em;color: #34495e;">What was the need of git?</h2>
-                <p class="newspaper-text"></p>
-                <ul>
-                    <li><strong>Distributed Version Control</strong>: Unlike older systems, Git allows every developer
-                        to have a full copy of the repository, enabling offline work and
-                        reducing dependency on a central server.</li>
-                    <li><strong>Efficient Collaboration</strong>: Developers can work on different features
-                        simultaneously using branches, then merge their changes without disrupting the
-                        main codebase.</li>
-                    <li><strong>Tracking Changes</strong>: Git maintains a detailed history of modifications, making it
-                        easy to revert to previous versions if needed.</li>
-                    <li><strong>Performance & Speed</strong>: Git is optimized for handling large projects efficiently,
-                        ensuring quick operations even with extensive codebases.</li>
-                    <li><strong>Security & Integrity</strong>: Every change is securely stored using cryptographic
-                        hashing, preventing accidental or malicious alterations.</li>
-                </ul>
+            <ul>
+                <li><strong>Single Point of Failure</strong>: If the central server crashes, all version history
+                    and collaboration are lost unless backups exist.
+                </li>
+                <li><strong>Requires Constant Connectivity</strong>: Developers must be connected to the central
+                    server to commit changes or access previous versions.</li>
+                <li><strong>Limited Offline Work</strong>: Unlike DVCS, developers cannot work independently without
+                    access to the central repository.</li>
+                <li><strong>Slower Performance</strong>: Every operation requires communication with the central
+                    server, which can slow down workflows.</li>
+                <li><strong>Risk of Data Loss</strong>: If the central repository is corrupted or compromised, all
+                    data could be lost unless proper backups are maintained. </li>
+            </ul>
+            <p class="newspaper-text">
+                These drawbacks led to the rise of Git, which offers a distributed approach for better flexibility
+                and resilience. <strong>Git</strong>
+                was created to address the challenges of managing code efficiently, especially in large-scale
+                projects with multiple contributors.
+            </p>
+            <br>
+            <h2 style="text-align: left;font-size: 2.5em;color: #34495e;">What was the need of git?</h2>
+            <p class="newspaper-text"></p>
+            <ul>
+                <li><strong>Distributed Version Control</strong>: Unlike older systems, Git allows every developer
+                    to have a full copy of the repository, enabling offline work and
+                    reducing dependency on a central server.</li>
+                <li><strong>Efficient Collaboration</strong>: Developers can work on different features
+                    simultaneously using branches, then merge their changes without disrupting the
+                    main codebase.</li>
+                <li><strong>Tracking Changes</strong>: Git maintains a detailed history of modifications, making it
+                    easy to revert to previous versions if needed.</li>
+                <li><strong>Performance & Speed</strong>: Git is optimized for handling large projects efficiently,
+                    ensuring quick operations even with extensive codebases.</li>
+                <li><strong>Security & Integrity</strong>: Every change is securely stored using cryptographic
+                    hashing, preventing accidental or malicious alterations.</li>
+            </ul>
+            <br>
+            <h2 style="text-align: left;font-size: 2.5em;" id="whatisgit"><a href="#whatisgit">What is git?</a></h2>
+            <p class="newspaper-text">
+                <strong>Git</strong> is a <u>distributed</u> version control system that helps developers track
+                changes in
+                their code, collaborate efficiently and manage different versions of a project.
+                Git was initially developed by <strong>Linus Torvalds</strong> in 2005 for managing the Linux
+                kernel, but its advantages quickly made it the industry standard for version control.
+            </p>
+            <p class="newspaper-text">Here is why it is widely used:</p>
+            <ul>
+                <li><strong>Version Control</strong>: It keeps a history of all changes, allowing developers to
+                    revert to previous versions if needed.</li>
+                <li><strong>Branching & Merging</strong>: Developers can create separate branches to work on new
+                    features or fixes, then merge them back into the main project.</li>
+                <li><strong>Collaboration</strong>: Git enables multiple developers to work on the same project
+                    without overwriting each other’s changes.</li>
+                <li><strong>Performance</strong>: It is fast and efficient, even for large projects. </li>
+            </ul>
 
-                <h2 style="text-align: left;font-size: 2.5em;" id="whatisgit"><a href="#whatisgit">What is git?</a></h2>
-                <p class="newspaper-text">
-                    <strong>Git</strong> is a <u>distributed</u> version control system that helps developers track
-                    changes in
-                    their code, collaborate efficiently and manage different versions of a project.
-                    Git was initially developed by <strong>Linus Torvalds</strong> in 2005 for managing the Linux
-                    kernel, but its advantages quickly made it the industry standard for version control.
-                </p>
-                <p class="newspaper-text">Here is why it is widely used:</p>
-                <ul>
-                    <li><strong>Version Control</strong>: It keeps a history of all changes, allowing developers to
-                        revert to previous versions if needed.</li>
-                    <li><strong>Branching & Merging</strong>: Developers can create separate branches to work on new
-                        features or fixes, then merge them back into the main project.</li>
-                    <li><strong>Collaboration</strong>: Git enables multiple developers to work on the same project
-                        without overwriting each other’s changes.</li>
-                    <li><strong>Performance</strong>: It is fast and efficient, even for large projects. </li>
-                </ul>
+            <h3 style="text-align: left;color: #34495e;">Meaning of <u>distributed</u></h3>
+            <p class="newspaper-text">
+                In Git, distributed means that every developer has a complete copy of the repository, including its
+                entire history, on
+                their local machine. Unlike centralized version control systems, where a single server holds the
+                main repository, Git
+                allows developers to work independently without needing constant access to a central server.
 
-                <h3 style="text-align: left;color: #34495e;">Meaning of <u>distributed</u></h3>
-                <p class="newspaper-text">
-                    In Git, distributed means that every developer has a complete copy of the repository, including its
-                    entire history, on
-                    their local machine. Unlike centralized version control systems, where a single server holds the
-                    main repository, Git
-                    allows developers to work independently without needing constant access to a central server.
+            </p>
 
-                </p>
+            <br>
+            <h2 style="text-align: left;font-size: 2.5em;" id="hiidfg"><a href="#hiidfg">Git vs Github?</a></h2>
+            <p class="newspaper-text">
+                Git is the engine, while GitHub is the garage where teams collaborate.
+            </p>
+            <ul>
+                <li><strong>Git</strong> is a <strong>distributed version control system</strong> that helps
+                    developers track changes in their code, collaborate
+                    efficiently, and manage different versions of a project. It runs locally on a developer’s
+                    machine and allows offline
+                    work </li>
+                <li><strong>GitHub</strong> is a <strong>web-based platform</strong> that hosts Git repositories,
+                    providing additional collaboration tools like pull
+                    requests, issue tracking, and project management.
+                </li>
+            </ul>
+            <h3 style="text-align: left;color: #34495e;">Key Differences:</h3>
+            <div class="table-container">
+                <table>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Git</th>
+                        <th>GitHub</th>
+                    </tr>
+                    <tr>
+                        <td>Type</td>
+                        <td>Software</td>
+                        <td>Hosting Service</td>
+                    </tr>
+                    <tr>
+                        <td>Function</td>
+                        <td>Version control</td>
+                        <td>Repository management</td>
+                    </tr>
+                    <tr>
+                        <td>Installation</td>
+                        <td>Local</td>
+                        <td>Cloud-based</td>
+                    </tr>
+                    <tr>
+                        <td>Collaboration</td>
+                        <td>Command-line based</td>
+                        <td>Web inteface with additional tools</td>
+                    </tr>
+                    <tr>
+                        <td>Ownership</td>
+                        <td>Open-source (Linux foundation)</td>
+                        <td>Owned by Microsoft</td>
+                    </tr>
+                </table>
+            </div>
 
+            <h3 style="text-align: left;color: #34495e;">Alternatives:</h3>
+            <ul>
+                <li><strong>GitLab</strong>: A complete DevOps platform with built-in CI/CD and issue tracking.</li>
+                <li><strong>Bitbucket</strong>: Ideal for teams using Atlassian tools like Jira and Trello.</li>
+                <li><strong>SourceForge</strong>: Supports multiple version control systems, including Git and
+                    SVN.</li>
+                <li><strong>Gitea</strong>: A lightweight, self-hosted Git service.</li>
+                <li><strong>Beanstalk</strong>: Offers version control with built-in code review and deployment
+                    tools. </li>
+            </ul>
+            <br>
+            <h2 style="text-align: left;">Git Lifecycle</h2>
 
-                <h2 style="text-align: left;font-size: 2.5em;" id="hiidfg"><a href="#hiidfg">Git vs Github?</a></h2>
-                <p class="newspaper-text">
-                    Git is the engine, while GitHub is the garage where teams collaborate.
-                </p>
-                <ul>
-                    <li><strong>Git</strong> is a <strong>distributed version control system</strong> that helps
-                        developers track changes in their code, collaborate
-                        efficiently, and manage different versions of a project. It runs locally on a developer’s
-                        machine and allows offline
-                        work </li>
-                    <li><strong>GitHub</strong> is a <strong>web-based platform</strong> that hosts Git repositories,
-                        providing additional collaboration tools like pull
-                        requests, issue tracking, and project management.
-                    </li>
-                </ul>
-                <h3 style="text-align: left;color: #34495e;">Key Differences:</h3>
-                <div class="table-container">
-                    <table>
-                        <tr>
-                            <th>Feature</th>
-                            <th>Git</th>
-                            <th>GitHub</th>
-                        </tr>
-                        <tr>
-                            <td>Type</td>
-                            <td>Software</td>
-                            <td>Hosting Service</td>
-                        </tr>
-                        <tr>
-                            <td>Function</td>
-                            <td>Version control</td>
-                            <td>Repository management</td>
-                        </tr>
-                        <tr>
-                            <td>Installation</td>
-                            <td>Local</td>
-                            <td>Cloud-based</td>
-                        </tr>
-                        <tr>
-                            <td>Collaboration</td>
-                            <td>Command-line based</td>
-                            <td>Web inteface with additional tools</td>
-                        </tr>
-                        <tr>
-                            <td>Ownership</td>
-                            <td>Open-source (Linux foundation)</td>
-                            <td>Owned by Microsoft</td>
-                        </tr>
-                    </table>
+            <div class="table-of-contents">
+                <div class="toc-item" style="background-color: antiquewhite;">
+                    <h3>Stash</h3><br>
+
+                    <ul>
+                        <li><span style=" background: lightgrey;" class="courier-font">
+                                git stash</span> = Stash current changes.</li>
+                        <li><span style=" background: lightgrey;" class="courier-font">
+                                git stash list</span> = View stashed changes.</li>
+                        <li><span style=" background: lightgrey;" class="courier-font">
+                                git stash pop</span> = Apply and remove the latest stash.
+                        </li>
+                        <li><span style=" background: lightgrey;" class="courier-font">
+                                git stash apply</span> = Apply the latest stash without
+                            removing it.</li>
+                        <li><span style=" background: lightgrey;" class="courier-font">
+                                git stash drop</span> = Delete a specific stash.</li>
+                    </ul>
+                    <p class="newspaper-text">A temporary locker — Temporarily save changes which we’re not ready to
+                        commit.</p>
                 </div>
+                <div class="toc-item" style="background-color: beige">
+                    <h3>Workspace or <br>Working Directory</h3>
 
-                <h3 style="text-align: left;color: #34495e;">Alternatives:</h3>
-                <ul>
-                    <li><strong>GitLab</strong>: A complete DevOps platform with built-in CI/CD and issue tracking.</li>
-                    <li><strong>Bitbucket</strong>: Ideal for teams using Atlassian tools like Jira and Trello.</li>
-                    <li><strong>SourceForge</strong>: Supports multiple version control systems, including Git and
-                        SVN.</li>
-                    <li><strong>Gitea</strong>: A lightweight, self-hosted Git service.</li>
-                    <li><strong>Beanstalk</strong>: Offers version control with built-in code review and deployment
-                        tools. </li>
-                </ul>
-
-                <h2 style="text-align: left;">Git Lifecycle</h2>
-
-                <div class="table-of-contents">
-                    <div class="toc-item" style="background-color: antiquewhite;">
-                        <h3>Stash</h3><br>
-
-                        <ul>
-                            <li><span style=" background: lightgrey;" class="courier-font">
-                                    git stash</span> = Stash current changes.</li>
-                            <li><span style=" background: lightgrey;" class="courier-font">
-                                    git stash list</span> = View stashed changes.</li>
-                            <li><span style=" background: lightgrey;" class="courier-font">
-                                    git stash pop</span> = Apply and remove the latest stash.
-                            </li>
-                            <li><span style=" background: lightgrey;" class="courier-font">
-                                    git stash apply</span> = Apply the latest stash without
-                                removing it.</li>
-                            <li><span style=" background: lightgrey;" class="courier-font">
-                                    git stash drop</span> = Delete a specific stash.</li>
-                        </ul>
-                        <p class="newspaper-text">A temporary locker — Temporarily save changes which we’re not ready to
-                            commit.</p>
-                    </div>
-                    <div class="toc-item" style="background-color: beige">
-                        <h3>Workspace or <br>Working Directory</h3>
-
-                        <ul>
-                            <li><span style=" background: lightgrey;" class="courier-font">
-                                    git status</span> = Show changes in the working directory and
-                                staging area.</li>
-                            <li><span style=" background: lightgrey;" class="courier-font">
-                                    git diff</span> = View unstaged changes.</li>
-                            <li><span style=" background: lightgrey;" class="courier-font">
-                                    git checkout --<_filename_></span> = Discard changes in a
-                                file.
-                            </li>
-                            <li><span style=" background: lightgrey;" class="courier-font">
-                                    git clean -fd</span> = Remove untracked files and directories.
-                            </li>
-                        </ul>
-                        <p class="newspaper-text">This is where we create or modify files. Changes here are not yet
-                            tracked by Git.</p>
-                    </div>
-                    <div class="toc-item" style="background-color: khaki;">
-                        <h3>Index or<br>Staging Area</h3>
-
-                        <ul>
-                            <li><span style=" background: lightgrey;" class="courier-font">
-                                    git status</span> = Show changes in the working directory and
-                                staging area.</li>
-                            <li><span style=" background: lightgrey;" class="courier-font">
-                                    git add <_filenme_>
-                                </span> = Stage a file</li>
-                            <li><span style=" background: lightgrey;" class="courier-font">
-                                    git add .</span> = Stage all changes</li>
-                            <li><span style=" background: lightgrey;" class="courier-font">
-                                    git reset <_filename_></span> = Unstage a file</li>
-                            <li><span style=" background: lightgrey;" class="courier-font">
-                                    git diff --cached</span> = View staged changes</li>
-                        </ul>
-                        <p class="newspaper-text">Where we prepare changes before committing.</p>
-                    </div>
-                    <div class="toc-item" style="background-color: lavender;">
-                        <h3>Local Repository</h3><br>
-
-                        <ul>
-                            <li><span style=" background: lightgrey;" class="courier-font">
-                                    git commit -m "commit_message"
-                                </span> = Commit staged changes</li>
-                            <li><span style=" background: lightgrey;" class="courier-font">
-                                    git log
-                                </span> = View commit history</li>
-                            <li><span style=" background: lightgrey;" class="courier-font">
-                                    git reset --soft Head^
-                                </span>Undo last commit, keep changes staged.</li>
-                            <li><span style=" background: lightgrey;" class="courier-font">
-                                    git reset --hard Head
-                                </span>Reset to last commit, discard all changes</li>
-                        </ul>
-                        <p class="newspaper-text">Where committed changes are stored locally.</p>
-                    </div>
-                    <div class="toc-item" style="background-color: lightgray;">
-                        <h3>Upstream or<br>Remote Repository</h3>
-
-                        <ul>
-                            <li><span style=" background: bisque;" class="courier-font">
-                                    git remote -v
-                                </span> = Show remote URLs</li>
-                            <li><span style=" background: bisque;" class="courier-font">
-                                    git fetch
-                                </span> = Get changes from remote without merging</li>
-                            <li><span style=" background: bisque;" class="courier-font">
-                                    git pull
-                                </span> = Fetch and merge changes from remote</li>
-                            <li><span style=" background: bisque;" class="courier-font">
-                                    git push
-                                </span> = Push local commits to remote</li>
-                            <li><span style=" background: bisque;" class="courier-font">
-                                    git clone <_url_>
-                                </span> = Clone a remote repository</li>
-                        </ul>
-                        <p class="newspaper-text">Shared repository for collaboration (e.g., GitHub).</p>
-                    </div>
+                    <ul>
+                        <li><span style=" background: lightgrey;" class="courier-font">
+                                git status</span> = Show changes in the working directory and
+                            staging area.</li>
+                        <li><span style=" background: lightgrey;" class="courier-font">
+                                git diff</span> = View unstaged changes.</li>
+                        <li><span style=" background: lightgrey;" class="courier-font">
+                                git checkout --<_filename_></span> = Discard changes in a
+                            file.
+                        </li>
+                        <li><span style=" background: lightgrey;" class="courier-font">
+                                git clean -fd</span> = Remove untracked files and directories.
+                        </li>
+                    </ul>
+                    <p class="newspaper-text">This is where we create or modify files. Changes here are not yet
+                        tracked by Git.</p>
                 </div>
-                <h3>Explanation:</h3>
-                <ul>
-                    <li><b>Stash</b>: Temporarily save changes when we’re not ready to commit. It’s
-                        especially
-                        handy when we’re in the middle of something, but need to quickly switch tasks or branches
-                        without
-                        losing the current work.</li>
-                </ul>
-                <h3>Example:</h3>
-                <p class="newspaper-text">
-                    <u>Scenario:</u> We're working on a new feature, but suddenly need to fix a bug on the main branch.
-                    Want to stash your
-                    current work, switch branches, fix the bug, and then return to the feature.
-                </p>
-                <ol>
-                    <li>Start from feature branch (current work). We're now in our <b>workspace</b>, editing files like
-                        <span style=" background: bisque;" class="courier-font">login.js</span> and <span
-                            style=" background: bisque;" class="courier-font">style.css</span>.
-                        <!-- Code Box 1 -->
-                        <div class="code-placeholder">
-                            <pre><code id="code-snippet">git checkout -b feature/login-form</code></pre>
-                            <button class="copybutton" onclick="copyCode()">Copy</button>
-                        </div>
-                        <!---Code Box ends--->
-                    </li>
-                    <li>Make some changes. Modified both files but haven’t committed anything yet. Shows modified files
-                        in the <b>workspace</b>.
-                        <!-- Code Box 1 -->
-                        <div class="code-placeholder">
-                            <pre><code id="code-snippet">git status</code></pre>
-                            <button class="copybutton" onclick="copyCode()">Copy</button>
-                        </div>
-                        <!---Code Box ends--->
-                    </li>
-                    <li>Stage one file. Now <span style=" background: bisque;" class="courier-font">login.js</span> is
-                        in the staging area, while <span style=" background: bisque;"
-                            class="courier-font">style.css</span> is still in the <b>workspace</b>.
+                <div class="toc-item" style="background-color: khaki;">
+                    <h3>Index or<br>Staging Area</h3>
 
-                        <!-- Code Box 1 -->
-                        <div class="code-placeholder">
-                            <pre><code id="code-snippet">git add login.js</code></pre>
-                            <button class="copybutton" onclick="copyCode()">Copy</button>
-                        </div>
-                        <!---Code Box ends--->
-                    </li>
-                    <li>Stash both stages and unstaged changes. This saves our progress (both staged and unstaged) and
-                        resets the working directory to match the last commit.
-                        <!-- Code Box 1 -->
-                        <div class="code-placeholder">
-                            <pre><code id="code-snippet">git stash push -m "WIP: login form"</code></pre>
-                            <button class="copybutton" onclick="copyCode()">Copy</button>
-                        </div>
-                        <!---Code Box ends--->
-                    </li>
-                    <li>Switch to main and fix the bug. This commit is now in our <b>local repository</b>.
-                        <!-- Code Box 1 -->
-                        <div class="code-placeholder">
-                            <pre><code id="code-snippet">git checkout main
+                    <ul>
+                        <li><span style=" background: lightgrey;" class="courier-font">
+                                git status</span> = Show changes in the working directory and
+                            staging area.</li>
+                        <li><span style=" background: lightgrey;" class="courier-font">
+                                git add <_filenme_>
+                            </span> = Stage a file</li>
+                        <li><span style=" background: lightgrey;" class="courier-font">
+                                git add .</span> = Stage all changes</li>
+                        <li><span style=" background: lightgrey;" class="courier-font">
+                                git reset <_filename_></span> = Unstage a file</li>
+                        <li><span style=" background: lightgrey;" class="courier-font">
+                                git diff --cached</span> = View staged changes</li>
+                    </ul>
+                    <p class="newspaper-text">Where we prepare changes before committing.</p>
+                </div>
+                <div class="toc-item" style="background-color: lavender;">
+                    <h3>Local Repository</h3><br>
+
+                    <ul>
+                        <li><span style=" background: lightgrey;" class="courier-font">
+                                git commit -m "commit_message"
+                            </span> = Commit staged changes</li>
+                        <li><span style=" background: lightgrey;" class="courier-font">
+                                git log
+                            </span> = View commit history</li>
+                        <li><span style=" background: lightgrey;" class="courier-font">
+                                git reset --soft Head^
+                            </span>Undo last commit, keep changes staged.</li>
+                        <li><span style=" background: lightgrey;" class="courier-font">
+                                git reset --hard Head
+                            </span>Reset to last commit, discard all changes</li>
+                    </ul>
+                    <p class="newspaper-text">Where committed changes are stored locally.</p>
+                </div>
+                <div class="toc-item" style="background-color: lightgray;">
+                    <h3>Upstream or<br>Remote Repository</h3>
+
+                    <ul>
+                        <li><span style=" background: bisque;" class="courier-font">
+                                git remote -v
+                            </span> = Show remote URLs</li>
+                        <li><span style=" background: bisque;" class="courier-font">
+                                git fetch
+                            </span> = Get changes from remote without merging</li>
+                        <li><span style=" background: bisque;" class="courier-font">
+                                git pull
+                            </span> = Fetch and merge changes from remote</li>
+                        <li><span style=" background: bisque;" class="courier-font">
+                                git push
+                            </span> = Push local commits to remote</li>
+                        <li><span style=" background: bisque;" class="courier-font">
+                                git clone <_url_>
+                            </span> = Clone a remote repository</li>
+                    </ul>
+                    <p class="newspaper-text">Shared repository for collaboration (e.g., GitHub).</p>
+                </div>
+            </div>
+            <h3>Explanation:</h3>
+            <ul>
+                <li><b>Stash</b>: Temporarily save changes when we’re not ready to commit. It’s
+                    especially
+                    handy when we’re in the middle of something, but need to quickly switch tasks or branches
+                    without
+                    losing the current work.</li>
+            </ul>
+            <h3>Example:</h3>
+            <p class="newspaper-text">
+                <u>Scenario:</u> We're working on a new feature, but suddenly need to fix a bug on the main branch.
+                Want to stash your
+                current work, switch branches, fix the bug, and then return to the feature.
+            </p>
+            <ol>
+                <li>Start from feature branch (current work). We're now in our <b>workspace</b>, editing files like
+                    <span style=" background: bisque;" class="courier-font">login.js</span> and <span
+                        style=" background: bisque;" class="courier-font">style.css</span>.
+                    <!-- Code Box 1 -->
+                    <div class="code-placeholder">
+                        <pre><code class="code-snippet">git checkout -b feature/login-form</code></pre>
+                        <button class="copybutton" onclick="copyCode()">Copy</button>
+                    </div>
+                    <!---Code Box ends--->
+                </li>
+                <li>Make some changes. Modified both files but haven’t committed anything yet. Shows modified files
+                    in the <b>workspace</b>.
+                    <!-- Code Box 1 -->
+                    <div class="code-placeholder">
+                        <pre><code class="code-snippet">git status</code></pre>
+                        <button class="copybutton" onclick="copyCode()">Copy</button>
+                    </div>
+                    <!---Code Box ends--->
+                </li>
+                <li>Stage one file. Now <span style=" background: bisque;" class="courier-font">login.js</span> is
+                    in the staging area, while <span style=" background: bisque;" class="courier-font">style.css</span>
+                    is still in the <b>workspace</b>.
+
+                    <!-- Code Box 1 -->
+                    <div class="code-placeholder">
+                        <pre><code class="code-snippet">git add login.js</code></pre>
+                        <button class="copybutton" onclick="copyCode()">Copy</button>
+                    </div>
+                    <!---Code Box ends--->
+                </li>
+                <li>Stash both stages and unstaged changes. This saves our progress (both staged and unstaged) and
+                    resets the working directory to match the last commit.
+                    <!-- Code Box 1 -->
+                    <div class="code-placeholder">
+                        <pre><code class="code-snippet">git stash push -m "WIP: login form"</code></pre>
+                        <button class="copybutton" onclick="copyCode()">Copy</button>
+                    </div>
+                    <!---Code Box ends--->
+                </li>
+                <li>Switch to main and fix the bug. This commit is now in our <b>local repository</b>.
+                    <!-- Code Box 1 -->
+                    <div class="code-placeholder">
+                        <pre><code class="code-snippet">git checkout main
 # Fix the bug in app.js
 git add app.js
 git commit -m "Fix: crash on login redirect"</code></pre>
 
-                            <button class="copybutton" onclick="copyCode()">Copy</button>
-                        </div>
-                        <!---Code Box ends--->
-                    </li>
-                    <li>Push the fix to remote. Now our fix is in the <b>remote repository</b> (e.g., GitHub)
+                        <button class="copybutton" onclick="copyCode()">Copy</button>
+                    </div>
+                    <!---Code Box ends--->
+                </li>
+                <li>Push the fix to remote. Now our fix is in the <b>remote repository</b> (e.g., GitHub)
 
+                    <!-- Code Box 1 -->
+                    <div class="code-placeholder">
+                        <pre><code class="code-snippet">git push origin main</code></pre>
+                        <button class="copybutton" onclick="copyCode()">Copy</button>
+                    </div>
+                    <!---Code Box ends--->
+                </li>
+                <li>Return to the feature branch
+                    <!-- Code Box 1 -->
+                    <div class="code-placeholder">
+                        <pre><code class="code-snippet">git checkout feature/login-form</code></pre>
+                        <button class="copybutton" onclick="copyCode()">Copy</button>
+                    </div>
+                    <!---Code Box ends--->
+                </li>
+                <li>Reapply the stashed changes. Our changes to <span style=" background: bisque;"
+                        class="courier-font">login.js</span> and <span style=" background: bisque;"
+                        class="courier-font">style.css</span> are restored to the workspace and staging area as they
+                    were.
+
+                    <!-- Code Box 1 -->
+                    <div class="code-placeholder">
+                        <pre><code class="code-snippet">git stash pop</code></pre>
+                        <button class="copybutton" onclick="copyCode()">Copy</button>
+                    </div>
+                    <!---Code Box ends--->
+                </li>
+            </ol>
+            <h3>Summary:</h3>
+            <table style="max-width: 800px;">
+                <tbody>
+                    <tr>
+                        <th>Git Area</th>
+                        <th>What happened</th>
+                    </tr>
+                    <tr>
+                        <td>Workspace</td>
+                        <td>Edited files like <span style=" background: bisque;" class="courier-font">login.js</span>
+                            and <span style=" background: bisque;" class="courier-font">style.css</span>. </td>
+                    </tr>
+                    <tr>
+                        <td>Staging Area</td>
+                        <td>Staged <span style=" background: bisque;" class="courier-font">login.js</span> before
+                            stashing. </td>
+                    </tr>
+                    <tr>
+                        <td>Stash</td>
+                        <td>Saved both staged and unstaged changes temporarily.</td>
+                    </tr>
+                    <tr>
+                        <td>Local Repository</td>
+                        <td>Committed the bug fix to the local repo. </td>
+                    </tr>
+                    <tr>
+                        <td>Remote Repository</td>
+                        <td>Pushed the fix to GitHub (or another remote).
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <br>
+            <h2 style="text-align: left;font-size: 2.5em;" id="dni"><a href="#dni">Download and Installation</a>
+            </h2>
+
+            <p class="newspaper-text">
+            <ul>
+                <li>Go to Git <a href="https://git-scm.com/downloads" target="_blank"
+                        style="text-decoration:underline;">Downloads</a>.</li>
+                <li>Based on your operating system, select the platform (macOS/Windows/Linux).</li>
+                <li>However, based on your operating system, it will show the platform recommendation with the
+                    latest release.</li>
+                <li>Now you can download and install it as per your operating system/platform.</li>
+            </ul>
+            </p>
+            <br>
+            <h2 style="text-align: left;">Configuration</h2>
+            <h3>Step1: Generating SSH key pair</h3>
+            <ol>
+                <li>Open a terminal (<b>Git Bash</b> on Windows, Terminal on macOS/Linux).</li>
+                <li>Run the following command to generate a new RSA key pair:
+                    <!-- Code Box 1 -->
+                    <div class="code-placeholder">
+                        <pre><code class="code-snippet">ssh-keygen -t rsa -b 4096 -C "your_email@example.com"</code></pre>
+                        <button class="copybutton" onclick="copyCode()">Copy</button>
+                    </div>
+                    <!---Code Box ends--->
+                    Replace <span style=" background: bisque;" class="courier-font">"your_email@example.com"</span>
+                    with your GitHub email.
+                </li>
+                <li>When prompted, press <b>Enter</b> to accept the default file location (<span
+                        style=" background: bisque;" class="courier-font">~/.ssh/id_rsa</span>). </li>
+                <li>Optionally, enter a passphrase for added security.</li>
+
+            </ol>
+            <h3>Step2: Add the SSH Key to the SSH Agent</h3>
+            <ol>
+                <li>Start the SSH agent:
+                    <!-- Code Box 1 -->
+                    <div class="code-placeholder">
+                        <pre><code class="code-snippet">eval "$(ssh-agent -s)"</code></pre>
+                        <button class="copybutton" onclick="copyCode()">Copy</button>
+                    </div>
+                    <!---Code Box ends--->
+                </li>
+                <li>Add your private key to the SSH agent:
+                    <!-- Code Box 1 -->
+                    <div class="code-placeholder">
+                        <pre><code class="code-snippet">ssh-add ~/.ssh/id_rsa</code></pre>
+                        <button class="copybutton" onclick="copyCode()">Copy</button>
+                    </div>
+                    <!---Code Box ends--->
+                </li>
+            </ol>
+            <h3>Step3: Add the SSH Key to GitHub</h3>
+            <ol>
+                <li>Copy the public key:
+                    <!-- Code Box 1 -->
+                    <div class="code-placeholder">
+                        <pre><code class="code-snippet">cat ~/.ssh/id_rsa.pub</code></pre>
+                        <button class="copybutton" onclick="copyCode()">Copy</button>
+                    </div>
+                    <!---Code Box ends--->
+                </li>
+                <li>Log in to GitHub and go to <b>Settings → SSH and GPG keys</b>.</li>
+                <li>Click <b>New SSH Key</b>, paste the copied key, and save. </li>
+            </ol>
+            <h3>Step4: Test the connection</h3>
+            <p class="newspaper-text">Run:</p>
+
+            <!-- Code Box 1 -->
+            <div class="code-placeholder">
+                <pre><code class="code-snippet">ssh -T git@github.com</code></pre>
+                <button class="copybutton" onclick="copyCode()">Copy</button>
+            </div>
+            <!---Code Box ends--->
+            <p class="newspaper-text">If successful, will see a message like:</p>
+
+            <!-- Code Box 1 -->
+            <div class="code-placeholder">
+                <pre><code class="code-snippet">Hi username! You've successfully authenticated, but GitHub does not provide shell access.</code></pre>
+                <button class="copybutton" onclick="copyCode()">Copy</button>
+            </div>
+            <!---Code Box ends--->
+            <br>
+
+            <h2 style="text-align: left;font-size: 2.5em;" id="htgr"><a href="#htgr">First Configurations</a></h2>
+            <table>
+                <tr>
+                    <th>Purpose</th>
+                    <th>Commands</th>
+                </tr>
+                <tr>
+                    <td><b>Set Identity</b><br>
+                        Git requires a username and email for commits.</td>
+                    <td>
                         <!-- Code Box 1 -->
-                        <div class="code-placeholder">
-                            <pre><code id="code-snippet">git push origin main</code></pre>
+                        <div class="code-placeholder code-scroll" style="width: 100%;">
+                            <pre><code class="code-snippet">git config --global user.name "Your Name"
+git config --global user.email "your_email@example.com"</code></pre>
                             <button class="copybutton" onclick="copyCode()">Copy</button>
                         </div>
                         <!---Code Box ends--->
-                    </li>
-                    <li>Return to the feature branch
-                        <!-- Code Box 1 -->
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>Configure Default Branch Name</b><br>
+                        By default, Git initializes repositories with the master branch. Can change it to main:
+                    </td>
+                    <td>
+                        <!-- Code Box Starts -->
                         <div class="code-placeholder">
-                            <pre><code id="code-snippet">git checkout feature/login-form</code></pre>
+                            <pre><code class="code-snippet">git config --global init.defaultBranch main</code></pre>
                             <button class="copybutton" onclick="copyCode()">Copy</button>
                         </div>
                         <!---Code Box ends--->
-                    </li>
-                    <li>Reapply the stashed changes. Our changes to <span style=" background: bisque;"
-                            class="courier-font">login.js</span> and <span style=" background: bisque;"
-                            class="courier-font">style.css</span> are restored to the workspace and staging area as they
-                        were.
-
-                        <!-- Code Box 1 -->
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>Configure Line Endings (Windows/Linux Compatibility)</b></td>
+                    <td>If on Windows, set up automatic line ending conversion:
+                        <!-- Code Box Starts -->
                         <div class="code-placeholder">
-                            <pre><code id="code-snippet">git stash pop</code></pre>
+                            <pre><code class="code-snippet">git config --global core.autocrlf true</code></pre>
                             <button class="copybutton" onclick="copyCode()">Copy</button>
                         </div>
                         <!---Code Box ends--->
-                    </li>
-                </ol>
-                <h3>Summary:</h3>
-                <table style="max-width: 800px;">
-                    <tbody>
-                        <tr>
-                            <th>Git Area</th>
-                            <th>What happened</th>
-                        </tr>
-                        <tr>
-                            <td>Workspace</td>
-                            <td>Edited files like <span style=" background: bisque;"
-                                    class="courier-font">login.js</span> and <span style=" background: bisque;"
-                                    class="courier-font">style.css</span>. </td>
-                        </tr>
-                        <tr>
-                            <td>Staging Area</td>
-                            <td>Staged <span style=" background: bisque;" class="courier-font">login.js</span> before
-                                stashing. </td>
-                        </tr>
-                        <tr>
-                            <td>Stash</td>
-                            <td>Saved both staged and unstaged changes temporarily.</td>
-                        </tr>
-                        <tr>
-                            <td>Local Repository</td>
-                            <td>Committed the bug fix to the local repo. </td>
-                        </tr>
-                        <tr>
-                            <td>Remote Repository</td>
-                            <td>Pushed the fix to GitHub (or another remote).
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-
-                <h2 style="text-align: left;font-size: 2.5em;" id="dni"><a href="#dni">Download and Installation</a>
-                </h2>
-
-                <p class="newspaper-text">
-                <ul>
-                    <li>Go to Git <a href="https://git-scm.com/downloads" target="_blank"
-                            style="text-decoration:underline;">Downloads</a>.</li>
-                    <li>Based on your operating system, select the platform (macOS/Windows/Linux).</li>
-                    <li>However, based on your operating system, it will show the platform recommendation with the
-                        latest release.</li>
-                    <li>Now you can download and install it as per your operating system/platform.</li>
-                </ul>
-                </p>
-
-                <h2 style="text-align: left;">Configuration</h2>
-                <h3>Step1: Generating SSH key pair</h3>
-                <ol>
-                    <li>Open a terminal (<b>Git Bash</b> on Windows, Terminal on macOS/Linux).</li>
-                    <li>Run the following command to generate a new RSA key pair:
-                        <!-- Code Box 1 -->
+                        For macOS/Linux:
+                        <!-- Code Box Starts -->
                         <div class="code-placeholder">
-                            <pre><code id="code-snippet">ssh-keygen -t rsa -b 4096 -C "your_email@example.com"</code></pre>
+                            <pre><code class="code-snippet">git config --global core.autocrlf input</code></pre>
                             <button class="copybutton" onclick="copyCode()">Copy</button>
                         </div>
                         <!---Code Box ends--->
-                        Replace <span style=" background: bisque;" class="courier-font">"your_email@example.com"</span>
-                        with your GitHub email.
-                    </li>
-                    <li>When prompted, press <b>Enter</b> to accept the default file location (<span
-                            style=" background: bisque;" class="courier-font">~/.ssh/id_rsa</span>). </li>
-                    <li>Optionally, enter a passphrase for added security.</li>
-
-                </ol>
-                <h3>Step2: Add the SSH Key to the SSH Agent</h3>
-                <ol>
-                    <li>Start the SSH agent:
-                        <!-- Code Box 1 -->
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>Set Default Editor</b><br>Choose preferred text editor for Git commit messages.</td>
+                    <td>
+                        <!-- Code Box Starts -->
                         <div class="code-placeholder">
-                            <pre><code id="code-snippet">eval "$(ssh-agent -s)"</code></pre>
+                            <pre><code class="code-snippet">git config --global core.editor "code --wait" # VS Code
+git config --global core.editor "vim" # Vim
+git config --globalcore.editor "nano" # Nano</code></pre>
                             <button class="copybutton" onclick="copyCode()">Copy</button>
                         </div>
                         <!---Code Box ends--->
-                    </li>
-                    <li>Add your private key to the SSH agent:
-                        <!-- Code Box 1 -->
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>Enable Credential Caching</b><br>
+                        To avoid entering credentials repeatedly.
+                    </td>
+                    <td>
+                        <!-- Code Box Starts -->
                         <div class="code-placeholder">
-                            <pre><code id="code-snippet">ssh-add ~/.ssh/id_rsa</code></pre>
+                            <pre><code class="code-snippet">git config --global credential.helper cache</code></pre>
                             <button class="copybutton" onclick="copyCode()">Copy</button>
                         </div>
                         <!---Code Box ends--->
-                    </li>
-                </ol>
-                <h3>Step3: Add the SSH Key to GitHub</h3>
-                <ol>
-                    <li>Copy the public key:
-                        <!-- Code Box 1 -->
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>View All Configurations</b><br>
+                        To check current Git settings
+                    </td>
+                    <td>
+                        <!-- Code Box Starts -->
                         <div class="code-placeholder">
-                            <pre><code id="code-snippet">cat ~/.ssh/id_rsa.pub</code></pre>
+                            <pre><code class="code-snippet">git config --list --show-origin</code></pre>
                             <button class="copybutton" onclick="copyCode()">Copy</button>
                         </div>
                         <!---Code Box ends--->
-                    </li>
-                    <li>Log in to GitHub and go to <b>Settings → SSH and GPG keys</b>.</li>
-                    <li>Click <b>New SSH Key</b>, paste the copied key, and save. </li>
-                </ol>
-                <h3>Step4: Test the connection</h3>
-                <p class="newspaper-text">Run:</p>
+                    </td>
+                </tr>
+            </table>
+            <br>
+            <h2 style="text-align: left;">Working with Remote-repository</h2>
 
-                <!-- Code Box 1 -->
-                <div class="code-placeholder">
-                    <pre><code id="code-snippet">ssh -T git@github.com</code></pre>
-                    <button class="copybutton" onclick="copyCode()">Copy</button>
-                </div>
-                <!---Code Box ends--->
-                <p class="newspaper-text">If successful, will see a message like:</p>
-
-                <!-- Code Box 1 -->
-                <div class="code-placeholder">
-                    <pre><code id="code-snippet">Hi username! You've successfully authenticated, but GitHub does not provide shell access.</code></pre>
-                    <button class="copybutton" onclick="copyCode()">Copy</button>
-                </div>
-                <!---Code Box ends--->
-                <p class="newspaper-text"></p>
+            <p class="newspaper-text"></p>
 
 
+        </section>
 
-
-
-                <h2 style="text-align: left;font-size: 2.5em;" id="htgr"><a href="#htgr">How to generate RSA</a></h2>
-
-                <p class="newspaper-text"></p>
-
-                <p class="newspaper-text">This is styled like a newspaper article.
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sed lacus vehicula, efficitur justo
-                    id, efficitur est. Fusce facilisis lorem at sapien sagittis, nec rhoncus erat volutpat. Etiam
-                    commodo nunc id augue consequat, ac sollicitudin erat pellentesque. Curabitur euismod dui nec justo
-                    suscipit, ac facilisis orci interdum. Duis bibendum lacinia quam, a varius sapien facilisis eget.
-                    Vestibulum tristique nibh non elit maximus rhoncus.
-
-                    Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
-                    Suspendisse nec lorem eu mi venenatis tincidunt. Maecenas placerat orci nunc, et suscipit velit
-                    efficitur ut. In hac habitasse platea dictumst. Ut consequat turpis id elit viverra, sed facilisis
-                    lectus bibendum.
-
-                    [Repeated patterns of text]
-
-                    Vivamus malesuada id lorem id viverra. Maecenas faucibus tincidunt justo, eu lobortis leo ultricies
-                    eget. Fusce gravida ut nulla vel porta. Quisque vulputate justo a massa gravida, sed eleifend nulla
-                    scelerisque. Sed ornare efficitur semper. Aenean sit amet semper dui, a gravida ligula.
-
-                    Nunc consectetur faucibus libero, nec pretium ligula fermentum sed. Integer nec nisl ut lacus
-                    pharetra malesuada vel at leo. Cras pulvinar erat non purus feugiat, sed tincidunt elit interdum.
-                    Phasellus sagittis euismod tincidunt. Sed id augue id diam aliquet consequat id vel massa.
-
-                    Sed sagittis massa vel libero fermentum, ut vehicula massa volutpat. Pellentesque habitant morbi
-                    tristique senectus et netus et malesuada fames ac turpis egestas. Duis tempor risus id metus
-                    tincidunt convallis. Nulla facilisi.
-
-                    [This pattern can repeat to generate more lines up to 500]
-                </p>
-
-                <!--Just replace the id of the video that's all. Leave other things as it is-->
-                <iframe width="500" height="345"
-                    src="https://www.youtube.com/embed/FxMWN3YdkBQ?autoplay=1&mute=1"></iframe>
-                <p class="newspaper-text">
-                    This is a sample paragraph where the image is aligned next to the text. You can use this layout to
-                    display images alongside descriptive content, making your webpage more visually appealing.
-                    This is a sample paragraph where the image is aligned next to the text. You can use this layout to
-                    display images alongside descriptive content, making your webpage more visually appealing.
-                    This is a sample paragraph where the image is aligned next to the text. You can use this layout to
-                    display images alongside descriptive content, making your webpage more visually appealing.
-                    This is a sample paragraph where the image is aligned next to the text. You can use this layout to
-                    display images alongside descriptive content, making your webpage more visually appealing.
-                </p>
-            </section>
-
-        </main>
     </div>
 
     <!----------------------------------Footer----------------------------------->
@@ -711,10 +777,6 @@ git commit -m "Fix: crash on login redirect"</code></pre>
             document.body.style.backgroundColor = "white";
         }
 
-
-
-
-
         /*Remove Extra whitesace from pre*/
         window.addEventListener("load", function () {
             const codeBlock = document.getElementById("code-block");
@@ -724,7 +786,6 @@ git commit -m "Fix: crash on login redirect"</code></pre>
             const trimmedLines = lines.map(line => line.replace(/^\s+/, '')).join('\n');
             codeBlock.textContent = trimmedLines;
         });
-
 
         // Get the button "back-to-top"
         let mybutton = document.getElementById("myBtn");
@@ -745,15 +806,47 @@ git commit -m "Fix: crash on login redirect"</code></pre>
             document.body.scrollTop = 0;
             document.documentElement.scrollTop = 0;
         }
-        // JavaScript
-
-        function copyCode() {
-            const code = document.getElementById("code-snippet").innerText;
-            navigator.clipboard.writeText(code).then(() => {
-                alert("Code copied to clipboard!");
+        /*****Code Placeholder starts *****/
+        document.querySelectorAll('.copybutton').forEach(button => {
+            button.addEventListener('click', () => {
+                const code = button.parentElement.querySelector('.code-snippet').innerText;
+                navigator.clipboard.writeText(code).then(() => {
+                    button.innerText = "Copied!";
+                    setTimeout(() => (button.innerText = "Copy"), 1500);
+                });
             });
+        });
+
+        /*****Code placeholder ends*****/
+        /***Prevent clipboard issue if code block is missing****/
+        const codeBlock = document.getElementById("code-block");
+        if (codeBlock) {
+            const lines = codeBlock.textContent.split('\n');
+            const trimmedLines = lines.map(line => line.replace(/^\s+/, '')).join('\n');
+            codeBlock.textContent = trimmedLines;
+        }
+        /******Like button counter starts******/
+        //Like Button Counter (with local storage)
+        let count = localStorage.getItem("like-count") || 0;
+        let liked = localStorage.getItem("liked") === "true";
+
+        // Update UI on load
+        document.getElementById('like-count').innerText = count;
+        if (liked) {
+            document.getElementById('like-button').disabled = true;
         }
 
+        function incrementLikes() {
+            if (liked) return; // Prevent multiple likes
+
+            count++;
+            liked = true;
+            localStorage.setItem("like-count", count);
+            localStorage.setItem("liked", true);
+            document.getElementById('like-count').innerText = count;
+            document.getElementById('like-button').disabled = true;
+        }
+        /******Like button counter ends******/
 
     </script>
 

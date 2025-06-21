@@ -1,7 +1,7 @@
 .newspaper-container {
   font-family: 'Times New Roman', serif;
   color: #333;
-  padding: 20px;
+  /*padding: 20px;*/
   transition: margin-left 0.5s;
   /* Smooth sliding */
   margin-bottom: 5%;

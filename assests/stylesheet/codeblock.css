@@ -3,28 +3,51 @@
     position: relative;
     background-color: #f4f4f4;
     border: 1px solid #ccc;
-    padding: 1rem;
+    padding: 1rem 1rem 0.5rem 1rem;
+    /* Trim excess space at bottom */
+    /*padding: 1rem;*/
+    padding-right: 6rem;
+    /* extra space for the button */
     border-radius: 10px;
     font-family: monospace;
-    max-width: 600px;
-    /* Adjust this value to suit your layout */
-    width: 100%;
+    display: flex;
+    overflow-x: auto;
+    /* Adds scroll if needed */
+    box-sizing: border-box;
+    max-width: 80%;
+    min-width: 30%;
+    width: fit-content;
     box-shadow: 1px 1px 0px #125d9b;
     margin: 10px;
+    white-space: pre;
+    /*margin: 0 auto;*/
 }
 
+.code-placeholder code {
+    white-space: pre;
+    /* Prevents line wrapping */
+    display: block;
+}
+
+.code-placeholder::-webkit-scrollbar {
+    height: 6px;
+}
 
 .copybutton {
     position: absolute;
-    top: 10px;
+    top: 0.5rem;
+    right: 0.5rem;
+    padding: 0.3rem 0.6rem;
+    /* top: 10px;
     right: 10px;
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 1rem;*/
     cursor: pointer;
     background-color: #1e90ff;
     /* Vivid blue */
     color: white;
     border: none;
     border-radius: 6px;
+    font-size: 0.85rem;
     font-weight: bold;
     font-family: inherit;
     box-shadow: 0 5px 0 #125d9b;
@@ -34,4 +57,11 @@
 .copybutton:active {
     box-shadow: 0 2px 0 #125d9b;
     transform: translateY(3px);
+}
+
+.code-snippet {
+    white-space: pre-wrap;
+    /* Allows long code lines to wrap */
+    word-break: break-word;
+    /* Breaks long tokens if needed */
 }
