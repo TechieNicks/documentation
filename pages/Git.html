@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="keywords"
-        content="About Me, Online CV, Resume, Online Resume, DevOps, JIRA, Atlassian, nicks9188, Nicketa">
+        content="About Me, Online CV, Resume, Online Resume, DevOps, JIRA, Atlassian, nicks9188, Nicketa, techienicks">
     <meta name="description" content="TechieNicks">
     <meta name="author" content="Nicketa">
     <link href="../images/icon.ico" rel="shortcut icon">
@@ -14,10 +14,15 @@
     <link rel="stylesheet" href="../assests/stylesheet/techspec.css">
     <link rel="stylesheet" href="../assests/stylesheet/sidemenu.css">
     <link rel="stylesheet" href="../assests/stylesheet/writing.css">
+    <link rel="stylesheet" href="../assests/stylesheet/codeblock.css">
+    <link rel="javascript" href="../assests/stylesheet/codeblock.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,100..900;1,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
     <style>
         body {
@@ -35,6 +40,7 @@
             height: auto;
             border-radius: 8px;
         }
+
         .profile-container {
             position: absolute;
             margin-top: -125px;
@@ -46,7 +52,6 @@
             border-radius: 15%;
             border: 5px solid orange;
         }
-
     </style>
 </head>
 
@@ -67,11 +72,17 @@
     <!------------------------------------------------------------------------->
     <!---------------------------------Sub Menu--------------------------------->
     <div id="mySidenav" class="sidenav">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <a href="Git.html">Git</a>
-        <a href="#">Services</a>
-        <a href="#">Clients</a>
-        <a href="#">Contact</a>
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">close &times;</a>
+        <ul>
+            <li><a href="#whatisgit">What is Git?</a></li>
+            <li><a href="#hiidfg">How it is different from Github?</a></li>
+            <li><a href="#dni">Download and Installation</a></li>
+            <li><a href="#htgr">How to generate RSA</a></li>
+            <li><a href="#3">First Configuration</a></li>
+            <li><a href="#4">Connection with Github</a></li>
+            <li><a href="#4">First Push to GIthub from local</a></li>
+            <li><a href="#4">Conclusion</a></li>
+        </ul>
     </div>
     <!----------------------------------Content---------------------------------->
     <div id="main" style="margin-left: 5px;">
@@ -79,61 +90,400 @@
     </div>
     <!-------------------------BODY---------------------------------------------->
     <div class="newspaper-container">
-        <h1>Git</h1>
-        <main>
-            <section class="article">
-                <h2>Latest Updates</h2>
 
-            <div class="profile-container">
-                <img src="../images/1color-orange-lightbg@2x.png" alt="Git" class="profile-pic">
+        <div class="table-of-contents">
+            <div class="toc-item">
+                <img src="../images/1color-orange-lightbg@2x.png" alt="Git" class="profile-pic" style="
+                margin-top: 70px;
+            ">
             </div>
+            <div class="toc-item">
+                <h1 style="text-align: left;color: red" ;>Git</h1>
+                <h2 style="text-align: left;color: orangered;">History & Basics</h2>
+            </div>
+            <div class="toc-item">
+                <!--
+				<h2>Table of Contents</h2>
+				<ul>
+					<li><a href="#whatisgit" style="color:#333;">What is Git?</a></li>
+					<li><a href="#2" style="color:#333;">How it is different from Github?</a></li>
+					<li><a href="#4" style="color:#333;">Download and Installation</a></li>
+				</ul>
+				-->
+            </div>
+        </div>
 
-            <br><br>
-            
-<p class="newspaper-text">
-                    This is a sample paragraph where the image is aligned next to the text. You can use this layout to
-                    display images alongside descriptive content, making your webpage more visually appealing.
-                    This is a sample paragraph where the image is aligned next to the text. You can use this layout to
-                    display images alongside descriptive content, making your webpage more visually appealing.
-                    This is a sample paragraph where the image is aligned next to the text. You can use this layout to
-                    display images alongside descriptive content, making your webpage more visually appealing.
-                    This is a sample paragraph where the image is aligned next to the text. You can use this layout to
-                    display images alongside descriptive content, making your webpage more visually appealing.
+        <!--Back to top-->
+        <button onclick="topFunction()" id="myBtn" title="Go to top">Back to Top</button>
+
+        <main>
+
+            <section class="article">
+                <h2 style="text-align: left;">What is version control?</h2>
+                <p class="newspaper-text">
+                    <strong>Version control</strong> is a system that helps track and manage changes to files,
+                    especially in software development. It allows multiple people to collaborate on a project
+                    without overwriting each other's work and provides a history of modifications. Version control
+                    helps in:
                 </p>
-    <p class="newspaper-text">
-                    This is a sample paragraph where the image is aligned next to the text. You can use this layout to
-                    display images alongside descriptive content, making your webpage more visually appealing.
-                    This is a sample paragraph where the image is aligned next to the text. You can use this layout to
-                    display images alongside descriptive content, making your webpage more visually appealing.
-                    This is a sample paragraph where the image is aligned next to the text. You can use this layout to
-                    display images alongside descriptive content, making your webpage more visually appealing.
-                    This is a sample paragraph where the image is aligned next to the text. You can use this layout to
-                    display images alongside descriptive content, making your webpage more visually appealing.
+                <ul>
+                    <li><strong>Tracking Changes</strong>: Every modification is recorded, making it easy to revert to
+                        previous versions
+                        if needed.</li>
+                    <li><strong>Collaboration</strong>: Multiple developers can work on the same project simultaneously
+                        without
+                        conflicts.</li>
+                    <li><strong>Backup & Recovery</strong>: If something goes wrong, you can restore an earlier version.
+                    </li>
+                    <li><strong>Branching & Merging</strong>: Developers can create separate branches for new features
+                        or bug fixes, then merge them back into the main project.
+                    </li>
+                </ul>
+                <p class="newspaper-text">
+                    Version control systems (VCS) help developers track changes, collaborate efficiently, and manage
+                    different versions of a
+                    project. There are three main types:
                 </p>
+                <ol>
+                    <li><strong>Local Version Control Systems (LVCS)</strong>:
+                        <ul>
+                            <li>Changes are stored locally on a single computer.</li>
+                            <li>Each modification is saved as a patch, making it difficult to collaborate with others.
+                            </li>
+                            <li>Risk of losing data if the local system fails.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Centralized Version Control Systems (CVCS)</strong>:
+                        <ul>
+                            <li>A single repository stores all versions, and users must connect to it to access or
+                                modify files.</li>
+                            <li>Examples: <strong>Subversion (SVN)</strong>, <strong>Microsoft Team Foundation Server
+                                    (TFS).</strong></li>
+                            <li>Easier collaboration but has a single point of failure—if the central server crashes,
+                                all history
+                                could be lost.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Distributed Version Control Systems (DVCS)</strong>:
+                        <ul>
+                            <li>Each user has a full copy of the repository, allowing offline work and better
+                                redundancy.</li>
+                            <li>Examples: <strong>Git</strong>, <strong>Mercurial.</strong></li>
+                            <li>More flexible and resilient, as changes can be merged from multiple sources.</li>
+                        </ul>
+                    </li>
+                </ol>
+                <br>
+                <h2 style="text-align: left;font-size: 2.5em;color: #34495e;">Limitations of Version control</h2>
+                <p class="newspaper-text">
+                    Before <strong>Git</strong>, developers relied on centralized version control system.
+                    It had limitations like single points of failure and restricted offline work.
+                    Developers cannot have their own copy of the repository and hence, cannot work offline
+                    independently.
+                </p>
+
+                <ul>
+                    <li><strong>Single Point of Failure</strong>: If the central server crashes, all version history
+                        and collaboration are lost unless backups exist.
+                    </li>
+                    <li><strong>Requires Constant Connectivity</strong>: Developers must be connected to the central
+                        server to commit changes or access previous versions.</li>
+                    <li><strong>Limited Offline Work</strong>: Unlike DVCS, developers cannot work independently without
+                        access to the central repository.</li>
+                    <li><strong>Slower Performance</strong>: Every operation requires communication with the central
+                        server, which can slow down workflows.</li>
+                    <li><strong>Risk of Data Loss</strong>: If the central repository is corrupted or compromised, all
+                        data could be lost unless proper backups are maintained. </li>
+                </ul>
+                <p class="newspaper-text">
+                    These drawbacks led to the rise of Git, which offers a distributed approach for better flexibility
+                    and resilience. <strong>Git</strong>
+                    was created to address the challenges of managing code efficiently, especially in large-scale
+                    projects with multiple contributors.
+                </p>
+
+                <h2 style="text-align: left;font-size: 2.5em;color: #34495e;">What was the need of git?</h2>
+                <p class="newspaper-text"></p>
+                <ul>
+                    <li><strong>Distributed Version Control</strong>: Unlike older systems, Git allows every developer
+                        to have a full copy of the repository, enabling offline work and
+                        reducing dependency on a central server.</li>
+                    <li><strong>Efficient Collaboration</strong>: Developers can work on different features
+                        simultaneously using branches, then merge their changes without disrupting the
+                        main codebase.</li>
+                    <li><strong>Tracking Changes</strong>: Git maintains a detailed history of modifications, making it
+                        easy to revert to previous versions if needed.</li>
+                    <li><strong>Performance & Speed</strong>: Git is optimized for handling large projects efficiently,
+                        ensuring quick operations even with extensive codebases.</li>
+                    <li><strong>Security & Integrity</strong>: Every change is securely stored using cryptographic
+                        hashing, preventing accidental or malicious alterations.</li>
+                </ul>
+
+                <h2 style="text-align: left;font-size: 2.5em;" id="whatisgit"><a href="#whatisgit">What is git?</a></h2>
+                <p class="newspaper-text">
+                    <strong>Git</strong> is a <u>distributed</u> version control system that helps developers track
+                    changes in
+                    their code, collaborate efficiently and manage different versions of a project.
+                    Git was initially developed by <strong>Linus Torvalds</strong> in 2005 for managing the Linux
+                    kernel, but its advantages quickly made it the industry standard for version control.
+                </p>
+                <p class="newspaper-text">Here is why it is widely used:</p>
+                <ul>
+                    <li><strong>Version Control</strong>: It keeps a history of all changes, allowing developers to
+                        revert to previous versions if needed.</li>
+                    <li><strong>Branching & Merging</strong>: Developers can create separate branches to work on new
+                        features or fixes, then merge them back into the main project.</li>
+                    <li><strong>Collaboration</strong>: Git enables multiple developers to work on the same project
+                        without overwriting each other’s changes.</li>
+                    <li><strong>Performance</strong>: It is fast and efficient, even for large projects. </li>
+                </ul>
+
+                <h3 style="text-align: left;color: #34495e;">Meaning of <u>distributed</u></h3>
+                <p class="newspaper-text">
+                    In Git, distributed means that every developer has a complete copy of the repository, including its
+                    entire history, on
+                    their local machine. Unlike centralized version control systems, where a single server holds the
+                    main repository, Git
+                    allows developers to work independently without needing constant access to a central server.
+
+                </p>
+
+
+                <h2 style="text-align: left;font-size: 2.5em;" id="hiidfg"><a href="#hiidfg">Git vs Github?</a></h2>
+                <p class="newspaper-text">
+                    Git is the engine, while GitHub is the garage where teams collaborate.
+                </p>
+                <ul>
+                    <li><strong>Git</strong> is a <strong>distributed version control system</strong> that helps
+                        developers track changes in their code, collaborate
+                        efficiently, and manage different versions of a project. It runs locally on a developer’s
+                        machine and allows offline
+                        work </li>
+                    <li><strong>GitHub</strong> is a <strong>web-based platform</strong> that hosts Git repositories,
+                        providing additional collaboration tools like pull
+                        requests, issue tracking, and project management.
+                    </li>
+                </ul>
+                <h3 style="text-align: left;color: #34495e;">Key Differences:</h3>
+                <div class="table-container">
+                    <table>
+                        <tr>
+                            <th>Feature</th>
+                            <th>Git</th>
+                            <th>GitHub</th>
+                        </tr>
+                        <tr>
+                            <td>Type</td>
+                            <td>Software</td>
+                            <td>Hosting Service</td>
+                        </tr>
+                        <tr>
+                            <td>Function</td>
+                            <td>Version control</td>
+                            <td>Repository management</td>
+                        </tr>
+                        <tr>
+                            <td>Installation</td>
+                            <td>Local</td>
+                            <td>Cloud-based</td>
+                        </tr>
+                        <tr>
+                            <td>Collaboration</td>
+                            <td>Command-line based</td>
+                            <td>Web inteface with additional tools</td>
+                        </tr>
+                        <tr>
+                            <td>Ownership</td>
+                            <td>Open-source (Linux foundation)</td>
+                            <td>Owned by Microsoft</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <h3 style="text-align: left;color: #34495e;">Alternatives:</h3>
+                <ul>
+                    <li><strong>GitLab</strong>: A complete DevOps platform with built-in CI/CD and issue tracking.</li>
+                    <li><strong>Bitbucket</strong>: Ideal for teams using Atlassian tools like Jira and Trello.</li>
+                    <li><strong>SourceForge</strong>: Supports multiple version control systems, including Git and
+                        SVN.</li>
+                    <li><strong>Gitea</strong>: A lightweight, self-hosted Git service.</li>
+                    <li><strong>Beanstalk</strong>: Offers version control with built-in code review and deployment
+                        tools. </li>
+                </ul>
+
+                <h2 style="text-align: left;font-size: 2.5em;" id="dni"><a href="#dni">Download and Installation</a>
+                </h2>
 
                 <p class="newspaper-text">
-                    This is a sample paragraph where the image is aligned next to the text. You can use this layout to
-                    display images alongside descriptive content, making your webpage more visually appealing.
-                    This is a sample paragraph where the image is aligned next to the text. You can use this layout to
-                    display images alongside descriptive content, making your webpage more visually appealing.
-                    This is a sample paragraph where the image is aligned next to the text. You can use this layout to
-                    display images alongside descriptive content, making your webpage more visually appealing.
-                    This is a sample paragraph where the image is aligned next to the text. You can use this layout to
-                    display images alongside descriptive content, making your webpage more visually appealing.
+                <ul>
+                    <li>Go to Git <a href="https://git-scm.com/downloads" target="_blank"
+                            style="text-decoration:underline;">Downloads</a>.</li>
+                    <li>Based on your operating system, select the platform (macOS/Windows/Linux).</li>
+                    <li>However, based on your operating system, it will show the platform recommendation with the
+                        latest release.</li>
+                    <li>Now you can download and install it as per your operating system/platform.</li>
+                </ul>
                 </p>
 
+                <h2 style="text-align: left;">Configuration</h2>
+
+                <h2 style="text-align: left;">Git Lifecycle</h2>
+
+                <div class="table-of-contents">
+                    <div class="toc-item" style="background-color: antiquewhite;">
+                        <h3>Stash</h3><br>
+
+                        <ul>
+                            <li><span style=" background: lightgrey;" class="courier-font">
+                                    git stash</span> = Stash current changes.</li>
+                            <li><span style=" background: lightgrey;" class="courier-font">
+                                    git stash list</span> = View stashed changes.</li>
+                            <li><span style=" background: lightgrey;" class="courier-font">
+                                    git stash pop</span> = Apply and remove the latest stash.
+                            </li>
+                            <li><span style=" background: lightgrey;" class="courier-font">
+                                    git stash apply</span> = Apply the latest stash without
+                                removing it.</li>
+                            <li><span style=" background: lightgrey;" class="courier-font">
+                                    git stash drop</span> = Delete a specific stash.</li>
+                        </ul>
+                        <p class="newspaper-text">A temporary locker — Temporarily save changes which we’re not ready to
+                            commit.</p>
+                    </div>
+                    <div class="toc-item" style="background-color: beige">
+                        <h3>Workspace or <br>Working Directory</h3>
+
+                        <ul>
+                            <li><span style=" background: lightgrey;" class="courier-font">
+                                    git status</span> = Show changes in the working directory and
+                                staging area.</li>
+                            <li><span style=" background: lightgrey;" class="courier-font">
+                                    git diff</span> = View unstaged changes.</li>
+                            <li><span style=" background: lightgrey;" class="courier-font">
+                                    git checkout --<_filename_></span> = Discard changes in a
+                                file.
+                            </li>
+                            <li><span style=" background: lightgrey;" class="courier-font">
+                                    git clean -fd</span> = Remove untracked files and directories.
+                            </li>
+                        </ul>
+                        <p class="newspaper-text">This is where we create or modify files. Changes here are not yet
+                            tracked by Git.</p>
+                    </div>
+                    <div class="toc-item" style="background-color: khaki;">
+                        <h3>Index or<br>Staging Area</h3>
+
+                        <ul>
+                            <li><span style=" background: lightgrey;" class="courier-font">
+                                    git status</span> = Show changes in the working directory and
+                                staging area.</li>
+                            <li><span style=" background: lightgrey;" class="courier-font">
+                                    git add <_filenme_>
+                                </span> = Stage a file</li>
+                            <li><span style=" background: lightgrey;" class="courier-font">
+                                    git add .</span> = Stage all changes</li>
+                            <li><span style=" background: lightgrey;" class="courier-font">
+                                    git reset <_filename_></span> = Unstage a file</li>
+                            <li><span style=" background: lightgrey;" class="courier-font">
+                                    git diff --cached</span> = View staged changes</li>
+                        </ul>
+                        <p class="newspaper-text">Where we prepare changes before committing.</p>
+                    </div>
+                    <div class="toc-item" style="background-color: lavender;">
+                        <h3>Local Repository</h3><br>
+
+                        <ul>
+                            <li><span style=" background: lightgrey;" class="courier-font">
+                                    git commit -m "commit_message"
+                                </span> = Commit staged changes</li>
+                            <li><span style=" background: lightgrey;" class="courier-font">
+                                    git log
+                                </span> = View commit history</li>
+                            <li><span style=" background: lightgrey;" class="courier-font">
+                                    git reset --soft Head^
+                                </span>Undo last commit, keep changes staged.</li>
+                            <li><span style=" background: lightgrey;" class="courier-font">
+                                    git reset --hard Head
+                                </span>Reset to last commit, discard all changes</li>
+                        </ul>
+                        <p class="newspaper-text">Where committed changes are stored locally.</p>
+                    </div>
+                    <div class="toc-item" style="background-color: lightgray;">
+                        <h3>Upstream or<br>Remote Repository</h3>
+
+                        <ul>
+                            <li><span style=" background: bisque;" class="courier-font">
+                                    git remote -v
+                                </span> = Show remote URLs</li>
+                            <li><span style=" background: bisque;" class="courier-font">
+                                    git fetch
+                                </span> = Get changes from remote without merging</li>
+                            <li><span style=" background: bisque;" class="courier-font">
+                                    git pull
+                                </span> = Fetch and merge changes from remote</li>
+                            <li><span style=" background: bisque;" class="courier-font">
+                                    git push
+                                </span> = Push local commits to remote</li>
+                            <li><span style=" background: bisque;" class="courier-font">
+                                    git clone <_url_>
+                                </span> = Clone a remote repository</li>
+                        </ul>
+                        <p class="newspaper-text">Shared repository for collaboration (e.g., GitHub).</p>
+                    </div>
+                </div>
+                <h3>Explanation:</h3>
+                <ul>
+                    <li><b>Stash</b>: Temporarily save changes when we’re not ready to commit. It’s
+                        especially
+                        handy when we’re in the middle of something, but need to quickly switch tasks or branches
+                        without
+                        losing the current work.</li>
+                </ul>
+                <h3>Example:</h3>
+                <p class="newspaper-text">
+                    <u>Scenario:</u> We're working on a new feature, but suddenly need to fix a bug on the main branch.
+                    Want to stash your
+                    current work, switch branches, fix the bug, and then return to the feature.
+                </p>
+                <ol>
+                    <li>Start from feature branch (current work)
+
+                        <!-- Code Box 1 -->
+                        <div class="code-container">
+                            <div class="code-header">
+                                <h3>HTML Code</h3>
+                                <button class="copy-button" data-target="code-content1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="copy-icon" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                            <!--Add Your Parse HTML, CSS and Js code Here-->
+                            <div id="code-content1" class="code-block">
+                                <pre>&lt;p&gt;This is a simple HTML code&lt;/p&gt;</pre>
+                            </div>
+                        </div>
+
+                    </li>
+                    <li>Make some changes</li>
+                    <li>Stage one file</li>
+                    <li>Stash both stages and unstaged changes</li>
+                    <li>Switch to main and fix the bug</li>
+                    <li>Push the fix to remote</li>
+                    <li>Return to the feature branch</li>
+                    <li>Reapply the stashed changes</li>
+                </ol>
+
+                <p class="newspaper-text"></p>
 
 
 
-            
 
 
-
-                
-
-               
-
-
+                <h2 style="text-align: left;font-size: 2.5em;" id="htgr"><a href="#htgr">How to generate RSA</a></h2>
 
                 <p class="newspaper-text">This is styled like a newspaper article.
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sed lacus vehicula, efficitur justo
@@ -163,15 +513,31 @@
 
                     [This pattern can repeat to generate more lines up to 500]
                 </p>
+
+                <!--Just replace the id of the video that's all. Leave other things as it is-->
+                <iframe width="500" height="345"
+                    src="https://www.youtube.com/embed/FxMWN3YdkBQ?autoplay=1&mute=1"></iframe>
+                <p class="newspaper-text">
+                    This is a sample paragraph where the image is aligned next to the text. You can use this layout to
+                    display images alongside descriptive content, making your webpage more visually appealing.
+                    This is a sample paragraph where the image is aligned next to the text. You can use this layout to
+                    display images alongside descriptive content, making your webpage more visually appealing.
+                    This is a sample paragraph where the image is aligned next to the text. You can use this layout to
+                    display images alongside descriptive content, making your webpage more visually appealing.
+                    This is a sample paragraph where the image is aligned next to the text. You can use this layout to
+                    display images alongside descriptive content, making your webpage more visually appealing.
+                </p>
             </section>
-            
+
         </main>
     </div>
+
     <!----------------------------------Footer----------------------------------->
     <footer>
         <p>©
             <script>document.write(new Date().getFullYear())</script> Copyright by
-            <a href="https://github.com/nicks9188" target="_blank">TechieNicks</a>
+            <i class="fas fa-heartbeat"></i><a class="footera" href="https://github.com/nicks9188"
+                target="_blank">TechieNicks</a>
         </p>
     </footer>
     <!------------------------------------------------------------------------->
@@ -203,8 +569,19 @@
                 console.error("Failed to copy: ", err);
             });
         }
+        function copyCode() {
+            const code = document.getElementById("snippet").innerText;
+            navigator.clipboard.writeText(code).then(() => {
+                alert("Code copied to clipboard!");
+            }).catch(err => {
+                console.error("Copy failed:", err);
+            });
+        }
+
+
+
         /*Remove Extra whitesace from pre*/
-        window.addEventListener("load", function() {
+        window.addEventListener("load", function () {
             const codeBlock = document.getElementById("code-block");
             // Split the code into lines.
             const lines = codeBlock.textContent.split('\n');
@@ -212,6 +589,29 @@
             const trimmedLines = lines.map(line => line.replace(/^\s+/, '')).join('\n');
             codeBlock.textContent = trimmedLines;
         });
+
+
+        // Get the button "back-to-top"
+        let mybutton = document.getElementById("myBtn");
+
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function () { scrollFunction() };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 25 || document.documentElement.scrollTop > 25) {
+                mybutton.style.display = "block";
+            } else {
+                mybutton.style.display = "none";
+            }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+
+
     </script>
 </body>
 
