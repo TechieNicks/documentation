@@ -15,7 +15,6 @@
     <link rel="stylesheet" href="../assests/stylesheet/sidemenu.css">
     <link rel="stylesheet" href="../assests/stylesheet/writing.css">
     <link rel="stylesheet" href="../assests/stylesheet/codeblock.css">
-    <link rel="javascript" href="../assests/stylesheet/codeblock.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -94,7 +93,7 @@
         <div class="table-of-contents">
             <div class="toc-item">
                 <img src="../images/1color-orange-lightbg@2x.png" alt="Git" class="profile-pic" style="
-                margin-top: 70px;
+                margin-top: 50px;
             ">
             </div>
             <div class="toc-item">
@@ -311,22 +310,6 @@
                         tools. </li>
                 </ul>
 
-                <h2 style="text-align: left;font-size: 2.5em;" id="dni"><a href="#dni">Download and Installation</a>
-                </h2>
-
-                <p class="newspaper-text">
-                <ul>
-                    <li>Go to Git <a href="https://git-scm.com/downloads" target="_blank"
-                            style="text-decoration:underline;">Downloads</a>.</li>
-                    <li>Based on your operating system, select the platform (macOS/Windows/Linux).</li>
-                    <li>However, based on your operating system, it will show the platform recommendation with the
-                        latest release.</li>
-                    <li>Now you can download and install it as per your operating system/platform.</li>
-                </ul>
-                </p>
-
-                <h2 style="text-align: left;">Configuration</h2>
-
                 <h2 style="text-align: left;">Git Lifecycle</h2>
 
                 <div class="table-of-contents">
@@ -446,37 +429,203 @@
                     current work, switch branches, fix the bug, and then return to the feature.
                 </p>
                 <ol>
-                    <li>Start from feature branch (current work)
+                    <li>Start from feature branch (current work). We're now in our <b>workspace</b>, editing files like
+                        <span style=" background: bisque;" class="courier-font">login.js</span> and <span
+                            style=" background: bisque;" class="courier-font">style.css</span>.
+                        <!-- Code Box 1 -->
+                        <div class="code-placeholder">
+                            <pre><code id="code-snippet">git checkout -b feature/login-form</code></pre>
+                            <button class="copybutton" onclick="copyCode()">Copy</button>
+                        </div>
+                        <!---Code Box ends--->
+                    </li>
+                    <li>Make some changes. Modified both files but haven’t committed anything yet. Shows modified files
+                        in the <b>workspace</b>.
+                        <!-- Code Box 1 -->
+                        <div class="code-placeholder">
+                            <pre><code id="code-snippet">git status</code></pre>
+                            <button class="copybutton" onclick="copyCode()">Copy</button>
+                        </div>
+                        <!---Code Box ends--->
+                    </li>
+                    <li>Stage one file. Now <span style=" background: bisque;" class="courier-font">login.js</span> is
+                        in the staging area, while <span style=" background: bisque;"
+                            class="courier-font">style.css</span> is still in the <b>workspace</b>.
 
                         <!-- Code Box 1 -->
-                        <div class="code-container">
-                            <div class="code-header">
-                                <h3>HTML Code</h3>
-                                <button class="copy-button" data-target="code-content1">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="copy-icon" viewBox="0 0 24 24"
-                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round">
-                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                                    </svg>
-                                </button>
-                            </div>
-                            <!--Add Your Parse HTML, CSS and Js code Here-->
-                            <div id="code-content1" class="code-block">
-                                <pre>&lt;p&gt;This is a simple HTML code&lt;/p&gt;</pre>
-                            </div>
+                        <div class="code-placeholder">
+                            <pre><code id="code-snippet">git add login.js</code></pre>
+                            <button class="copybutton" onclick="copyCode()">Copy</button>
                         </div>
-
+                        <!---Code Box ends--->
                     </li>
-                    <li>Make some changes</li>
-                    <li>Stage one file</li>
-                    <li>Stash both stages and unstaged changes</li>
-                    <li>Switch to main and fix the bug</li>
-                    <li>Push the fix to remote</li>
-                    <li>Return to the feature branch</li>
-                    <li>Reapply the stashed changes</li>
-                </ol>
+                    <li>Stash both stages and unstaged changes. This saves our progress (both staged and unstaged) and
+                        resets the working directory to match the last commit.
+                        <!-- Code Box 1 -->
+                        <div class="code-placeholder">
+                            <pre><code id="code-snippet">git stash push -m "WIP: login form"</code></pre>
+                            <button class="copybutton" onclick="copyCode()">Copy</button>
+                        </div>
+                        <!---Code Box ends--->
+                    </li>
+                    <li>Switch to main and fix the bug. This commit is now in our <b>local repository</b>.
+                        <!-- Code Box 1 -->
+                        <div class="code-placeholder">
+                            <pre><code id="code-snippet">git checkout main
+# Fix the bug in app.js
+git add app.js
+git commit -m "Fix: crash on login redirect"</code></pre>
 
+                            <button class="copybutton" onclick="copyCode()">Copy</button>
+                        </div>
+                        <!---Code Box ends--->
+                    </li>
+                    <li>Push the fix to remote. Now our fix is in the <b>remote repository</b> (e.g., GitHub)
+
+                        <!-- Code Box 1 -->
+                        <div class="code-placeholder">
+                            <pre><code id="code-snippet">git push origin main</code></pre>
+                            <button class="copybutton" onclick="copyCode()">Copy</button>
+                        </div>
+                        <!---Code Box ends--->
+                    </li>
+                    <li>Return to the feature branch
+                        <!-- Code Box 1 -->
+                        <div class="code-placeholder">
+                            <pre><code id="code-snippet">git checkout feature/login-form</code></pre>
+                            <button class="copybutton" onclick="copyCode()">Copy</button>
+                        </div>
+                        <!---Code Box ends--->
+                    </li>
+                    <li>Reapply the stashed changes. Our changes to <span style=" background: bisque;"
+                            class="courier-font">login.js</span> and <span style=" background: bisque;"
+                            class="courier-font">style.css</span> are restored to the workspace and staging area as they
+                        were.
+
+                        <!-- Code Box 1 -->
+                        <div class="code-placeholder">
+                            <pre><code id="code-snippet">git stash pop</code></pre>
+                            <button class="copybutton" onclick="copyCode()">Copy</button>
+                        </div>
+                        <!---Code Box ends--->
+                    </li>
+                </ol>
+                <h3>Summary:</h3>
+                <table style="max-width: 800px;">
+                    <tbody>
+                        <tr>
+                            <th>Git Area</th>
+                            <th>What happened</th>
+                        </tr>
+                        <tr>
+                            <td>Workspace</td>
+                            <td>Edited files like <span style=" background: bisque;"
+                                    class="courier-font">login.js</span> and <span style=" background: bisque;"
+                                    class="courier-font">style.css</span>. </td>
+                        </tr>
+                        <tr>
+                            <td>Staging Area</td>
+                            <td>Staged <span style=" background: bisque;" class="courier-font">login.js</span> before
+                                stashing. </td>
+                        </tr>
+                        <tr>
+                            <td>Stash</td>
+                            <td>Saved both staged and unstaged changes temporarily.</td>
+                        </tr>
+                        <tr>
+                            <td>Local Repository</td>
+                            <td>Committed the bug fix to the local repo. </td>
+                        </tr>
+                        <tr>
+                            <td>Remote Repository</td>
+                            <td>Pushed the fix to GitHub (or another remote).
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h2 style="text-align: left;font-size: 2.5em;" id="dni"><a href="#dni">Download and Installation</a>
+                </h2>
+
+                <p class="newspaper-text">
+                <ul>
+                    <li>Go to Git <a href="https://git-scm.com/downloads" target="_blank"
+                            style="text-decoration:underline;">Downloads</a>.</li>
+                    <li>Based on your operating system, select the platform (macOS/Windows/Linux).</li>
+                    <li>However, based on your operating system, it will show the platform recommendation with the
+                        latest release.</li>
+                    <li>Now you can download and install it as per your operating system/platform.</li>
+                </ul>
+                </p>
+
+                <h2 style="text-align: left;">Configuration</h2>
+                <h3>Step1: Generating SSH key pair</h3>
+                <ol>
+                    <li>Open a terminal (<b>Git Bash</b> on Windows, Terminal on macOS/Linux).</li>
+                    <li>Run the following command to generate a new RSA key pair:
+                        <!-- Code Box 1 -->
+                        <div class="code-placeholder">
+                            <pre><code id="code-snippet">ssh-keygen -t rsa -b 4096 -C "your_email@example.com"</code></pre>
+                            <button class="copybutton" onclick="copyCode()">Copy</button>
+                        </div>
+                        <!---Code Box ends--->
+                        Replace <span style=" background: bisque;" class="courier-font">"your_email@example.com"</span>
+                        with your GitHub email.
+                    </li>
+                    <li>When prompted, press <b>Enter</b> to accept the default file location (<span
+                            style=" background: bisque;" class="courier-font">~/.ssh/id_rsa</span>). </li>
+                    <li>Optionally, enter a passphrase for added security.</li>
+
+                </ol>
+                <h3>Step2: Add the SSH Key to the SSH Agent</h3>
+                <ol>
+                    <li>Start the SSH agent:
+                        <!-- Code Box 1 -->
+                        <div class="code-placeholder">
+                            <pre><code id="code-snippet">eval "$(ssh-agent -s)"</code></pre>
+                            <button class="copybutton" onclick="copyCode()">Copy</button>
+                        </div>
+                        <!---Code Box ends--->
+                    </li>
+                    <li>Add your private key to the SSH agent:
+                        <!-- Code Box 1 -->
+                        <div class="code-placeholder">
+                            <pre><code id="code-snippet">ssh-add ~/.ssh/id_rsa</code></pre>
+                            <button class="copybutton" onclick="copyCode()">Copy</button>
+                        </div>
+                        <!---Code Box ends--->
+                    </li>
+                </ol>
+                <h3>Step3: Add the SSH Key to GitHub</h3>
+                <ol>
+                    <li>Copy the public key:
+                        <!-- Code Box 1 -->
+                        <div class="code-placeholder">
+                            <pre><code id="code-snippet">cat ~/.ssh/id_rsa.pub</code></pre>
+                            <button class="copybutton" onclick="copyCode()">Copy</button>
+                        </div>
+                        <!---Code Box ends--->
+                    </li>
+                    <li>Log in to GitHub and go to <b>Settings → SSH and GPG keys</b>.</li>
+                    <li>Click <b>New SSH Key</b>, paste the copied key, and save. </li>
+                </ol>
+                <h3>Step4: Test the connection</h3>
+                <p class="newspaper-text">Run:</p>
+
+                <!-- Code Box 1 -->
+                <div class="code-placeholder">
+                    <pre><code id="code-snippet">ssh -T git@github.com</code></pre>
+                    <button class="copybutton" onclick="copyCode()">Copy</button>
+                </div>
+                <!---Code Box ends--->
+                <p class="newspaper-text">If successful, will see a message like:</p>
+
+                <!-- Code Box 1 -->
+                <div class="code-placeholder">
+                    <pre><code id="code-snippet">Hi username! You've successfully authenticated, but GitHub does not provide shell access.</code></pre>
+                    <button class="copybutton" onclick="copyCode()">Copy</button>
+                </div>
+                <!---Code Box ends--->
                 <p class="newspaper-text"></p>
 
 
@@ -484,6 +633,8 @@
 
 
                 <h2 style="text-align: left;font-size: 2.5em;" id="htgr"><a href="#htgr">How to generate RSA</a></h2>
+
+                <p class="newspaper-text"></p>
 
                 <p class="newspaper-text">This is styled like a newspaper article.
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sed lacus vehicula, efficitur justo
@@ -560,23 +711,7 @@
             document.body.style.backgroundColor = "white";
         }
 
-        /*Code container*/
-        function copyCode() {
-            const codeBlock = document.getElementById("code-block").textContent;
-            navigator.clipboard.writeText(codeBlock).then(() => {
-                alert("Code copied to clipboard!");
-            }).catch(err => {
-                console.error("Failed to copy: ", err);
-            });
-        }
-        function copyCode() {
-            const code = document.getElementById("snippet").innerText;
-            navigator.clipboard.writeText(code).then(() => {
-                alert("Code copied to clipboard!");
-            }).catch(err => {
-                console.error("Copy failed:", err);
-            });
-        }
+
 
 
 
@@ -610,9 +745,18 @@
             document.body.scrollTop = 0;
             document.documentElement.scrollTop = 0;
         }
+        // JavaScript
+
+        function copyCode() {
+            const code = document.getElementById("code-snippet").innerText;
+            navigator.clipboard.writeText(code).then(() => {
+                alert("Code copied to clipboard!");
+            });
+        }
 
 
     </script>
+
 </body>
 
 </html>
