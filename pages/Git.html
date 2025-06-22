@@ -224,6 +224,15 @@
                     <li>First Configurations</li>
                     <li>Working with Remote-repository</li>
                 </ol>
+                <br><br><br>
+                <h3>Git References</h3>
+
+                <ul>
+                    <li><a href="https://git-scm.com/videos" target="_blank">Git official Videos</a></li>
+                    <li><a href="https://git-scm.com/downloads" target="_blank">Git official download link</a></li>
+                    <li><a href="https://git-scm.com/doc" target="_blank">Git official documentation</a></li>
+                    <li><a href="https://git-scm.com/docs" target="_blank">Git complete list of commands</a></li>
+                </ul>
             </section>
         </div>
         <!------------------------------------- Left - Right ----------------------------------------------->
@@ -261,7 +270,7 @@
             </p>
             <br>
             <h2 style="text-align: left;font-size: 2.5em;color: #34495e;">What was the need of git?</h2>
-            <p class="newspaper-text"></p>
+
             <ul>
                 <li><strong>Distributed Version Control</strong>: Unlike older systems, Git allows every developer
                     to have a full copy of the repository, enabling offline work and
@@ -777,13 +786,159 @@ git config --globalcore.editor "nano" # Nano</code></pre>
                 </tr>
             </table>
             <br>
-            <h2 style="text-align: left;">Working with Remote-repository</h2>
+            <h1 style="text-align: left;">Use Cases</h1>
+            <h2 style="text-align: left;">Connecting with Remote-repository</h2>
+
+            <p class="newspaper-text">
+                Here we're assuming that you already have a repository on github and you're ready with the url.
+            </p>
+            <h3>Step1:Cloning the repository</h3>
+            <ul>
+                <li>In your pc/laptop go to the folder where you want to clone the repository(download all files from
+                    github).</li>
+                <li>Open the cmd/terminal at the location</li>
+                <li>Run the below command. Replace <span style=" background: bisque;"
+                        class="courier-font">your-organization/repository-name</span> with the actual GitHub repository
+                    URL.
+                    <!-- Code Box Starts -->
+                    <div class="code-placeholder">
+                        <pre><code class="code-snippet">git clone https://github.com/your-organization/repository-name.git</code></pre>
+                        <button class="copybutton" onclick="copyCode()">Copy</button>
+                    </div>
+                    <!---Code Box ends--->
+                </li>
+            </ul>
+            <h3>Step2: Navigate to the Repository</h3>
+            <p class="newspaper-text">Move into the cloned repository:</p>
+            <!-- Code Box Starts -->
+            <div class="code-placeholder">
+                <pre><code class="code-snippet">cd repository-name</code></pre>
+                <button class="copybutton" onclick="copyCode()">Copy</button>
+            </div>
+            <!---Code Box ends--->
+
+            <h3>Step3: Set Up the Remote</h3>
+            <p class="newspaper-text">Ensure the remote is correctly set:</p>
+            <!-- Code Box Starts -->
+            <div class="code-placeholder">
+                <pre><code class="code-snippet">git remote -v</code></pre>
+                <button class="copybutton" onclick="copyCode()">Copy</button>
+            </div>
+            <!---Code Box ends--->
+            <p class="newspaper-text">If needed, add the remote:</p>
+            <!-- Code Box Starts -->
+            <div class="code-placeholder">
+                <pre><code class="code-snippet">git remote add origin https://github.com/your-organization/repository-name.git</code></pre>
+                <button class="copybutton" onclick="copyCode()">Copy</button>
+            </div>
+            <!---Code Box ends--->
+            <h3>Step4: Pull Updates Regularly</h3>
+            <p class="newspaper-text">To keep local repository updated with the latest changes. Replace <span
+                    style=" background: bisque;" class="courier-font">main</span> with the default branch name if it's
+                different
+            </p>
+            <!-- Code Box Starts -->
+            <div class="code-placeholder">
+                <pre><code class="code-snippet">git pull origin main</code></pre>
+                <button class="copybutton" onclick="copyCode()">Copy</button>
+            </div>
+            <!---Code Box ends--->
+            <h3>Step5: Handle Merge Conflict</h3>
+            <p class="newspaper-text">If there are conflicts, resolve them manually, then commit the changes</p>
+            <!-- Code Box Starts -->
+            <div class="code-placeholder">
+                <pre><code class="code-snippet">git add .
+git commit -m "Resolved merge conflicts"
+git push origin main</code></pre>
+                <button class="copybutton" onclick="copyCode()">Copy</button>
+            </div>
+            <!---Code Box ends--->
+
+            <h2 style="text-align: left;">Synchronizing local to Remote-repository</h2>
+            <p class="newspaper-text">Synchronization is very much required when working in a collaborative environment.
+                It ensures that your local changes are up-to-date with the remote repository and that the contributions
+                are integrated
+                with the work of others.</p>
+            <h3>Step1: Check the Status</h3>
+            <p class="newspaper-text">Before pushing, let's check which files have been modified.</p>
+            <!-- Code Box Starts -->
+            <div class="code-placeholder">
+                <pre><code class="code-snippet">git status</code></pre>
+                <button class="copybutton" onclick="copyCode()">Copy</button>
+            </div>
+            <!---Code Box ends--->
+            <h3>Step2: Add Changes to Staging</h3>
+            <p class="newspaper-text">Stage all modified files.</p>
+            <!-- Code Box Starts -->
+            <div class="code-placeholder">
+                <pre><code class="code-snippet">git add .</code></pre>
+                <button class="copybutton" onclick="copyCode()">Copy</button>
+            </div>
+            <!---Code Box ends--->
+            <p class="newspaper-text">Or, to add specific files</p>
+            <!-- Code Box Starts -->
+            <div class="code-placeholder">
+                <pre><code class="code-snippet">git add filename</code></pre>
+                <button class="copybutton" onclick="copyCode()">Copy</button>
+            </div>
+            <!---Code Box ends--->
+            <h3>Step3: Commit the Changes</h3>
+            <p class="newspaper-text">Commit the changes with a meaningful message.</p>
+            <!-- Code Box Starts -->
+            <div class="code-placeholder">
+                <pre><code class="code-snippet">git commit -m "Updated files with latest changes"</code></pre>
+                <button class="copybutton" onclick="copyCode()">Copy</button>
+            </div>
+            <!---Code Box ends--->
+            <h3>Step4: Pull Latest Changes from Remote</h3>
+            <p class="newspaper-text">Ensure that the local branch is up to date before pushing. Replace <span
+                    style=" background: bisque;" class="courier-font">main</span> with the branch name if different
+            </p>
+            <!-- Code Box Starts -->
+            <div class="code-placeholder">
+                <pre><code class="code-snippet">git pull origin main --rebase</code></pre>
+                <button class="copybutton" onclick="copyCode()">Copy</button>
+            </div>
+            <!---Code Box ends--->
+            <h3>Step5: Push Changes to Remote</h3>
+            <p class="newspaper-text">Push the updates to the remote repository.</p>
+            <!-- Code Box Starts -->
+            <div class="code-placeholder">
+                <pre><code class="code-snippet">git push origin main</code></pre>
+                <button class="copybutton" onclick="copyCode()">Copy</button>
+            </div>
+            <!---Code Box ends--->
+            <h3>Step6: Verify the Push</h3>
+            <p class="newspaper-text">Check if the changes are successfully pushed</p>
+            <!-- Code Box Starts -->
+            <div class="code-placeholder">
+                <pre><code class="code-snippet">git log --oneline -n 5</code></pre>
+                <button class="copybutton" onclick="copyCode()">Copy</button>
+            </div>
+            <!---Code Box ends--->
+
 
             <p class="newspaper-text"></p>
 
-
         </section>
 
+    </div>
+
+    <!---------------Share Text------------------------>
+    <div class="cover-page">
+        <div class="column" style="margin-bottom: 87px;">
+            <h3 style="text-align: center;">Found This Page Useful? Share It!</h3>
+            <!-- Facebook -->
+            <a href="https://www.facebook.com/sharer/sharer.php?u=YOUR_URL" target="_blank"><i
+                    class="fa-brands fa-facebook"></i></a>
+            <!-- LinkedIn -->
+            <a href="https://www.linkedin.com/shareArticle?mini=true&url=YOUR_URL&title=YOUR_TITLE" target="_blank"><i
+                    class="fa-brands fa-linkedin"></i></a>
+            <!-- WhatsApp -->
+            <a href="https://api.whatsapp.com/send?text=YOUR_TITLE%20YOUR_URL" target="_blank"><i
+                    class="fa-brands fa-whatsapp"></i></a>
+        </div>
+    </div>
     </div>
 
     <!----------------------------------Footer----------------------------------->
