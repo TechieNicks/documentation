@@ -100,100 +100,132 @@
         <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
     </div>
     <!-------------------------Cover---------------------------------------------->
+    <div class="cover-page">
+        <div class="column">
+            <h1 style="text-align: center;color: red" ;>Git</h1>
+            <h2 style="text-align: center;color: orangered;">History & Basics</h2>
+        </div>
+        <div class="column image-column">
+            <img src="../images/1color-orange-lightbg@2x.png" alt="Git" class="profile-pic">
+        </div>
+        <!--div class="column">Column 3</div-->
+        <!-- Add or remove <div class="column"> elements as needed -->
+    </div>
+    <!--------------------------Like Button------------------------------------------>
+    <div class="like-box">
+        <button id="like-button" onclick="incrementLikes()">👍 Like</button>
+        <span id="like-count">0</span>
+    </div>
+    <!------------------------------------------------------------------------------------>
+
+    <!--<div class="table-of-contents">
+                        <div class="toc-item"></div>
+                        <div class="toc-item"></div>
+                        <div class="toc-item">
+            				<h2>Table of Contents</h2>
+            				<ul>
+            					<li><a href="#whatisgit" style="color:#333;">What is Git?</a></li>
+            					<li><a href="#2" style="color:#333;">How it is different from Github?</a></li>
+            					<li><a href="#4" style="color:#333;">Download and Installation</a></li>
+            				</ul>
+            				
+                        </div>
+                    </div>-->
+    <!--------------------------------------------------------------------------------------->
+    <!--Back to top-->
+    <button onclick="topFunction()" id="myBtn" title="Go to top">Back to Top</button>
+    <!--------------------------------------------------------------------------------------------->
+
+
+    <!------------------------------------------------------------------------------------>
     <div class="newspaper-container">
-        <div class="cover-page">
-            <div class="column">
-                <h1 style="text-align: center;color: red" ;>Git</h1>
-                <h2 style="text-align: center;color: orangered;">History & Basics</h2>
-            </div>
-            <div class="column image-column">
-                <img src="../images/1color-orange-lightbg@2x.png" alt="Git" class="profile-pic">
-            </div>
-            <!--div class="column">Column 3</div-->
-            <!-- Add or remove <div class="column"> elements as needed -->
+        <!-------------------------------------------- Left - Right ---------------------------------------->
+        <div class="skills-container">
+            <section class="section left" style="margin-top: -65px" ;>
+                <h1>History</h1>
+                <h2 style=" text-align: left;">What is version control?</h2>
+                <p class="newspaper-text">
+                    <strong>Version control</strong> is a system that helps track and manage changes to files,
+                    especially in software development. It allows multiple people to collaborate on a project
+                    without overwriting each other's work and provides a history of modifications. Version control
+                    helps in:
+                </p>
+                <ul>
+                    <li><strong>Tracking Changes</strong>: Every modification is recorded, making it easy to revert to
+                        previous versions
+                        if needed.</li>
+                    <li><strong>Collaboration</strong>: Multiple developers can work on the same project simultaneously
+                        without
+                        conflicts.</li>
+                    <li><strong>Backup & Recovery</strong>: If something goes wrong, you can restore an earlier version.
+                    </li>
+                    <li><strong>Branching & Merging</strong>: Developers can create separate branches for new features
+                        or bug fixes, then merge them back into the main project.
+                    </li>
+                </ul>
+                <p class="newspaper-text">
+                    Version control systems (VCS) help developers track changes, collaborate efficiently, and manage
+                    different versions of a
+                    project. There are three main types:
+                </p>
+                <ol>
+                    <li><strong>Local Version Control Systems (LVCS)</strong>:
+                        <ul>
+                            <li>Changes are stored locally on a single computer.</li>
+                            <li>Each modification is saved as a patch, making it difficult to collaborate with others.
+                            </li>
+                            <li>Risk of losing data if the local system fails.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Centralized Version Control Systems (CVCS)</strong>:
+                        <ul>
+                            <li>A single repository stores all versions, and users must connect to it to access or
+                                modify files.</li>
+                            <li>Examples: <strong>Subversion (SVN)</strong>, <strong>Microsoft Team Foundation Server
+                                    (TFS).</strong></li>
+                            <li>Easier collaboration but has a single point of failure—if the central server crashes,
+                                all history
+                                could be lost.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Distributed Version Control Systems (DVCS)</strong>:
+                        <ul>
+                            <li>Each user has a full copy of the repository, allowing offline work and better
+                                redundancy.</li>
+                            <li>Examples: <strong>Git</strong>, <strong>Mercurial.</strong></li>
+                            <li>More flexible and resilient, as changes can be merged from multiple sources.</li>
+                        </ul>
+                    </li>
+                </ol>
+            </section>
+
+            <section class="section right">
+                <h3>Table of Contents</h3>
+                <ol>
+                    <li>History</li>
+                    <ul>
+                        <li>What is version control?</li>
+                        <li>Limitations of Version control</li>
+                        <li>What was the need of git?</li>
+                    </ul>
+                    <li>What is git?</li>
+                    <li>Git vs Github?</li>
+                    <ul>
+                        <li>Key Differences</li>
+                        <li>Alternatives</li>
+                    </ul>
+                    <li>Git Lifecycle</li>
+                    <li>Configuration</li>
+                    <li>First Configurations</li>
+                    <li>Working with Remote-repository</li>
+                </ol>
+            </section>
         </div>
-        <!--------------------------Like Button------------------------------------------>
-        <div class="like-box">
-            <button id="like-button" onclick="incrementLikes()">👍 Like</button>
-            <span id="like-count">0</span>
-        </div>
-
-
-        <!--<div class="table-of-contents">
-            <div class="toc-item"></div>
-            <div class="toc-item"></div>
-            <div class="toc-item">
-				<h2>Table of Contents</h2>
-				<ul>
-					<li><a href="#whatisgit" style="color:#333;">What is Git?</a></li>
-					<li><a href="#2" style="color:#333;">How it is different from Github?</a></li>
-					<li><a href="#4" style="color:#333;">Download and Installation</a></li>
-				</ul>
-				
-            </div>
-        </div>-->
-
-        <!--Back to top-->
-        <button onclick="topFunction()" id="myBtn" title="Go to top">Back to Top</button>
-
-        <br><br>
+        <!------------------------------------- Left - Right ----------------------------------------------->
 
         <section class="article">
 
-            <h2 style="text-align: left;">What is version control?</h2>
-            <p class="newspaper-text">
-                <strong>Version control</strong> is a system that helps track and manage changes to files,
-                especially in software development. It allows multiple people to collaborate on a project
-                without overwriting each other's work and provides a history of modifications. Version control
-                helps in:
-            </p>
-            <ul>
-                <li><strong>Tracking Changes</strong>: Every modification is recorded, making it easy to revert to
-                    previous versions
-                    if needed.</li>
-                <li><strong>Collaboration</strong>: Multiple developers can work on the same project simultaneously
-                    without
-                    conflicts.</li>
-                <li><strong>Backup & Recovery</strong>: If something goes wrong, you can restore an earlier version.
-                </li>
-                <li><strong>Branching & Merging</strong>: Developers can create separate branches for new features
-                    or bug fixes, then merge them back into the main project.
-                </li>
-            </ul>
-            <p class="newspaper-text">
-                Version control systems (VCS) help developers track changes, collaborate efficiently, and manage
-                different versions of a
-                project. There are three main types:
-            </p>
-            <ol>
-                <li><strong>Local Version Control Systems (LVCS)</strong>:
-                    <ul>
-                        <li>Changes are stored locally on a single computer.</li>
-                        <li>Each modification is saved as a patch, making it difficult to collaborate with others.
-                        </li>
-                        <li>Risk of losing data if the local system fails.</li>
-                    </ul>
-                </li>
-                <li><strong>Centralized Version Control Systems (CVCS)</strong>:
-                    <ul>
-                        <li>A single repository stores all versions, and users must connect to it to access or
-                            modify files.</li>
-                        <li>Examples: <strong>Subversion (SVN)</strong>, <strong>Microsoft Team Foundation Server
-                                (TFS).</strong></li>
-                        <li>Easier collaboration but has a single point of failure—if the central server crashes,
-                            all history
-                            could be lost.</li>
-                    </ul>
-                </li>
-                <li><strong>Distributed Version Control Systems (DVCS)</strong>:
-                    <ul>
-                        <li>Each user has a full copy of the repository, allowing offline work and better
-                            redundancy.</li>
-                        <li>Examples: <strong>Git</strong>, <strong>Mercurial.</strong></li>
-                        <li>More flexible and resilient, as changes can be merged from multiple sources.</li>
-                    </ul>
-                </li>
-            </ol>
+
             <br>
             <h2 style="text-align: left;font-size: 2.5em;color: #34495e;">Limitations of Version control</h2>
             <p class="newspaper-text">
@@ -650,7 +682,7 @@ git commit -m "Fix: crash on login redirect"</code></pre>
             <br>
 
             <h2 style="text-align: left;font-size: 2.5em;" id="htgr"><a href="#htgr">First Configurations</a></h2>
-            <table>
+            <table style="width: 100%;max-width: 100%;">
                 <tr>
                     <th>Purpose</th>
                     <th>Commands</th>
@@ -758,97 +790,7 @@ git config --globalcore.editor "nano" # Nano</code></pre>
         </p>
     </footer>
     <!------------------------------------------------------------------------->
-    <script>
-        function openNav() {
-            document.getElementById("mySidenav").style.width = "250px";
-            document.getElementById("main").style.marginLeft = "250px";
-            document.querySelector("header").style.marginLeft = "250px"; // Shift Header
-            document.querySelector("footer").style.marginLeft = "250px"; // Shift Footer
-            document.querySelector(".newspaper-container").style.marginLeft = "250px"; // Shift Footer
-            document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
-        }
-
-        function closeNav() {
-            document.getElementById("mySidenav").style.width = "0";
-            document.getElementById("main").style.marginLeft = "0";
-            document.querySelector("header").style.marginLeft = "0"; // Reset Header
-            document.querySelector("footer").style.marginLeft = "0"; // Reset Footer
-            document.querySelector(".newspaper-container").style.marginLeft = "0"; // Reset Footer
-            document.body.style.backgroundColor = "white";
-        }
-
-        /*Remove Extra whitesace from pre*/
-        window.addEventListener("load", function () {
-            const codeBlock = document.getElementById("code-block");
-            // Split the code into lines.
-            const lines = codeBlock.textContent.split('\n');
-            // Remove leading spaces (adjust the regex if needed)
-            const trimmedLines = lines.map(line => line.replace(/^\s+/, '')).join('\n');
-            codeBlock.textContent = trimmedLines;
-        });
-
-        // Get the button "back-to-top"
-        let mybutton = document.getElementById("myBtn");
-
-        // When the user scrolls down 20px from the top of the document, show the button
-        window.onscroll = function () { scrollFunction() };
-
-        function scrollFunction() {
-            if (document.body.scrollTop > 25 || document.documentElement.scrollTop > 25) {
-                mybutton.style.display = "block";
-            } else {
-                mybutton.style.display = "none";
-            }
-        }
-
-        // When the user clicks on the button, scroll to the top of the document
-        function topFunction() {
-            document.body.scrollTop = 0;
-            document.documentElement.scrollTop = 0;
-        }
-        /*****Code Placeholder starts *****/
-        document.querySelectorAll('.copybutton').forEach(button => {
-            button.addEventListener('click', () => {
-                const code = button.parentElement.querySelector('.code-snippet').innerText;
-                navigator.clipboard.writeText(code).then(() => {
-                    button.innerText = "Copied!";
-                    setTimeout(() => (button.innerText = "Copy"), 1500);
-                });
-            });
-        });
-
-        /*****Code placeholder ends*****/
-        /***Prevent clipboard issue if code block is missing****/
-        const codeBlock = document.getElementById("code-block");
-        if (codeBlock) {
-            const lines = codeBlock.textContent.split('\n');
-            const trimmedLines = lines.map(line => line.replace(/^\s+/, '')).join('\n');
-            codeBlock.textContent = trimmedLines;
-        }
-        /******Like button counter starts******/
-        //Like Button Counter (with local storage)
-        let count = localStorage.getItem("like-count") || 0;
-        let liked = localStorage.getItem("liked") === "true";
-
-        // Update UI on load
-        document.getElementById('like-count').innerText = count;
-        if (liked) {
-            document.getElementById('like-button').disabled = true;
-        }
-
-        function incrementLikes() {
-            if (liked) return; // Prevent multiple likes
-
-            count++;
-            liked = true;
-            localStorage.setItem("like-count", count);
-            localStorage.setItem("liked", true);
-            document.getElementById('like-count').innerText = count;
-            document.getElementById('like-button').disabled = true;
-        }
-        /******Like button counter ends******/
-
-    </script>
+    <script src="../assests/mainscript.js"></script>
 
 </body>
 

@@ -5,6 +5,8 @@
   transition: margin-left 0.5s;
   /* Smooth sliding */
   margin-bottom: 5%;
+  margin-left: 5%;
+  margin-right: 5%;
 }
 
 .newspaper-container header {
@@ -84,4 +86,39 @@ pre::after {
   content: "";
   display: inline-block;
   width: 100%;
+}
+
+/*Table of contents*/
+.skills-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 3%;
+}
+
+.section {
+  padding: 20px;
+  /* background-color: #f4f4f4; */
+  border-radius: 8px;
+}
+
+.section.left {
+  width: 75%;
+}
+
+.left {
+  left: 0%;
+}
+
+.section.right {
+  width: 25%;
+  background-color: #f4f4f4;
+  border: 1px solid #333;
+  /* thickness | style | color */
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
+
+}
+
+.right {
+  left: 0%;
 }
