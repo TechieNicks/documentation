@@ -3,6 +3,11 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta property="og:title" content="TechieNicks" />
+    <meta property="og:description" content="Education" />
+    <meta property="og:image"
+        content="https://raw.githubusercontent.com/TechieNicks/documentation/refs/heads/main/images/Copy%20of%20N.png" />
+    <meta property="og:url" content="https://www.youtube.com/@techienicks" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="keywords"
         content="About Me, Online CV, Resume, Online Resume, DevOps, JIRA, Atlassian, nicks9188, Nicketa">
@@ -35,6 +40,7 @@
             height: auto;
             border-radius: 8px;
         }
+
         .profile-container {
             position: absolute;
             margin-top: -125px;
@@ -46,7 +52,6 @@
             border-radius: 15%;
             border: 5px solid orange;
         }
-
     </style>
 </head>
 
@@ -84,13 +89,13 @@
             <section class="article">
                 <h2>Latest Updates</h2>
 
-            <div class="profile-container">
-                <img src="../images/1color-orange-lightbg@2x.png" alt="Git" class="profile-pic">
-            </div>
+                <div class="profile-container">
+                    <img src="../images/1color-orange-lightbg@2x.png" alt="Git" class="profile-pic">
+                </div>
 
-            <br><br>
-            
-<p class="newspaper-text">
+                <br><br>
+
+                <p class="newspaper-text">
                     This is a sample paragraph where the image is aligned next to the text. You can use this layout to
                     display images alongside descriptive content, making your webpage more visually appealing.
                     This is a sample paragraph where the image is aligned next to the text. You can use this layout to
@@ -100,7 +105,7 @@
                     This is a sample paragraph where the image is aligned next to the text. You can use this layout to
                     display images alongside descriptive content, making your webpage more visually appealing.
                 </p>
-    <p class="newspaper-text">
+                <p class="newspaper-text">
                     This is a sample paragraph where the image is aligned next to the text. You can use this layout to
                     display images alongside descriptive content, making your webpage more visually appealing.
                     This is a sample paragraph where the image is aligned next to the text. You can use this layout to
@@ -125,13 +130,13 @@
 
 
 
-            
 
 
 
-                
 
-               
+
+
+
 
 
 
@@ -164,14 +169,15 @@
                     [This pattern can repeat to generate more lines up to 500]
                 </p>
             </section>
-            
+
         </main>
     </div>
     <!----------------------------------Footer----------------------------------->
     <footer>
         <p>©
             <script>document.write(new Date().getFullYear())</script> Copyright by
-            <i class="fas fa-heartbeat"></i><a class= "footera" href="https://github.com/nicks9188" target="_blank">TechieNicks</a>
+            <i class="fas fa-heartbeat"></i><a class="footera" href="https://github.com/nicks9188"
+                target="_blank">TechieNicks</a>
         </p>
     </footer>
     <!------------------------------------------------------------------------->
@@ -204,7 +210,7 @@
             });
         }
         /*Remove Extra whitesace from pre*/
-        window.addEventListener("load", function() {
+        window.addEventListener("load", function () {
             const codeBlock = document.getElementById("code-block");
             // Split the code into lines.
             const lines = codeBlock.textContent.split('\n');
