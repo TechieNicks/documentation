@@ -90,11 +90,14 @@
     <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">close &times;</a>
         <ul>
+			<li><a href="#history">History</a></li>
             <li><a href="#whatisgit">What is Git?</a></li>
             <li><a href="#hiidfg">How it is different from Github?</a></li>
+			<li><a href="#gitlifecycle">Git Lifecycle</a></li>
             <li><a href="#dni">Download and Installation</a></li>
-            <li><a href="#htgr">How to generate RSA</a></li>
-            <li><a href="#3">First Configuration</a></li>
+            <li><a href="#config">How to generate RSA</a></li>
+            <li><a href="#htgr">First Configuration</a></li>
+			<li><a href="#usecase">Use Cases</a></li>
             <li><a href="#4">Connection with Github</a></li>
             <li><a href="#4">First Push to GIthub from local</a></li>
             <li><a href="#4">Conclusion</a></li>
@@ -143,11 +146,13 @@
 
 
     <!------------------------------------------------------------------------------------>
+
+
     <div class="newspaper-container">
         <!-------------------------------------------- Left - Right ---------------------------------------->
         <div class="skills-container">
             <section class="section left" style="margin-top: -65px" ;>
-                <h1>History</h1>
+                <h1 id="history">History</h1>
                 <h2 style=" text-align: left;">What is version control?</h2>
                 <p class="newspaper-text">
                     <strong>Version control</strong> is a system that helps track and manage changes to files,
@@ -286,7 +291,7 @@
                     hashing, preventing accidental or malicious alterations.</li>
             </ul>
             <br>
-            <h2 style="text-align: left;font-size: 2.5em;" id="whatisgit"><a href="#whatisgit">What is git?</a></h2>
+            <h2 style="text-align: left;font-size: 2.5em;" id="whatisgit">What is git?</h2>
             <p class="newspaper-text">
                 <strong>Git</strong> is a <u>distributed</u> version control system that helps developers track
                 changes in
@@ -316,7 +321,7 @@
             </p>
 
             <br>
-            <h2 style="text-align: left;font-size: 2.5em;" id="hiidfg"><a href="#hiidfg">Git vs Github?</a></h2>
+            <h2 style="text-align: left;font-size: 2.5em;" id="hiidfg">Git vs Github?</h2>
             <p class="newspaper-text">
                 Git is the engine, while GitHub is the garage where teams collaborate.
             </p>
@@ -378,7 +383,7 @@
                     tools. </li>
             </ul>
             <br>
-            <h2 style="text-align: left;">Git Lifecycle</h2>
+            <h2 style="text-align: left;" id="gitlifecycle">Git Lifecycle</h2>
 
             <div class="table-of-contents">
                 <div class="toc-item" style="background-color: antiquewhite;">
@@ -496,6 +501,7 @@
                 Want to stash your
                 current work, switch branches, fix the bug, and then return to the feature.
             </p>
+			<div class="center-box"><!--To align items at center-->
             <ol>
                 <li>Start from feature branch (current work). We're now in our <b>workspace</b>, editing files like
                     <span style=" background: bisque;" class="courier-font">login.js</span> and <span
@@ -578,6 +584,9 @@ git commit -m "Fix: crash on login redirect"</code></pre>
                     <!---Code Box ends--->
                 </li>
             </ol>
+			</div>
+			<br>
+			<div class="center-box"><!--To align items at center-->
             <h3>Summary:</h3>
             <table style="max-width: 800px;">
                 <tbody>
@@ -610,9 +619,9 @@ git commit -m "Fix: crash on login redirect"</code></pre>
                     </tr>
                 </tbody>
             </table>
-            <br>
-            <h2 style="text-align: left;font-size: 2.5em;" id="dni"><a href="#dni">Download and Installation</a>
-            </h2>
+			</div>
+            <br><br>
+            <h2 style="text-align: left;font-size: 2.5em;" id="dni">Download and Installation</h2>
 
             <p class="newspaper-text">
             <ul>
@@ -625,7 +634,8 @@ git commit -m "Fix: crash on login redirect"</code></pre>
             </ul>
             </p>
             <br>
-            <h2 style="text-align: left;">Configuration</h2>
+            <h2 style="text-align: left;" id="config">Configuration</h2>
+			<div class="center-box"><!--To align items at center-->
             <h3>Step1: Generating SSH key pair</h3>
             <ol>
                 <li>Open a terminal (<b>Git Bash</b> on Windows, Terminal on macOS/Linux).</li>
@@ -693,9 +703,10 @@ git commit -m "Fix: crash on login redirect"</code></pre>
                 <button class="copybutton" onclick="copyCode()">Copy</button>
             </div>
             <!---Code Box ends--->
+			</div>
             <br>
 
-            <h2 style="text-align: left;font-size: 2.5em;" id="htgr"><a href="#htgr">First Configurations</a></h2>
+            <h2 style="text-align: left;font-size: 2.5em;" id="htgr">First Configurations</h2>
             <table style="width: 100%;max-width: 100%;">
                 <tr>
                     <th>Purpose</th>
@@ -786,12 +797,15 @@ git config --globalcore.editor "nano" # Nano</code></pre>
                 </tr>
             </table>
             <br>
-            <h1 style="text-align: left;">Use Cases</h1>
+            <h1 style="text-align: left;" id="usecase">Use Cases</h1>
             <h2 style="text-align: left;">Connecting with Remote-repository</h2>
+			
+			
 
             <p class="newspaper-text">
                 Here we're assuming that you already have a repository on github and you're ready with the url.
             </p>
+			<div class="center-box"><!--To align items at center-->
             <h3>Step1:Cloning the repository</h3>
             <ul>
                 <li>In your pc/laptop go to the folder where you want to clone the repository(download all files from
@@ -853,12 +867,14 @@ git push origin main</code></pre>
                 <button class="copybutton" onclick="copyCode()">Copy</button>
             </div>
             <!---Code Box ends--->
+			</div>
 
             <h2 style="text-align: left;">Synchronizing local to Remote-repository</h2>
             <p class="newspaper-text">Synchronization is very much required when working in a collaborative environment.
                 It ensures that your local changes are up-to-date with the remote repository and that the contributions
                 are integrated
                 with the work of others.</p>
+			<div class="center-box"><!--To align items at center-->
             <h3>Step1: Check the Status</h3>
             <p class="newspaper-text">Before pushing, let's check which files have been modified.</p>
             <!-- Code Box Starts -->
@@ -916,6 +932,7 @@ git push origin main</code></pre>
                 <button class="copybutton" onclick="copyCode()">Copy</button>
             </div>
             <!---Code Box ends--->
+			</div>
 
 
             <p class="newspaper-text"></p>
@@ -923,6 +940,7 @@ git push origin main</code></pre>
         </section>
 
     </div>
+
 
     <!---------------Share Text------------------------>
     <div class="cover-page">

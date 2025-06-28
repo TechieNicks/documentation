@@ -122,3 +122,22 @@ pre::after {
 .right {
   left: 0%;
 }
+/*To make content scrollable*/
+#content-wrapper {
+  position: absolute;
+  top: 80px;       /* height of header */
+  left: 0;         /* sidenav is 0 width by default */
+  right: 0;
+  bottom: 50px;    /* height of footer */
+  overflow-y: auto;
+  padding: 20px;
+  box-sizing: border-box;
+}
+/*To keep items at center*/
+.center-box {
+  margin-left: auto;
+  margin-right: auto;
+  width: fit-content;   /* Shrinks to fit content */
+  max-width: 80%;      /* Prevents overflow on small screens */
+  background-color: floralwhite;
+}

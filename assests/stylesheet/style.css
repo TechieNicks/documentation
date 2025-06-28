@@ -179,26 +179,37 @@ i {
 }
 
 /*Link Styling*/
+/*
 a {
     color: #34495e;
+	text-decoration: underline;
 }
-
+*/
+/*a: link should remain at top. It should follow the order: LVHA*/
 a:link {
+	color: #34495e;
     background-color: transparent;
-    text-decoration: none;
+    text-decoration: underline;
 }
-
+a:visited {
+  color: #6f42c1;
+  text-decoration: underline;
+}
 a:hover {
     color: orange;
     background-color: transparent;
     text-decoration: underline;
 }
-
 a:active {
     color: yellow;
     background-color: transparent;
     text-decoration: underline;
 }
+
+
+
+
+
 
 /*Paragraph responsiveness*/
 p {
