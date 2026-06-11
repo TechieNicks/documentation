@@ -192,7 +192,7 @@ a:link {
     text-decoration: underline;
 }
 a:visited {
-  color: #6f42c1;
+  color: inherit;
   text-decoration: underline;
 }
 a:hover {
