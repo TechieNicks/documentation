@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <linearGradient id="ring" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#7C3AED"/>
+      <stop offset="1" stop-color="#DB2777"/>
+    </linearGradient>
+    <clipPath id="innerClip">
+      <circle cx="100" cy="100" r="82"/>
+    </clipPath>
+  </defs>
+
+  <circle cx="100" cy="100" r="92" fill="none" stroke="url(#ring)" stroke-width="10"/>
+  <circle cx="100" cy="100" r="82" fill="#AFD4F2"/>
+
+  <g clip-path="url(#innerClip)">
+    <!-- shoulders / torso, simple friendly silhouette -->
+    <path d="M46 210 Q50 150 100 142 Q150 150 154 210 Z" fill="#241C2C"/>
+    <!-- collar accent -->
+    <path d="M84 148 L100 168 L116 148 L108 144 L100 154 L92 144 Z" fill="#AFD4F2"/>
+
+    <!-- neck -->
+    <rect x="88" y="100" width="24" height="18" fill="#E8B491"/>
+
+    <!-- hair back -->
+    <path d="M64 98 Q58 52 100 46 Q142 52 136 98 Q140 116 126 122 L126 86 Q113 72 100 72 Q87 72 74 86 L74 122 Q60 116 64 98 Z" fill="#3B2A30"/>
+
+    <!-- head -->
+    <circle cx="100" cy="84" r="30" fill="#E8B491"/>
+
+    <!-- hair fringe -->
+    <path d="M71 80 Q66 50 100 44 Q134 50 129 80 Q126 60 100 58 Q74 60 71 80 Z" fill="#3B2A30"/>
+
+    <!-- sunglasses -->
+    <circle cx="84" cy="88" r="12" fill="#17131C"/>
+    <circle cx="116" cy="88" r="12" fill="#17131C"/>
+    <rect x="94" y="85" width="12" height="6" rx="2" fill="#17131C"/>
+    <path d="M72 84 Q66 80 60 82" stroke="#17131C" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+    <path d="M128 84 Q134 80 140 82" stroke="#17131C" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+
+    <!-- smile -->
+    <path d="M90 106 Q100 112 110 106" stroke="#8B4A3D" stroke-width="3" fill="none" stroke-linecap="round"/>
+  </g>
+
+  <!-- terminal badge -->
+  <circle cx="158" cy="158" r="28" fill="url(#ring)"/>
+  <circle cx="158" cy="158" r="28" fill="none" stroke="#FAF7F1" stroke-width="4"/>
+  <text x="158" y="166" font-family="DejaVu Sans Mono, monospace" font-size="20" font-weight="bold" fill="#FFFFFF" text-anchor="middle">&gt;_</text>
+</svg>
