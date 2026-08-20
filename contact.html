@@ -98,7 +98,8 @@
         <div>
           <h2>Send a message</h2>
           <!-- Netlify Forms: works automatically once deployed on Netlify, no backend needed. -->
-          <form class="form-grid" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+          <form action="/" class="form-grid" name="contact" method="POST" data-netlify="true"
+            netlify-honeypot="bot-field">
             <input type="hidden" name="form-name" value="contact">
             <p class="hidden" style="display:none;">
               <label>Don't fill this out if you're human: <input name="bot-field"></label>
