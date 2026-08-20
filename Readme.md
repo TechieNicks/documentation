@@ -4,39 +4,6 @@ The source for [techienicks.com](https://techienicks.com/), a static HTML, CSS a
 
 The site has no framework, package manager or build step. Open `index.html` in a browser for a local preview, or publish the repository root with a static hosting provider.
 
-## Current pages
-
-- `index.html` - Home page
-- `about.html` - About page
-- `techspec.html` - Technical reference and cheat-sheet index
-- `projects.html` - Projects page
-- `contact.html` - Contact page
-- `pages/AtlassianOrg.html` - Atlassian organization administration
-- `pages/Git.html` - Git notes and commands
-- `pages/Linux.html` - Linux notes and commands
-- `pages/Sample.html` - Sample content page
-- `pages/techspec.html` - TechSpec page variant
-- `pages/Virtualization.html` - Virtualization notes
-
-## Repository structure
-
-```text
-.
-├── index.html
-├── about.html
-├── techspec.html
-├── projects.html
-├── contact.html
-├── pages/                 # Individual technical guides
-├── css/style.css          # Site-wide styles
-├── js/main.js             # Navigation and theme interactions
-├── images/                # Logos, icons, photos and video assets
-├── CNAME                 # Custom domain configuration
-├── netlify.toml           # Netlify publish configuration
-├── sitemap.xml
-└── LICENSE
-```
-
 ## Site features
 
 - Responsive navigation with a mobile menu
@@ -69,14 +36,8 @@ The repository includes `netlify.toml` with the root directory configured as the
 
 Netlify Forms handles submissions from the form in `contact.html`.
 
-### GitHub Pages
-
-1. Open the repository's **Settings > Pages**.
-2. Select **Deploy from a branch**.
-3. Choose the `main` branch and the repository root.
-4. Save the configuration.
-
-GitHub Pages serves the static site, but it does not process Netlify Forms submissions.
+## Netlify Deployment Status
+[![Netlify Status](https://api.netlify.com/api/v1/badges/1223a208-95c8-4325-a3eb-9474a22bd3c2/deploy-status)](https://app.netlify.com/projects/documentation-techienicks/deploys)
 
 ## Version tags
 
