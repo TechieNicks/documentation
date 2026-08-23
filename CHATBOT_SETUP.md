@@ -68,6 +68,25 @@ Netlify just serves/ignores like any other file in your repo.
    Start with one page (e.g. `index.html`) to test, then add it site-wide
    once you're happy with it.
 
+## Resetting for logged-in users
+
+The widget does not provide authentication. After your login code identifies
+the active user, tell the widget when that identity changes:
+
+```js
+window.TechieNicksChatbot.setUser(user.id);
+```
+
+On logout, reset it to the anonymous session:
+
+```js
+window.TechieNicksChatbot.setUser(null);
+```
+
+Changing the user clears the visible conversation and keeps browser-session
+history isolated per user. If the user is known before the chatbot script
+loads, set `window.TN_CURRENT_USER_ID` first instead.
+
 ## Keeping the chatbot's knowledge up to date
 
 Whenever you edit or add a page, regenerate the content bundle before you

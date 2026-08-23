@@ -11,16 +11,32 @@
   var ENDPOINT = "/.netlify/functions/chat";
   var STORAGE_KEY = "tn-chat-history";
   var MAX_STORED_TURNS = 12;
+  var activeUserId = null;
 
   var history = [];
-  try {
-    var saved = sessionStorage.getItem(STORAGE_KEY);
-    if (saved) history = JSON.parse(saved);
-  } catch (e) { history = []; }
+  function storageKey() {
+    return STORAGE_KEY + ":" + (activeUserId || "anonymous");
+  }
+
+  function loadHistory() {
+    history = [];
+    try {
+      var saved = sessionStorage.getItem(storageKey());
+      if (saved) history = JSON.parse(saved);
+    } catch (e) { history = []; }
+  }
+
+  function normalizeUserId(userId) {
+    if (userId && typeof userId === "object") userId = userId.id;
+    return userId == null ? null : String(userId);
+  }
+
+  activeUserId = normalizeUserId(window.TN_CURRENT_USER_ID);
+  loadHistory();
 
   function saveHistory() {
     try {
-      sessionStorage.setItem(STORAGE_KEY, JSON.stringify(history.slice(-MAX_STORED_TURNS)));
+      sessionStorage.setItem(storageKey(), JSON.stringify(history.slice(-MAX_STORED_TURNS)));
     } catch (e) { /* storage unavailable, ignore */ }
   }
 
@@ -78,6 +94,25 @@
     container.scrollTop = container.scrollHeight;
     return el;
   }
+
+  function setUser(userId) {
+    var nextUserId = normalizeUserId(userId);
+    if (nextUserId === activeUserId) return;
+
+    activeUserId = nextUserId;
+    loadHistory();
+
+    var messagesEl = document.querySelector("#tnChatMessages");
+    if (messagesEl) {
+      messagesEl.textContent = "";
+      renderMessage(messagesEl, "assistant", "Hi! Ask me anything about Git, Jira, REST APIs, or Atlassian tools covered on this site.");
+    }
+  }
+
+  window.TechieNicksChatbot = { setUser: setUser };
+  window.addEventListener("tn:user-changed", function (event) {
+    setUser(event.detail && event.detail.userId);
+  });
 
   document.addEventListener("DOMContentLoaded", function () {
     var refs = buildWidget();
