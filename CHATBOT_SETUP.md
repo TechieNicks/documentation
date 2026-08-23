@@ -89,6 +89,10 @@ loads, set `window.TN_CURRENT_USER_ID` first instead.
 
 ## Keeping the chatbot's knowledge up to date
 
+To see what visitors are asking, open the deployed site in Netlify and view
+the chatbot function logs. Each validated question is recorded with its
+anonymous or supplied user ID.
+
 Whenever you edit or add a page, regenerate the content bundle before you
 deploy:
 

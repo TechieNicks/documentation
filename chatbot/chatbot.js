@@ -170,7 +170,11 @@
         var res = await fetch(ENDPOINT, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ message: text, history: history.slice(0, -1) }),
+          body: JSON.stringify({
+            message: text,
+            history: history.slice(0, -1),
+            userId: activeUserId || "anonymous",
+          }),
         });
         var data = await res.json();
         typingEl.remove();

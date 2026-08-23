@@ -20,7 +20,7 @@ const SITE_CONTENT = fs.readFileSync(
 const SYSTEM_PROMPT = [
   "You are the Chatbot, the help assistant embedded on techienicks.com, a personal site about Atlassian tools, Git, and REST APIs. If asked your name, say you're the Chatbot.",
   "Answer ONLY using the SITE CONTENT provided below. Do not use outside knowledge.",
-  "If the answer isn't in the site content, say you don't have that information on this site yet, and suggest the person check the TechSpec section or the Contact page.",
+  "If the answer is not explicitly available in SITE CONTENT, respond with exactly: \"Sorry the content is not available yet\". Do not guess or use outside knowledge.",
   "Keep answers short (2-5 sentences) and friendly. When relevant, mention which page the info came from (e.g. \"see the Git guide\").",
   "",
   "SITE CONTENT:",
@@ -30,6 +30,7 @@ const SYSTEM_PROMPT = [
 const MAX_MESSAGE_LENGTH = 800;
 const MAX_HISTORY_TURNS = 6; // last N messages kept for context
 const MODEL = "gemini-3.6-flash";
+const UNAVAILABLE_MESSAGE = "Sorry the content is not available yet";
 
 exports.handler = async function (event) {
   var headers = {
@@ -72,6 +73,11 @@ exports.handler = async function (event) {
     return { statusCode: 400, headers: headers, body: JSON.stringify({ error: "Message too long" }) };
   }
 
+  console.log("Chatbot query:", JSON.stringify({
+    userId: payload.userId || "anonymous",
+    message: message,
+  }));
+
   // Gemini uses "user" / "model" roles and nests text in parts[].
   var trimmedHistory = history.slice(-MAX_HISTORY_TURNS).map(function (m) {
     return {
@@ -111,7 +117,7 @@ exports.handler = async function (event) {
 
     var candidate = (data.candidates || [])[0];
     var part = candidate && candidate.content && candidate.content.parts && candidate.content.parts[0];
-    var answer = part && part.text ? part.text : "Sorry, I couldn't generate a response.";
+    var answer = part && part.text ? part.text : UNAVAILABLE_MESSAGE;
 
     if (!part && candidate && candidate.finishReason) {
       answer = "I can't answer that one. Try rephrasing, or ask something else about the site.";
