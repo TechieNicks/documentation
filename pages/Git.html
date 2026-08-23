@@ -294,142 +294,103 @@
                             <h3>Stash</h3><br>
 
                             <ul>
-                                <li><span style=" background: lightgrey;" class="courier-font">
-                                        git stash</span> = Stash current changes.</li>
-                                <li><span style=" background: lightgrey;" class="courier-font">
-                                        git stash list</span> = View stashed changes.</li>
-                                <li><span style=" background: lightgrey;" class="courier-font">
-                                        git stash pop</span> = Apply and remove the latest stash.
+                                <li><span style="background: lightgrey;" class="courier-font">
+                                        git stash</span> — Stash current changes.</li>
+                                <li><span style="background: lightgrey;" class="courier-font">
+                                        git stash list</span> — View stashed changes.</li>
+                                <li><span style="background: lightgrey;" class="courier-font">
+                                        git stash pop</span> — Apply and remove the latest stash.
                                 </li>
-                                <li><span style=" background: lightgrey;" class="courier-font">
-                                        git stash apply</span> = Apply the latest stash without
+                                <li><span style="background: lightgrey;" class="courier-font">
+                                        git stash apply</span> — Apply the latest stash without
                                     removing it.</li>
-                                <li><span style=" background: lightgrey;" class="courier-font">
-                                        git stash drop</span> = Delete a specific stash.</li>
+                                <li><span style="background: lightgrey;" class="courier-font">
+                                        git stash drop</span> — Delete a specific stash.</li>
                             </ul>
-                            <p class="newspaper-text">A temporary locker — Temporarily save changes which we’re not
-                                ready to
-                                commit.</p>
+                            <p class="newspaper-text">A temporary locker for changes you're not ready to commit yet.
+                            </p>
                         </div>
                         <div class="toc-item" style="background-color: beige">
-                            <h3>Workspace or <br>Working Directory</h3>
+                            <h3>Workspace <br>(working directory)</h3>
 
                             <ul>
-                                <li><span style=" background: lightgrey;" class="courier-font">
-                                        git status</span> = Show changes in the working directory and
+                                <li><span style="background: lightgrey;" class="courier-font">
+                                        git status</span> — Show changes in the working directory and
                                     staging area.</li>
-                                <li><span style=" background: lightgrey;" class="courier-font">
-                                        git diff</span> = View unstaged changes.</li>
-                                <li><span style=" background: lightgrey;" class="courier-font">
-                                        git checkout --&lt;_filename_&gt;</span> = Discard changes in a
+                                <li><span style="background: lightgrey;" class="courier-font">
+                                        git diff</span> — View unstaged changes.</li>
+                                <li><span style="background: lightgrey;" class="courier-font">
+                                        git checkout --&lt;filename&gt;</span> — Discard changes in a
                                     file.
                                 </li>
-                                <li><span style=" background: lightgrey;" class="courier-font">
-                                        git clean -fd</span> = Remove untracked files and directories.
+                                <li><span style="background: lightgrey;" class="courier-font">
+                                        git clean -fd</span> — Remove untracked files and directories.
                                 </li>
                             </ul>
-                            <p class="newspaper-text">This is where we create or modify files. Changes here are not yet
+                            <p class="newspaper-text">Where you create or modify files. Changes here aren't yet
                                 tracked by Git.</p>
                         </div>
                         <div class="toc-item" style="background-color: khaki;">
-                            <h3>Index or<br>Staging Area</h3>
+                            <h3>Index <br>(staging area)</h3>
 
                             <ul>
-                                <li><span style=" background: lightgrey;" class="courier-font">
-                                        git status</span> = Show changes in the working directory and
+                                <li><span style="background: lightgrey;" class="courier-font">
+                                        git status</span> — Show changes in the working directory and
                                     staging area.</li>
-                                <li><span style=" background: lightgrey;" class="courier-font">
-                                        git add &lt;_filenme_&gt;
-                                    </span> = Stage a file</li>
-                                <li><span style=" background: lightgrey;" class="courier-font">
-                                        git add .</span> = Stage all changes</li>
-                                <li><span style=" background: lightgrey;" class="courier-font">
-                                        git reset &lt;_filename_&gt;</span> = Unstage a file</li>
-                                <li><span style=" background: lightgrey;" class="courier-font">
-                                        git diff --cached</span> = View staged changes</li>
+                                <li><span style="background: lightgrey;" class="courier-font">
+                                        git add &lt;filename&gt;
+                                    </span> — Stage a file</li>
+                                <li><span style="background: lightgrey;" class="courier-font">
+                                        git add .</span> — Stage all changes</li>
+                                <li><span style="background: lightgrey;" class="courier-font">
+                                        git reset &lt;filename&gt;</span> — Unstage a file</li>
+                                <li><span style="background: lightgrey;" class="courier-font">
+                                        git diff --cached</span> — View staged changes</li>
                             </ul>
-                            <p class="newspaper-text">Where we prepare changes before committing.</p>
+                            <p class="newspaper-text">Where you prepare changes before committing.</p>
                         </div>
                         <div class="toc-item" style="background-color: lavender;">
-                            <h3>Local Repository</h3><br>
+                            <h3>Local repository</h3><br>
 
                             <ul>
-                                <li><span style=" background: lightgrey;" class="courier-font">
-                                        git commit -m "commit_message"
-                                    </span> = Commit staged changes</li>
-                                <li><span style=" background: lightgrey;" class="courier-font">
+                                <li><span style="background: lightgrey;" class="courier-font">
+                                        git commit -m "commit message"
+                                    </span> — Commit staged changes</li>
+                                <li><span style="background: lightgrey;" class="courier-font">
                                         git log
-                                    </span> = View commit history</li>
-                                <li><span style=" background: lightgrey;" class="courier-font">
-                                        git reset --soft Head^
-                                    </span>Undo last commit, keep changes staged.</li>
-                                <li><span style=" background: lightgrey;" class="courier-font">
-                                        git reset --hard Head
-                                    </span>Reset to last commit, discard all changes</li>
+                                    </span> — View commit history</li>
+                                <li><span style="background: lightgrey;" class="courier-font">
+                                        git reset --soft HEAD^
+                                    </span> — Undo last commit, keep changes staged.</li>
+                                <li><span style="background: lightgrey;" class="courier-font">
+                                        git reset --hard HEAD
+                                    </span> — Reset to last commit, discard all changes</li>
                             </ul>
                             <p class="newspaper-text">Where committed changes are stored locally.</p>
                         </div>
                         <div class="toc-item" style="background-color: lightgray;">
-                            <h3>Upstream or<br>Remote Repository</h3>
+                            <h3>Upstream <br>(remote repository)</h3>
 
                             <ul>
-                                <li><span style=" background: bisque;" class="courier-font">
+                                <li><span style="background: bisque;" class="courier-font">
                                         git remote -v
-                                    </span> = Show remote URLs</li>
-                                <li><span style=" background: bisque;" class="courier-font">
+                                    </span> — Show remote URLs</li>
+                                <li><span style="background: bisque;" class="courier-font">
                                         git fetch
-                                    </span> = Get changes from remote without merging</li>
-                                <li><span style=" background: bisque;" class="courier-font">
+                                    </span> — Get changes from remote without merging</li>
+                                <li><span style="background: bisque;" class="courier-font">
                                         git pull
-                                    </span> = Fetch and merge changes from remote</li>
-                                <li><span style=" background: bisque;" class="courier-font">
+                                    </span> — Fetch and merge changes from remote</li>
+                                <li><span style="background: bisque;" class="courier-font">
                                         git push
-                                    </span> = Push local commits to remote</li>
-                                <li><span style=" background: bisque;" class="courier-font">
-                                        git clone &lt;_url_&gt;
-                                    </span> = Clone a remote repository</li>
+                                    </span> — Push local commits to remote</li>
+                                <li><span style="background: bisque;" class="courier-font">
+                                        git clone &lt;url&gt;
+                                    </span> — Clone a remote repository</li>
                             </ul>
-                            <p class="newspaper-text">Shared repository for collaboration (e.g., GitHub).</p>
+                            <p class="newspaper-text">The shared repository for collaboration — e.g. GitHub.</p>
                         </div>
                     </div>
-
-                    <h3>Stash</h3>
-                    <p>A temporary locker for changes you're not ready to commit yet.</p>
-                    <pre><code>git stash              # Stash current changes
-git stash list         # View stashed changes
-git stash pop          # Apply and remove the latest stash
-git stash apply        # Apply the latest stash without removing it
-git stash drop         # Delete a specific stash</code></pre>
-
-                    <h3>Workspace (working directory)</h3>
-                    <p>Where you create or modify files. Changes here aren't yet tracked by Git.</p>
-                    <pre><code>git status                 # Show changes in the working directory and staging area
-git diff                   # View unstaged changes
-git checkout -- &lt;filename&gt; # Discard changes in a file
-git clean -fd              # Remove untracked files and directories</code></pre>
-
-                    <h3>Index (staging area)</h3>
-                    <p>Where you prepare changes before committing.</p>
-                    <pre><code>git status              # Show changes in the working directory and staging area
-git add &lt;filename&gt;      # Stage a file
-git add .               # Stage all changes
-git reset &lt;filename&gt;    # Unstage a file
-git diff --cached        # View staged changes</code></pre>
-
-                    <h3>Local repository</h3>
-                    <p>Where committed changes are stored locally.</p>
-                    <pre><code>git commit -m "commit message"   # Commit staged changes
-git log                          # View commit history
-git reset --soft HEAD^           # Undo last commit, keep changes staged
-git reset --hard HEAD            # Reset to last commit, discard all changes</code></pre>
-
-                    <h3>Upstream (remote repository)</h3>
-                    <p>The shared repository for collaboration — e.g. GitHub.</p>
-                    <pre><code>git remote -v            # Show remote URLs
-git fetch                # Get changes from remote without merging
-git pull                 # Fetch and merge changes from remote
-git push                 # Push local commits to remote
-git clone &lt;url&gt;          # Clone a remote repository</code></pre>
 
                     <h3>Walkthrough: stash, fix, and return</h3>
                     <p><strong>Scenario:</strong> you're mid-feature but need to fix a bug on <code>main</code> right

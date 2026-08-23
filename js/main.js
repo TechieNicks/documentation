@@ -91,5 +91,104 @@
       }, { threshold: 0.4 });
       bars.forEach(function (bar) { io.observe(bar); });
     }
+
+    // ---- Copy-code buttons for code blocks ----
+    document.querySelectorAll(".doc-content pre").forEach(function (pre) {
+      if (pre.querySelector(".copy-code-btn")) return;
+      var codeEl = pre.querySelector("code") || pre;
+
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "copy-code-btn";
+      btn.textContent = "Copy";
+      btn.setAttribute("aria-label", "Copy code to clipboard");
+
+      btn.addEventListener("click", function () {
+        var text = codeEl.textContent;
+        var showCopied = function () {
+          btn.textContent = "Copied!";
+          btn.classList.add("copied");
+          setTimeout(function () {
+            btn.textContent = "Copy";
+            btn.classList.remove("copied");
+          }, 1500);
+        };
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(showCopied).catch(function () {
+            fallbackCopy(text, showCopied);
+          });
+        } else {
+          fallbackCopy(text, showCopied);
+        }
+      });
+
+      pre.appendChild(btn);
+    });
+
+    // ---- YouTube video preview (click-to-load facade, no iframe until played) ----
+    var DEFAULT_YT_ID = "1k-ZgZlx-sA"; // https://www.youtube.com/watch?v=1k-ZgZlx-sA
+    document.querySelectorAll(".youtube-embed").forEach(function (el) {
+      var id = el.getAttribute("data-video-id") || extractYouTubeId(el.getAttribute("data-video-url")) || DEFAULT_YT_ID;
+      var title = el.getAttribute("data-title") || "YouTube video preview";
+
+      var playBtn = document.createElement("button");
+      playBtn.type = "button";
+      playBtn.className = "youtube-embed__play";
+      playBtn.setAttribute("aria-label", "Play " + title);
+
+      var thumb = document.createElement("img");
+      thumb.className = "youtube-embed__thumb";
+      thumb.src = "https://img.youtube.com/vi/" + id + "/hqdefault.jpg";
+      thumb.alt = title;
+      thumb.loading = "lazy";
+
+      var icon = document.createElement("span");
+      icon.className = "youtube-embed__icon";
+      icon.setAttribute("aria-hidden", "true");
+      icon.innerHTML =
+        '<svg viewBox="0 0 68 48">' +
+        '<path d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55c-2.93.78-4.63 3.26-5.42 6.19C.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.63-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z" fill="#f00"></path>' +
+        '<path d="M45 24 27 14v20" fill="#fff"></path>' +
+        "</svg>";
+
+      playBtn.appendChild(thumb);
+      playBtn.appendChild(icon);
+
+      playBtn.addEventListener("click", function () {
+        var iframe = document.createElement("iframe");
+        var embedOrigin = window.location.origin;
+        iframe.src = "https://www.youtube-nocookie.com/embed/" + id +
+          "?autoplay=1&rel=0&origin=" + encodeURIComponent(embedOrigin) +
+          "&widget_referrer=" + encodeURIComponent(window.location.href);
+        iframe.title = title;
+        iframe.setAttribute("frameborder", "0");
+        iframe.setAttribute("allow", "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share");
+        iframe.setAttribute("referrerpolicy", "origin");
+        iframe.setAttribute("allowfullscreen", "");
+        el.innerHTML = "";
+        el.appendChild(iframe);
+      });
+
+      el.innerHTML = "";
+      el.appendChild(playBtn);
+    });
   });
+
+  function extractYouTubeId(url) {
+    if (!url) return null;
+    var match = url.match(/(?:youtu\.be\/|[?&]v=|\/embed\/)([\w-]{11})/);
+    return match ? match[1] : null;
+  }
+
+  function fallbackCopy(text, cb) {
+    var ta = document.createElement("textarea");
+    ta.value = text;
+    ta.style.position = "fixed";
+    ta.style.opacity = "0";
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand("copy"); } catch (e) { /* no-op */ }
+    document.body.removeChild(ta);
+    if (cb) cb();
+  }
 })();

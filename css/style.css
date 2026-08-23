@@ -827,6 +827,7 @@ textarea:focus {
 }
 
 .doc-content pre {
+    position: relative;
     background: #191325;
     color: #E8E1F5;
     padding: 16px 18px;
@@ -854,6 +855,115 @@ textarea:focus {
     background: none;
     padding: 0;
     font-size: 1em;
+}
+
+/* ---------- Copy-code button ---------- */
+.copy-code-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    color: #E8E1F5;
+    font-family: inherit;
+    font-size: 0.72rem;
+    line-height: 1;
+    padding: 5px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity .15s ease, background .15s ease;
+}
+
+.doc-content pre:hover .copy-code-btn,
+.doc-content pre:focus-within .copy-code-btn,
+.copy-code-btn:focus-visible {
+    opacity: 1;
+}
+
+.copy-code-btn:hover {
+    background: rgba(255, 255, 255, 0.18);
+}
+
+.copy-code-btn.copied {
+    background: var(--gradient);
+    border-color: transparent;
+    color: #fff;
+    opacity: 1;
+}
+
+@media (hover: none) {
+
+    /* Always show on touch devices — there's no hover to reveal it */
+    .copy-code-btn {
+        opacity: 1;
+    }
+}
+
+/* ---------- YouTube video preview ---------- */
+.youtube-embed {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: var(--radius, 12px);
+    overflow: hidden;
+    background: #000;
+    border: 1px solid var(--border);
+    margin: 20px 0;
+}
+
+.youtube-embed iframe {
+    width: 100%;
+    height: 100%;
+    display: block;
+    border: 0;
+}
+
+.youtube-embed__play {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    border: 0;
+    display: block;
+    cursor: pointer;
+    background: none;
+}
+
+.youtube-embed__thumb {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: brightness(0.82);
+    transition: filter .2s ease;
+}
+
+.youtube-embed__play:hover .youtube-embed__thumb,
+.youtube-embed__play:focus-visible .youtube-embed__thumb {
+    filter: brightness(0.6);
+}
+
+.youtube-embed__icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 68px;
+    height: 48px;
+    transform: translate(-50%, -50%);
+    transition: transform .15s ease;
+    pointer-events: none;
+}
+
+.youtube-embed__play:hover .youtube-embed__icon,
+.youtube-embed__play:focus-visible .youtube-embed__icon {
+    transform: translate(-50%, -50%) scale(1.08);
+}
+
+.youtube-embed__icon svg {
+    width: 100%;
+    height: 100%;
 }
 
 .doc-content table {
