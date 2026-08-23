@@ -45,11 +45,9 @@
     launcher.type = "button";
     launcher.className = "tn-chat-launcher";
     launcher.setAttribute("aria-expanded", "false");
-    launcher.setAttribute("aria-label", "Open TechieNicks Chatbot");
+    launcher.setAttribute("aria-label", "Open Chatbot");
     launcher.innerHTML =
-      '<svg class="tn-chat-open-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">' +
-      '<path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/>' +
-      "</svg>" +
+      '<img class="tn-chat-open-icon" src="/images/icons/robot.png" alt="">' +
       '<svg class="tn-chat-close-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">' +
       '<path d="M18 6L6 18M6 6l12 12"/>' +
       "</svg>";
@@ -58,10 +56,12 @@
     panel.className = "tn-chat-panel";
     panel.setAttribute("data-open", "false");
     panel.setAttribute("role", "dialog");
-    panel.setAttribute("aria-label", "TechieNicks Chatbot");
+    panel.setAttribute("aria-label", "Chatbot");
     panel.innerHTML =
       '<div class="tn-chat-header">' +
-      "<div><h4>TechieNicks Chatbot</h4><p>Answers from this site's content</p></div>" +
+      '<img class="tn-chat-avatar" src="/images/icons/robot.png" alt="">' +
+      "<div><h4>Chatbot</h4><p>Answers from this site's content</p>" +
+      '<a href="https://www.flaticon.com/free-icons/robot" title="robot icons" target="_blank" rel="noopener noreferrer">Robot icons created by juicy_fish - Flaticon</a></div>' +
       "</div>" +
       '<div class="tn-chat-messages" id="tnChatMessages"></div>' +
       '<form class="tn-chat-form" id="tnChatForm">' +

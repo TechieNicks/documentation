@@ -29,9 +29,10 @@
     transform: scale(1.06);
 }
 
-.tn-chat-launcher svg {
+.tn-chat-launcher img {
     width: 24px;
     height: 24px;
+    object-fit: contain;
 }
 
 .tn-chat-launcher .tn-chat-close-icon {
@@ -83,6 +84,14 @@
     flex-shrink: 0;
 }
 
+.tn-chat-avatar {
+    width: 34px;
+    height: 34px;
+    margin-right: 10px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
 .tn-chat-header h4 {
     margin: 0;
     font-family: var(--font-display);
@@ -93,6 +102,14 @@
     margin: 2px 0 0;
     font-size: 0.72rem;
     opacity: 0.9;
+}
+
+.tn-chat-header a {
+    display: inline-block;
+    margin-top: 4px;
+    color: inherit;
+    font-size: 0.62rem;
+    opacity: 0.8;
 }
 
 .tn-chat-messages {
