@@ -9,8 +9,8 @@
         content="Git reference guide: version control basics, lifecycle, configuration, and everyday commands.">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="icon" href="../images/favicon.ico" sizes="any">
-    <link rel="icon" href="../images/favicon.png" type="image/png" sizes="32x32">
-    <link rel="apple-touch-icon" href="../images/favicon.png">
+    <link rel="icon" href="../images/favicon-transparent-32x32.png" type="image/png" sizes="32x32">
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png">
     <link rel="stylesheet" href="../css/style.css">
 </head>
 
@@ -111,16 +111,36 @@
                         <li><strong>Branching &amp; merging</strong> — developers can create separate branches for new
                             features or bug fixes, then merge them back into the main project.</li>
                     </ul>
-                    <p>Version control systems (VCS) fall into three main types:</p>
+                    <p>Version control systems (VCS) help developers track changes, collaborate efficiently, and manage
+                        different versions of a project. VCS fall into three main types:</p>
                     <ol>
-                        <li><strong>Local Version Control (LVCS)</strong> — changes are stored locally on a single
-                            computer,
-                            saved as patches; hard to collaborate and easy to lose.</li>
-                        <li><strong>Centralized Version Control (CVCS)</strong> — a single repository stores all
-                            versions
-                            (e.g. Subversion, Microsoft TFS). Easier collaboration, but a single point of failure.</li>
-                        <li><strong>Distributed Version Control (DVCS)</strong> — every user has a full copy of the
-                            repository, allowing offline work and better redundancy (e.g. Git, Mercurial).</li>
+                        <li><strong>Local Version Control (LVCS):</strong>
+                            <ul>
+                                <li>Changes are stored locally on a single
+                                    computer.</li>
+                                <li>Each modification is saved as a patch, making it difficult to collaborate with
+                                    others.</li>
+                                <li>Risk of losing data if the local system fails.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Centralized Version Control (CVCS):</strong>
+                            <ul>
+                                <li>A single repository stores all versions, and users must connect to it to access or
+                                    modify files.</li>
+                                <li>Examples: <strong>Subversion (SVN), Microsoft Team Foundation Server (TFS)</strong>.
+                                </li>
+                                <li>Easier collaboration but has a single point of failure—if the central server
+                                    crashes, all history could be lost.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Distributed Version Control (DVCS):</strong>
+                            <ul>
+                                <li>Each user has a full copy of the repository, allowing offline work and better
+                                    redundancy.</li>
+                                <li>Examples: <strong>Git, Mercurial</strong>.</li>
+                                <li>More flexible and resilient, as changes can be merged from multipe sources.</li>
+                            </ul>
+                        </li>
                     </ol>
 
                     <div class="callout">
@@ -138,22 +158,30 @@
                     </div>
 
                     <h3>Limitations of centralized version control</h3>
-                    <p>Before Git, developers relied on centralized version control systems, which had real limitations:
+                    <p>Before <strong>Git</strong>, developers relied on centralized version control systems, which had
+                        real limitations:
                         single points of failure and restricted offline work. Developers couldn't keep their own copy of
                         the
                         repository, so they couldn't work offline independently.</p>
                     <ul>
                         <li><strong>Single point of failure</strong> — if the central server crashes, all history and
                             collaboration are lost unless backups exist.</li>
-                        <li><strong>Requires constant connectivity</strong> — developers must be connected to commit
-                            changes
-                            or view history.</li>
-                        <li><strong>Limited offline work</strong> — no independent access to the central repository.
+                        <li><strong>Requires constant connectivity</strong> — developers must be connected to the
+                            central server to commit changes or access previous versions.</li>
+                        <li><strong>Limited offline work</strong> — unlike DVCS,no independent access to the central
+                            repository.
                         </li>
-                        <li><strong>Slower performance</strong> — every operation talks to the central server.</li>
-                        <li><strong>Risk of data loss</strong> — a corrupted or compromised central repo can lose
-                            everything.</li>
+                        <li><strong>Slower performance</strong> — every operation talks to the central server, which can
+                            slow down workflows.</li>
+                        <li><strong>Risk of data loss</strong> — If the central repository is corrupted or compromised,
+                            all data could be lost unless proper backups are maintained.</li>
                     </ul>
+                    <p>These drawbacks led to the rise of Git, which offers a distributed approach for
+                        better
+                        flexibility and resilience. <strong>Git</strong>
+                        was created to address the challenges of managing code efficiently, especially in large-scale
+                        projects with multiple
+                        contributors.</p>
 
                     <h3>What was the need for Git?</h3>
                     <ul>
@@ -161,30 +189,31 @@
                             repository,
                             enabling offline work.</li>
                         <li><strong>Efficient collaboration</strong> — branches let people work on different features
-                            simultaneously.</li>
+                            simultaneously using branches, then merge their changes without disrupting the main
+                            codebase.</li>
                         <li><strong>Change tracking</strong> — a detailed history makes it easy to revert.</li>
-                        <li><strong>Performance &amp; speed</strong> — optimized for large projects.</li>
+                        <li><strong>Performance &amp; speed</strong> — optimized for large projects, ensuring quick
+                            operations even with extensive codebases.</li>
                         <li><strong>Security &amp; integrity</strong> — every change is stored using cryptographic
-                            hashing.</li>
+                            hashing, preventing accidental or malicious alterations.</li>
                     </ul>
 
                     <h2 id="what-is-git">What is Git?</h2>
-                    <p><strong>Git</strong> is a distributed version control system that helps developers track changes,
+                    <p><strong>Git</strong> is a <u>distributed</u> version control system that helps developers track
+                        changes,
                         collaborate efficiently, and manage different versions of a project. It was created by
-                        <strong>Linus Torvalds</strong> in 2005 to manage the Linux kernel, and quickly became the
-                        industry
-                        standard.
+                        <strong>Linus Torvalds</strong> in 2005 to manage the Linux kernel, but its advantages quickly
+                        made it industry standard.
                     </p>
                     <ul>
-                        <li><strong>Version control</strong> — keeps a history of all changes so you can revert if
+                        <li><strong>Version control</strong> — keeps a history of all changes, allowing developers to
+                            revert previous version if
                             needed.</li>
-                        <li><strong>Branching &amp; merging</strong> — separate branches for new features or fixes,
-                            merged
-                            back into the main project.</li>
-                        <li><strong>Collaboration</strong> — multiple developers work on the same project without
-                            overwriting
-                            each other's changes.</li>
-                        <li><strong>Performance</strong> — fast and efficient, even for large projects.</li>
+                        <li><strong>Branching &amp; merging</strong> — Developers can create separate branches to work
+                            on new features or fixes, then merge them back into the main project.</li>
+                        <li><strong>Collaboration</strong> — Git enables multiple developers to work on the same project
+                            without overwriting each other’s changes.</li>
+                        <li><strong>Performance</strong> — It is fast and efficient, even for large projects.</li>
                     </ul>
 
                     <h3>What "distributed" means</h3>
@@ -195,10 +224,13 @@
                     <h2 id="git-vs-github">Git vs GitHub</h2>
                     <p>Git is the engine; GitHub is the garage where teams collaborate.</p>
                     <ul>
-                        <li><strong>Git</strong> is a distributed version control system that runs locally on a
+                        <li><strong>Git</strong> is a <strong>distributed version control system</strong> that runs
+                            locally on a
                             developer's
-                            machine and allows offline work.</li>
-                        <li><strong>GitHub</strong> is a web-based platform that hosts Git repositories, adding tools
+                            machine and allows developers track changes in their code, collaborate
+                            efficiently, and manage different versions of offline work.</li>
+                        <li><strong>GitHub</strong> is a <strong>web-based platform</strong> that hosts Git
+                            repositories, adding additional collaboration tools
                             like
                             pull requests, issue tracking, and project management.</li>
                     </ul>
@@ -256,6 +288,110 @@
 
                     <h2 id="git-lifecycle">Git lifecycle</h2>
                     <p>Every change moves through a handful of areas on its way from your editor to a shared remote.</p>
+
+                    <div class="table-of-contents">
+                        <div class="toc-item" style="background-color: antiquewhite;">
+                            <h3>Stash</h3><br>
+
+                            <ul>
+                                <li><span style=" background: lightgrey;" class="courier-font">
+                                        git stash</span> = Stash current changes.</li>
+                                <li><span style=" background: lightgrey;" class="courier-font">
+                                        git stash list</span> = View stashed changes.</li>
+                                <li><span style=" background: lightgrey;" class="courier-font">
+                                        git stash pop</span> = Apply and remove the latest stash.
+                                </li>
+                                <li><span style=" background: lightgrey;" class="courier-font">
+                                        git stash apply</span> = Apply the latest stash without
+                                    removing it.</li>
+                                <li><span style=" background: lightgrey;" class="courier-font">
+                                        git stash drop</span> = Delete a specific stash.</li>
+                            </ul>
+                            <p class="newspaper-text">A temporary locker — Temporarily save changes which we’re not
+                                ready to
+                                commit.</p>
+                        </div>
+                        <div class="toc-item" style="background-color: beige">
+                            <h3>Workspace or <br>Working Directory</h3>
+
+                            <ul>
+                                <li><span style=" background: lightgrey;" class="courier-font">
+                                        git status</span> = Show changes in the working directory and
+                                    staging area.</li>
+                                <li><span style=" background: lightgrey;" class="courier-font">
+                                        git diff</span> = View unstaged changes.</li>
+                                <li><span style=" background: lightgrey;" class="courier-font">
+                                        git checkout --&lt;_filename_&gt;</span> = Discard changes in a
+                                    file.
+                                </li>
+                                <li><span style=" background: lightgrey;" class="courier-font">
+                                        git clean -fd</span> = Remove untracked files and directories.
+                                </li>
+                            </ul>
+                            <p class="newspaper-text">This is where we create or modify files. Changes here are not yet
+                                tracked by Git.</p>
+                        </div>
+                        <div class="toc-item" style="background-color: khaki;">
+                            <h3>Index or<br>Staging Area</h3>
+
+                            <ul>
+                                <li><span style=" background: lightgrey;" class="courier-font">
+                                        git status</span> = Show changes in the working directory and
+                                    staging area.</li>
+                                <li><span style=" background: lightgrey;" class="courier-font">
+                                        git add &lt;_filenme_&gt;
+                                    </span> = Stage a file</li>
+                                <li><span style=" background: lightgrey;" class="courier-font">
+                                        git add .</span> = Stage all changes</li>
+                                <li><span style=" background: lightgrey;" class="courier-font">
+                                        git reset &lt;_filename_&gt;</span> = Unstage a file</li>
+                                <li><span style=" background: lightgrey;" class="courier-font">
+                                        git diff --cached</span> = View staged changes</li>
+                            </ul>
+                            <p class="newspaper-text">Where we prepare changes before committing.</p>
+                        </div>
+                        <div class="toc-item" style="background-color: lavender;">
+                            <h3>Local Repository</h3><br>
+
+                            <ul>
+                                <li><span style=" background: lightgrey;" class="courier-font">
+                                        git commit -m "commit_message"
+                                    </span> = Commit staged changes</li>
+                                <li><span style=" background: lightgrey;" class="courier-font">
+                                        git log
+                                    </span> = View commit history</li>
+                                <li><span style=" background: lightgrey;" class="courier-font">
+                                        git reset --soft Head^
+                                    </span>Undo last commit, keep changes staged.</li>
+                                <li><span style=" background: lightgrey;" class="courier-font">
+                                        git reset --hard Head
+                                    </span>Reset to last commit, discard all changes</li>
+                            </ul>
+                            <p class="newspaper-text">Where committed changes are stored locally.</p>
+                        </div>
+                        <div class="toc-item" style="background-color: lightgray;">
+                            <h3>Upstream or<br>Remote Repository</h3>
+
+                            <ul>
+                                <li><span style=" background: bisque;" class="courier-font">
+                                        git remote -v
+                                    </span> = Show remote URLs</li>
+                                <li><span style=" background: bisque;" class="courier-font">
+                                        git fetch
+                                    </span> = Get changes from remote without merging</li>
+                                <li><span style=" background: bisque;" class="courier-font">
+                                        git pull
+                                    </span> = Fetch and merge changes from remote</li>
+                                <li><span style=" background: bisque;" class="courier-font">
+                                        git push
+                                    </span> = Push local commits to remote</li>
+                                <li><span style=" background: bisque;" class="courier-font">
+                                        git clone &lt;_url_&gt;
+                                    </span> = Clone a remote repository</li>
+                            </ul>
+                            <p class="newspaper-text">Shared repository for collaboration (e.g., GitHub).</p>
+                        </div>
+                    </div>
 
                     <h3>Stash</h3>
                     <p>A temporary locker for changes you're not ready to commit yet.</p>

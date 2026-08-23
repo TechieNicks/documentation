@@ -1,54 +1,75 @@
-# TechieNicks
+# TechieNicks — website rebuild
 
-The source for [techienicks.com](https://techienicks.com/), a static HTML, CSS and JavaScript website for sharing technical guides and projects.
+A modern rebuild of techienicks.com: static HTML/CSS/JS (no build step, no framework), with a light/dark theme toggle and pages for Home, About, TechSpec, Projects and Contact.
 
-The site has no framework, package manager or build step. Open `index.html` in a browser for a local preview, or publish the repository root with a static hosting provider.
+## What changed from the original
 
-## Site features
+- Kept the violet → pink gradient and cream/dark palette pulled from your logo, applied consistently across all pages via CSS variables.
+- Added a **light/dark theme toggle** (top right of the nav) — it remembers the visitor's choice via `localStorage` and respects their OS preference on first visit.
+- Added **About**, **Projects** and **Contact** pages that didn't exist before.
+- Turned the three TechSpec topics into a proper card grid, plus three placeholder cards (JIRA/Atlassian, CI/CD, Cloud) you can fill in or remove.
+- Pulled real repos from your GitHub (`nodedemo`, `Cheet-sheet`, the JIRA-on-CentOS gist) into the Projects page instead of leaving it empty.
+- Added a working **contact form** wired for Netlify Forms — no backend required.
+- Mobile nav (hamburger menu), keyboard-focus styles, and `prefers-reduced-motion` support.
 
-- Responsive navigation with a mobile menu
-- Light and dark theme toggle, saved in `localStorage`
-- TechSpec cards linking to individual guides
-- Contact form configured for Netlify Forms
-- Custom favicon, logo and image assets
-- Google Fonts and Font Awesome loaded from CDNs
+## File structure
 
-## Local development
-
-No dependencies are required. For the most reliable local preview, serve the repository root with any static web server. For example:
-
-```bash
-python -m http.server 8000
+```
+site/
+├── index.html
+├── about.html
+├── techspec.html
+├── projects.html
+├── contact.html
+├── css/style.css
+├── js/main.js
+├── images/logo.png
+└── pages/            ← put your existing Git.html, Linux.html, Virtualization.html here
 ```
 
-Then open <http://localhost:8000> in a browser.
+## Things to personalize before you publish
 
-## Deployment
+1. **about.html** — replace the placeholder bio, adjust the `data-level` values in the skill bars to your real proficiency, and update the timeline entries.
+2. **about.html "Download resume" button** — currently points to `assets/resume.pdf`, which doesn't exist yet. Add your resume PDF at that path, or remove the button.
+3. **contact.html** — swap `hello@techienicks.com` for your real email.
+4. **techspec.html** — the last three cards (JIRA, CI/CD, Cloud) link to pages that don't exist yet (`pages/Jira.html`, etc.). Either create those pages or remove the cards.
+5. **pages/** folder — copy your original `Git.html`, `Linux.html`, and `Virtualization.html` files in here (from your old site) so the TechSpec links work immediately. If you'd rather I rebuild those pages in the new style, just share their content.
 
-### Netlify
+## New logo & icon system
 
-The repository includes `netlify.toml` with the root directory configured as the publish directory and no build command.
+Since I can't generate illustrated/Bitmoji-style art, I designed a new **vector mark** (SVG) instead — it keeps a "glimpse of you" (hair, round sunglasses, smile) but as a clean, scalable shape that stays sharp at any size and adapts better across dark/light mode than a raster Bitmoji export.
 
-1. Import the GitHub repository in Netlify.
-2. Keep the build command empty.
-3. Set the publish directory to `.` if Netlify asks for it.
-4. Configure `techienicks.com` under the domain settings.
+- `images/logo-mark.svg` — the primary mark. Used in the nav and as the About-page avatar. Edit the fill colors directly in the SVG (it's plain XML) to restyle hair/skin/shirt colors any time.
+- `images/favicon.ico`, `images/favicon-16.png`, `images/favicon-32.png`, `images/apple-touch-icon.png` — generated from the mark, already wired into every page's `<head>`.
+- `images/logo-mark-512.png` — high-res PNG export, useful anywhere an SVG isn't accepted.
+- `images/youtube/youtube-channel-icon-800.png` — 800×800 PNG sized for YouTube's channel-icon upload (Settings → Branding → Picture).
 
-Netlify Forms handles submissions from the form in `contact.html`.
+### Per-post / per-topic icons
 
-## Netlify Deployment Status
-[![Netlify Status](https://api.netlify.com/api/v1/badges/1223a208-95c8-4325-a3eb-9474a22bd3c2/deploy-status)](https://app.netlify.com/projects/documentation-techienicks/deploys)
+`images/icons/` has six matching badge icons (Git, Linux, Docker, JIRA, Cloud, CI/CD) in both `.svg` and `.png`, built in the same gradient-badge style as the mark. These are what `techspec.html`'s cards use, and they're meant to be reused as:
 
-## Version tags
+- Thumbnails for individual blog posts or videos
+- Icons next to future TechSpec topics
 
-Create an annotated release tag from the latest `main` commit and push it to GitHub:
+To add a new topic icon: duplicate any `icon-*.svg` in `images/icons/`, swap the inner `<g>` shape for a new symbol (keep the same `viewBox="0 0 200 200"` and gradient circle), and it'll automatically match the rest of the site.
 
-```bash
-git switch main
-git pull origin main
-git tag -a v2.0 -m "Release v2.0"
-git push origin main
-git push origin v2.0
-```
+## Deploying
 
-After pushing, create a GitHub Release from the `v2.0` tag if release notes are needed.
+### Option A: Netlify (recommended — gets you the working contact form for free)
+
+1. Push this folder to a GitHub repository.
+2. In Netlify: **Add new site → Import an existing project → GitHub**, pick the repo.
+3. Build command: leave blank. Publish directory: `/` (the repo root, since there's no build step).
+4. Deploy. Netlify auto-detects the `data-netlify="true"` form in `contact.html` and starts collecting submissions under **Site → Forms** — no extra setup.
+5. Point your `techienicks.com` domain at the Netlify site under **Domain settings**.
+
+### Option B: GitHub Pages
+
+1. Push this folder to a GitHub repository.
+2. Repo **Settings → Pages → Source**: deploy from the branch containing this code (root).
+3. Note: the contact form won't work on GitHub Pages (it's static hosting only, no form backend) — either keep Netlify for the form or swap it for a service like Formspree.
+
+## Notes
+
+- Fonts (Space Grotesk, Inter, JetBrains Mono) load from Google Fonts via CDN — no local font files needed.
+- No dependencies, no `npm install`, no build step. Just static files.

@@ -950,3 +950,11 @@ textarea:focus {
 .card[hidden] {
     display: none;
 }
+
+/********* Git *******/
+.table-of-contents {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 20px;
+}

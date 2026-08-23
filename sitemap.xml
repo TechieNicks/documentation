@@ -1,41 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset
-  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-  <!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
-
-
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://techienicks.github.io/documentation/index.html</loc>
-    <lastmod>2025-06-22T07:58:13+00:00</lastmod>
-    <priority>1.00</priority>
+    <loc>https://techienicks.com/</loc>
   </url>
   <url>
-    <loc>https://techienicks.github.io/documentation/pages/techspec.html</loc>
-    <lastmod>2025-06-22T07:58:13+00:00</lastmod>
-    <priority>0.80</priority>
+    <loc>https://techienicks.com/about.html</loc>
   </url>
   <url>
-    <loc>https://techienicks.github.io/documentation/pages/About.html</loc>
-    <lastmod>2025-06-22T07:58:13+00:00</lastmod>
-    <priority>0.80</priority>
+    <loc>https://techienicks.com/techspec.html</loc>
   </url>
   <url>
-    <loc>https://techienicks.github.io/documentation/pages/Git.html</loc>
-    <lastmod>2025-06-22T07:58:13+00:00</lastmod>
-    <priority>0.64</priority>
+    <loc>https://techienicks.com/projects.html</loc>
   </url>
   <url>
-    <loc>https://techienicks.github.io/documentation/pages/Virtualization.html</loc>
-    <lastmod>2025-06-22T07:58:13+00:00</lastmod>
-    <priority>0.64</priority>
+    <loc>https://techienicks.com/contact.html</loc>
   </url>
   <url>
-    <loc>https://techienicks.github.io/documentation/pages/Linux.html</loc>
-    <lastmod>2025-06-22T07:58:13+00:00</lastmod>
-    <priority>0.64</priority>
+    <loc>https://techienicks.com/pages/AtlassianOrg.html</loc>
   </url>
-
-
+  <url>
+    <loc>https://techienicks.com/pages/Git.html</loc>
+  </url>
+  <url>
+    <loc>https://techienicks.com/pages/techspec.html</loc>
+  </url>
 </urlset>
