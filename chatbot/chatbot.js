@@ -60,8 +60,7 @@
     panel.innerHTML =
       '<div class="tn-chat-header">' +
       '<img class="tn-chat-avatar" src="/images/icons/robot.png" alt="">' +
-      "<div><h4>Chatbot</h4><p>Answers from this site's content</p>" +
-      '<a href="https://www.flaticon.com/free-icons/robot" title="robot icons" target="_blank" rel="noopener noreferrer">Robot icons created by juicy_fish - Flaticon</a></div>' +
+      "<div><h4>Chatbot</h4><p>Answers from this site's content</p></div>" +
       "</div>" +
       '<div class="tn-chat-messages" id="tnChatMessages"></div>' +
       '<form class="tn-chat-form" id="tnChatForm">' +
