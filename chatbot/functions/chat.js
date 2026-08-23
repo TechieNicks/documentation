@@ -29,7 +29,7 @@ const SYSTEM_PROMPT = [
 
 const MAX_MESSAGE_LENGTH = 800;
 const MAX_HISTORY_TURNS = 6; // last N messages kept for context
-const MODEL = "gemini-2.0-flash";
+const MODEL = "gemini-3.6-flash";
 
 exports.handler = async function (event) {
   var headers = {
