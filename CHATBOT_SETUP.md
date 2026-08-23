@@ -97,7 +97,6 @@ This serves your whole site *and* runs the function locally, so the chatbot
 works exactly like it will in production. It'll open at `http://localhost:8888`.
 
 ## Cost
-
 Gemini 2.0 Flash (the model used here) has a free tier with no credit
 card required — generous enough for a portfolio site's traffic (15
 requests/minute, 1,500/day as of this writing). If you ever exceed that,

@@ -1,7 +1,9 @@
 // netlify/functions/chat.js
 // --------------------------------------------------------------
-// Serverless endpoint the chat widget calls. Keeps ANTHROPIC_API_KEY
+// Serverless endpoint the chat widget calls. Keeps GEMINI_API_KEY
 // on the server — it is never sent to the browser.
+//
+// Uses Google's Gemini API free tier.
 //
 // Deployed automatically by Netlify at:
 //   /.netlify/functions/chat
@@ -16,7 +18,7 @@ const SITE_CONTENT = fs.readFileSync(
 );
 
 const SYSTEM_PROMPT = [
-  "You are the help assistant embedded on techienicks.com, a personal site about Atlassian tools, Git, and REST APIs.",
+  "You are the TechieNicks Chatbot, the help assistant embedded on techienicks.com, a personal site about Atlassian tools, Git, and REST APIs. If asked your name, say you're the TechieNicks Chatbot.",
   "Answer ONLY using the SITE CONTENT provided below. Do not use outside knowledge.",
   "If the answer isn't in the site content, say you don't have that information on this site yet, and suggest the person check the TechSpec section or the Contact page.",
   "Keep answers short (2-5 sentences) and friendly. When relevant, mention which page the info came from (e.g. \"see the Git guide\").",
@@ -27,6 +29,7 @@ const SYSTEM_PROMPT = [
 
 const MAX_MESSAGE_LENGTH = 800;
 const MAX_HISTORY_TURNS = 6; // last N messages kept for context
+const MODEL = "gemini-2.0-flash";
 
 exports.handler = async function (event) {
   var headers = {
@@ -43,12 +46,12 @@ exports.handler = async function (event) {
     return { statusCode: 405, headers: headers, body: "Method not allowed" };
   }
 
-  var apiKey = process.env.ANTHROPIC_API_KEY;
+  var apiKey = process.env.GEMINI_API_KEY;
   if (!apiKey) {
     return {
       statusCode: 500,
       headers: headers,
-      body: JSON.stringify({ error: "Server is missing ANTHROPIC_API_KEY. Set it in Netlify env vars." }),
+      body: JSON.stringify({ error: "Server is missing GEMINI_API_KEY. Set it in Netlify env vars." }),
     };
   }
 
@@ -69,26 +72,30 @@ exports.handler = async function (event) {
     return { statusCode: 400, headers: headers, body: JSON.stringify({ error: "Message too long" }) };
   }
 
-  // Keep only the last few turns, and only the fields Anthropic expects
+  // Gemini uses "user" / "model" roles and nests text in parts[].
   var trimmedHistory = history.slice(-MAX_HISTORY_TURNS).map(function (m) {
-    return { role: m.role === "assistant" ? "assistant" : "user", content: String(m.content || "").slice(0, MAX_MESSAGE_LENGTH) };
+    return {
+      role: m.role === "assistant" ? "model" : "user",
+      parts: [{ text: String(m.content || "").slice(0, MAX_MESSAGE_LENGTH) }],
+    };
   });
 
-  var messages = trimmedHistory.concat([{ role: "user", content: message }]);
+  var contents = trimmedHistory.concat([{ role: "user", parts: [{ text: message }] }]);
+
+  var url =
+    "https://generativelanguage.googleapis.com/v1beta/models/" +
+    MODEL +
+    ":generateContent?key=" +
+    apiKey;
 
   try {
-    var response = await fetch("https://api.anthropic.com/v1/messages", {
+    var response = await fetch(url, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "x-api-key": apiKey,
-        "anthropic-version": "2023-06-01",
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        model: "claude-haiku-4-5-20251001",
-        max_tokens: 400,
-        system: SYSTEM_PROMPT,
-        messages: messages,
+        system_instruction: { parts: [{ text: SYSTEM_PROMPT }] },
+        contents: contents,
+        generationConfig: { maxOutputTokens: 400 },
       }),
     });
 
@@ -102,8 +109,13 @@ exports.handler = async function (event) {
       };
     }
 
-    var textBlock = (data.content || []).find(function (b) { return b.type === "text"; });
-    var answer = textBlock ? textBlock.text : "Sorry, I couldn't generate a response.";
+    var candidate = (data.candidates || [])[0];
+    var part = candidate && candidate.content && candidate.content.parts && candidate.content.parts[0];
+    var answer = part && part.text ? part.text : "Sorry, I couldn't generate a response.";
+
+    if (!part && candidate && candidate.finishReason) {
+      answer = "I can't answer that one. Try rephrasing, or ask something else about the site.";
+    }
 
     return { statusCode: 200, headers: headers, body: JSON.stringify({ answer: answer }) };
   } catch (err) {
