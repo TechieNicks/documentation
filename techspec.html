@@ -12,6 +12,7 @@
   <link rel="icon" href="images/favicon-transparent-16x16.png" type="image/png" sizes="16x16">
   <link rel="apple-touch-icon" href="images/favicon.png">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/engagement.css">
   <link rel="stylesheet" href="chatbot/chatbot.css">
 </head>
 
@@ -55,7 +56,10 @@
     <section class="page-hero">
       <div class="container">
         <span class="eyebrow">// techspec</span>
-        <h1>Reference guides &amp; <span class="gradient-text">cheat sheets</span></h1>
+        <div class="page-hero-heading">
+          <h1>Reference guides &amp; <span class="gradient-text">cheat sheets</span></h1>
+          <div class="engagement engagement--hero" data-engagement></div>
+        </div>
         <p class="lead" style="max-width:60ch;">Topic-by-topic notes from day-to-day work. Click a card to open
           the full guide.
         </p>
@@ -141,6 +145,7 @@
   </footer>
 
   <script src="js/main.js"></script>
+  <script src="js/engagement.js"></script>
   <script src="chatbot/chatbot.js"></script>
   <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>

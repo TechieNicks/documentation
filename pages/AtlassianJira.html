@@ -12,6 +12,7 @@
     <link rel="icon" href="../images/favicon-transparent-32x32.png" type="image/png" sizes="32x32">
     <link rel="apple-touch-icon" href="../images/apple-touch-icon.png">
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/engagement.css">
     <link rel="stylesheet" href="../chatbot/chatbot.css">
 </head>
 
@@ -63,11 +64,14 @@
 
                 <span class="eyebrow">// <a href="../techspec.html">techspec</a> / git</span>
 
-                <div style="display:flex; align-items:center; gap:16px; margin-bottom:4px;">
-                    <img src="../images/icons/jira.png" alt="Jira logo" width="40" height="40"
-                        style="border-radius: 10px;">
-                    <h1 style="margin:0;">Atlassian Jira Software <span class="gradient-text">reference guide</span>
-                    </h1>
+                <div class="page-hero-heading">
+                    <div style="display:flex; align-items:center; gap:16px; margin-bottom:4px;">
+                        <img src="../images/icons/jira.png" alt="Jira logo" width="40" height="40"
+                            style="border-radius: 10px;">
+                        <h1 style="margin:0;">Atlassian Jira Software <span class="gradient-text">reference guide</span>
+                        </h1>
+                    </div>
+                    <div class="engagement engagement--hero" data-engagement></div>
                 </div>
 
 
@@ -108,6 +112,7 @@
     </footer>
 
     <script src="../js/main.js"></script>
+    <script src="../js/engagement.js"></script>
     <script src="../chatbot/chatbot.js"></script>
     <script>
         document.getElementById('year').textContent = new Date().getFullYear();

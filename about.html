@@ -12,6 +12,7 @@
   <link rel="icon" href="images/favicon-transparent-16x16.png" type="image/png" sizes="16x16">
   <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/engagement.css">
   <link rel="stylesheet" href="chatbot/chatbot.css">
 </head>
 
@@ -55,7 +56,10 @@
     <section class="page-hero">
       <div class="container">
         <span class="eyebrow">// about</span>
-        <h1>Hello, my name is <span class="gradient-text">Nicketa</span>.</h1>
+        <div class="page-hero-heading">
+          <h1>Hello, my name is <span class="gradient-text">Nicketa</span>.</h1>
+          <div class="engagement engagement--hero" data-engagement></div>
+        </div>
         <p class="lead" style="max-width:60ch;">An enthusiastic learner &amp; creator — I write
           things down so future-me (and whoever finds my docs) doesn't have to solve the same problem twice.</p>
       </div>
@@ -186,6 +190,7 @@
   </footer>
 
   <script src="js/main.js"></script>
+  <script src="js/engagement.js"></script>
   <script src="chatbot/chatbot.js"></script>
   <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>

@@ -1,0 +1,87 @@
+.engagement {
+    border-top: 1px solid var(--border);
+    padding: 18px 0;
+}
+
+.page-hero-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+.engagement--hero {
+    border-top: 0;
+    padding: 0;
+    flex: 0 0 auto;
+}
+
+.engagement--hero .engagement-inner {
+    gap: 10px;
+}
+
+.engagement-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.engagement-stats,
+.engagement-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.engagement-stat,
+.engagement-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    min-height: 38px;
+    padding: 7px 12px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--surface);
+    color: var(--text-muted);
+    font: inherit;
+    font-size: .85rem;
+}
+
+.engagement-button {
+    cursor: pointer;
+}
+
+.engagement-button:hover,
+.engagement-button.is-liked {
+    color: var(--pink);
+    border-color: var(--pink);
+}
+
+.engagement svg {
+    width: 16px;
+    height: 16px;
+    flex: 0 0 auto;
+}
+
+@media (max-width: 520px) {
+
+    .page-hero-heading {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 14px;
+    }
+
+    .engagement-inner,
+    .engagement-stats,
+    .engagement-actions {
+        width: 100%;
+    }
+
+    .engagement-actions .engagement-button {
+        flex: 1;
+        justify-content: center;
+    }
+}

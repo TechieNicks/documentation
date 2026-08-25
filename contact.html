@@ -12,6 +12,7 @@
   <link rel="icon" href="images/favicon-transparent-16x16.png" type="image/png" sizes="16x16">
   <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/engagement.css">
   <link rel="stylesheet" href="chatbot/chatbot.css">
 </head>
 
@@ -55,7 +56,10 @@
     <section class="page-hero">
       <div class="container">
         <span class="eyebrow">// contact</span>
-        <h1>Let's <span class="gradient-text">talk shop.</span></h1>
+        <div class="page-hero-heading">
+          <h1>Let's <span class="gradient-text">talk shop.</span></h1>
+          <div class="engagement engagement--hero" data-engagement></div>
+        </div>
         <p class="lead" style="max-width:60ch;">Questions about a Atlassian, a collaboration idea, or just want to say
           hi
           — pick whichever's easiest.</p>
@@ -135,6 +139,7 @@
   </footer>
 
   <script src="js/main.js"></script>
+  <script src="js/engagement.js"></script>
   <script src="chatbot/chatbot.js"></script>
   <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
