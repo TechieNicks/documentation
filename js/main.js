@@ -195,6 +195,8 @@
       '<p>Was something useful, unclear, or missing? A quick note helps improve the guides and tutorials.</p>' +
       '<form class="form-grid" name="feedback-modal" method="POST" action="/thank-you.html" data-netlify="true" netlify-honeypot="feedback-bot-field">' +
       '<input type="hidden" name="form-name" value="feedback">' +
+      '<input type="hidden" name="submission-form" value="feedback">' +
+      '<input type="hidden" name="submission-date-time" value="">' +
       '<p class="hidden" style="display:none;"><label>Don\'t fill this out if you\'re human: <input name="feedback-bot-field"></label></p>' +
       '<div><label for="feedback-rating">How was your experience?</label><div class="feedback-rating" id="feedback-rating">' +
       '<label><input type="radio" name="rating" value="excellent"> Excellent</label>' +
@@ -221,6 +223,7 @@
       if (event.target === feedbackDialog) closeFeedback();
     });
     feedbackDialog.querySelector("form").addEventListener("submit", function (event) {
+      event.target.querySelector("[name=\"submission-date-time\"]").value = new Date().toISOString();
       if (location.hostname !== "localhost" && location.hostname !== "127.0.0.1") return;
       event.preventDefault();
       var form = event.target;
@@ -232,6 +235,11 @@
       }
       notice.textContent = "Thanks for the feedback. It was captured for this local preview.";
       form.reset();
+    });
+    document.querySelectorAll("form[name=\"contact\"]").forEach(function (form) {
+      form.addEventListener("submit", function () {
+        form.querySelector("[name=\"submission-date-time\"]").value = new Date().toISOString();
+      });
     });
     document.addEventListener("keydown", function (event) {
       if (event.key === "Escape" && !feedbackDialog.hidden) closeFeedback();

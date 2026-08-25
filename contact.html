@@ -109,6 +109,8 @@
           <!-- Netlify Forms: works automatically once deployed on Netlify, no backend needed. -->
           <form class="form-grid" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
             <input type="hidden" name="form-name" value="contact">
+            <input type="hidden" name="submission-form" value="contact">
+            <input type="hidden" name="submission-date-time" value="">
             <p class="hidden" style="display:none;">
               <label>Don't fill this out if you're human: <input name="bot-field"></label>
             </p>
@@ -132,6 +134,8 @@
 
     <form name="feedback" method="POST" data-netlify="true" netlify-honeypot="feedback-bot-field" hidden>
       <input type="hidden" name="form-name" value="feedback">
+      <input type="hidden" name="submission-form" value="feedback">
+      <input type="hidden" name="submission-date-time" value="">
       <input type="text" name="feedback-bot-field">
       <input type="radio" name="rating" value="excellent">
       <input type="radio" name="rating" value="good">
