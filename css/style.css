@@ -648,6 +648,114 @@ textarea:focus {
     outline-offset: 1px;
 }
 
+.feedback-rating {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.feedback-rating label {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    margin: 0;
+    padding: 9px 12px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--surface);
+    color: var(--text-muted);
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.feedback-rating input {
+    width: auto;
+    margin: 0;
+    accent-color: var(--purple);
+}
+
+.form-note {
+    color: var(--text-muted);
+    font-weight: 400;
+}
+
+.feedback-trigger {
+    position: fixed;
+    z-index: 20;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    padding: 14px 10px;
+    border: 1px solid var(--purple);
+    border-right: 0;
+    border-radius: 8px 0 0 8px;
+    background: var(--purple);
+    color: #fff;
+    font: 600 0.85rem var(--font-body);
+    writing-mode: vertical-rl;
+    cursor: pointer;
+    box-shadow: var(--shadow);
+}
+
+.feedback-trigger:hover {
+    background: var(--pink);
+    border-color: var(--pink);
+}
+
+.feedback-dialog {
+    position: fixed;
+    z-index: 30;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    padding: 24px;
+    background: rgba(36, 28, 44, 0.48);
+}
+
+.feedback-dialog[hidden] {
+    display: none;
+}
+
+.feedback-panel {
+    position: relative;
+    width: min(100%, 560px);
+    max-height: calc(100vh - 48px);
+    overflow-y: auto;
+    padding: 32px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface);
+    box-shadow: var(--shadow);
+}
+
+.feedback-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 32px;
+    height: 32px;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    background: transparent;
+    color: var(--text-muted);
+    font-size: 1.4rem;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.feedback-close:hover {
+    color: var(--text);
+    border-color: var(--text-muted);
+}
+
+.feedback-notice {
+    margin: 0;
+    color: var(--purple);
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
 .contact-links {
     display: flex;
     flex-wrap: wrap;

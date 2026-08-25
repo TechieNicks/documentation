@@ -172,6 +172,70 @@
       el.innerHTML = "";
       el.appendChild(playBtn);
     });
+
+    // ---- Site-wide feedback modal ----
+    var feedbackButton = document.createElement("button");
+    feedbackButton.type = "button";
+    feedbackButton.className = "feedback-trigger";
+    feedbackButton.textContent = "Feedback";
+    feedbackButton.setAttribute("aria-haspopup", "dialog");
+    feedbackButton.setAttribute("aria-controls", "feedback-dialog");
+
+    var feedbackDialog = document.createElement("div");
+    feedbackDialog.className = "feedback-dialog";
+    feedbackDialog.id = "feedback-dialog";
+    feedbackDialog.setAttribute("role", "dialog");
+    feedbackDialog.setAttribute("aria-modal", "true");
+    feedbackDialog.setAttribute("aria-labelledby", "feedback-title");
+    feedbackDialog.hidden = true;
+    feedbackDialog.innerHTML = '<div class="feedback-panel">' +
+      '<button type="button" class="feedback-close" aria-label="Close feedback form">&times;</button>' +
+      '<span class="eyebrow">// feedback</span>' +
+      '<h2 id="feedback-title">Help shape what comes next.</h2>' +
+      '<p>Was something useful, unclear, or missing? A quick note helps improve the guides and tutorials.</p>' +
+      '<form class="form-grid" name="feedback-modal" method="POST" action="/" data-netlify="true" netlify-honeypot="feedback-bot-field">' +
+      '<input type="hidden" name="form-name" value="feedback">' +
+      '<p class="hidden" style="display:none;"><label>Don\'t fill this out if you\'re human: <input name="feedback-bot-field"></label></p>' +
+      '<div><label for="feedback-rating">How was your experience?</label><div class="feedback-rating" id="feedback-rating">' +
+      '<label><input type="radio" name="rating" value="excellent"> Excellent</label>' +
+      '<label><input type="radio" name="rating" value="good"> Good</label>' +
+      '<label><input type="radio" name="rating" value="needs-improvement"> Needs improvement</label>' +
+      '</div></div>' +
+      '<div><label for="feedback-message">Your feedback</label><textarea id="feedback-message" name="feedback" rows="5" required></textarea></div>' +
+      '<div><label for="feedback-email">Email <span class="form-note">(optional, for a reply)</span></label><input type="email" id="feedback-email" name="email"></div>' +
+      '<button type="submit" class="btn btn-primary">Send feedback</button>' +
+      '</form></div>';
+
+    document.body.appendChild(feedbackButton);
+    document.body.appendChild(feedbackDialog);
+    var closeFeedback = function () {
+      feedbackDialog.hidden = true;
+      feedbackButton.focus();
+    };
+    feedbackButton.addEventListener("click", function () {
+      feedbackDialog.hidden = false;
+      feedbackDialog.querySelector("textarea").focus();
+    });
+    feedbackDialog.querySelector(".feedback-close").addEventListener("click", closeFeedback);
+    feedbackDialog.addEventListener("click", function (event) {
+      if (event.target === feedbackDialog) closeFeedback();
+    });
+    feedbackDialog.querySelector("form").addEventListener("submit", function (event) {
+      if (location.hostname !== "localhost" && location.hostname !== "127.0.0.1") return;
+      event.preventDefault();
+      var form = event.target;
+      var notice = form.querySelector(".feedback-notice");
+      if (!notice) {
+        notice = document.createElement("p");
+        notice.className = "feedback-notice";
+        form.appendChild(notice);
+      }
+      notice.textContent = "Thanks for the feedback. It was captured for this local preview.";
+      form.reset();
+    });
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape" && !feedbackDialog.hidden) closeFeedback();
+    });
   });
 
   function extractYouTubeId(url) {

@@ -129,6 +129,16 @@
         </div>
       </div>
     </section>
+
+    <form name="feedback" method="POST" data-netlify="true" netlify-honeypot="feedback-bot-field" hidden>
+      <input type="hidden" name="form-name" value="feedback">
+      <input type="text" name="feedback-bot-field">
+      <input type="radio" name="rating" value="excellent">
+      <input type="radio" name="rating" value="good">
+      <input type="radio" name="rating" value="needs-improvement">
+      <textarea name="feedback"></textarea>
+      <input type="email" name="email">
+    </form>
   </main>
 
   <footer class="site-footer">
