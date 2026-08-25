@@ -700,6 +700,15 @@ textarea:focus {
     font-size: clamp(1.9rem, 4vw, 2.6rem);
 }
 
+.page-hero .container>div {
+    flex-wrap: wrap;
+}
+
+.page-hero .container>div>h1 {
+    min-width: 0;
+    flex: 1 1 220px;
+}
+
 .avatar-blob {
     width: 100%;
     aspect-ratio: 1;
@@ -799,6 +808,11 @@ textarea:focus {
     scroll-margin-top: 90px;
 }
 
+.doc-content {
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
 .doc-content>h2:first-child {
     margin-top: 0;
     padding-top: 0;
@@ -855,6 +869,7 @@ textarea:focus {
     background: none;
     padding: 0;
     font-size: 1em;
+    overflow-wrap: normal;
 }
 
 /* ---------- Copy-code button ---------- */
