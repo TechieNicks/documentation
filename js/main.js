@@ -193,7 +193,7 @@
       '<span class="eyebrow">// feedback</span>' +
       '<h2 id="feedback-title">Help shape what comes next.</h2>' +
       '<p>Was something useful, unclear, or missing? A quick note helps improve the guides and tutorials.</p>' +
-      '<form class="form-grid" name="feedback-modal" method="POST" action="/" data-netlify="true" netlify-honeypot="feedback-bot-field">' +
+      '<form class="form-grid" name="feedback-modal" method="POST" action="/thank-you.html" data-netlify="true" netlify-honeypot="feedback-bot-field">' +
       '<input type="hidden" name="form-name" value="feedback">' +
       '<p class="hidden" style="display:none;"><label>Don\'t fill this out if you\'re human: <input name="feedback-bot-field"></label></p>' +
       '<div><label for="feedback-rating">How was your experience?</label><div class="feedback-rating" id="feedback-rating">' +
