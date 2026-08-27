@@ -100,8 +100,8 @@
       var btn = document.createElement("button");
       btn.type = "button";
       btn.className = "copy-code-btn";
-      btn.textContent = "Copy";
-      btn.setAttribute("aria-label", "Copy code to clipboard");
+      btn.textContent = "Copy Code";
+      btn.setAttribute("aria-label", "Copy code block to clipboard");
 
       btn.addEventListener("click", function () {
         var text = codeEl.textContent;
@@ -109,7 +109,7 @@
           btn.textContent = "Copied!";
           btn.classList.add("copied");
           setTimeout(function () {
-            btn.textContent = "Copy";
+            btn.textContent = "Copy Code";
             btn.classList.remove("copied");
           }, 1500);
         };
