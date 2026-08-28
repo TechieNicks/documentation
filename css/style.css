@@ -921,6 +921,108 @@ textarea:focus {
     overflow-wrap: anywhere;
 }
 
+.git-vs-github-diagrams {
+    margin: 28px 0 32px;
+}
+
+.git-vs-github-slides {
+    display: grid;
+    align-items: center;
+    height: 340px;
+}
+
+.git-vs-github-slide {
+    grid-area: 1 / 1;
+    position: relative;
+    display: grid;
+    align-items: start;
+    justify-items: center;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    text-align: center;
+    overflow: hidden;
+}
+
+.git-vs-github-slide[hidden] {
+    display: none;
+}
+
+.git-vs-github-slide img {
+    width: min(100%, 606px);
+    max-height: calc(100% - 42px);
+    height: auto;
+    object-fit: contain;
+}
+
+.git-vs-github-slide:nth-child(2) img {
+    width: min(100%, 420px);
+}
+
+.git-vs-github-slide figcaption {
+    position: absolute;
+    right: 12px;
+    bottom: 0;
+    left: 12px;
+    margin: 0;
+    padding: 6px 12px;
+    border-radius: 4px;
+    background: rgb(0 0 0 / 52%);
+    color: #fff;
+    font-size: 0.9rem;
+}
+
+.git-vs-github-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    margin: 28px 0 32px;
+}
+
+.git-vs-github-controls button {
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--surface);
+    color: var(--text);
+    cursor: pointer;
+    font: inherit;
+    padding: 6px 12px;
+}
+
+.git-vs-github-controls button:hover,
+.git-vs-github-controls button:focus-visible {
+    border-color: var(--purple);
+    color: var(--purple);
+}
+
+.git-vs-github-dots {
+    display: flex;
+    gap: 8px;
+}
+
+.git-vs-github-dots button {
+    width: 10px;
+    height: 10px;
+    padding: 0;
+    border-radius: 50%;
+}
+
+.git-vs-github-dots button.is-active {
+    background: var(--purple);
+    border-color: var(--purple);
+}
+
+.git-workflow-diagram {
+    margin: 28px 0 8px;
+}
+
+.git-workflow-diagram img {
+    width: min(100%, 900px);
+    height: auto;
+    margin: 0 auto;
+}
+
 .doc-content>h2:first-child {
     margin-top: 0;
     padding-top: 0;

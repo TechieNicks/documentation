@@ -125,6 +125,38 @@
       pre.appendChild(btn);
     });
 
+    // ---- Manual Git vs GitHub diagram slideshow ----
+    document.querySelectorAll("[data-slideshow]").forEach(function (slideshow) {
+      var slides = Array.from(slideshow.querySelectorAll(".git-vs-github-slide"));
+      var dots = Array.from(slideshow.querySelectorAll(".git-vs-github-dots button"));
+      var currentSlide = 0;
+
+      function showSlide(index) {
+        currentSlide = (index + slides.length) % slides.length;
+        slides.forEach(function (slide, slideIndex) {
+          var active = slideIndex === currentSlide;
+          slide.hidden = !active;
+          slide.classList.toggle("is-active", active);
+        });
+        dots.forEach(function (dot, dotIndex) {
+          var active = dotIndex === currentSlide;
+          dot.classList.toggle("is-active", active);
+          if (active) dot.setAttribute("aria-current", "true");
+          else dot.removeAttribute("aria-current");
+        });
+      }
+
+      slideshow.querySelector(".git-vs-github-prev").addEventListener("click", function () {
+        showSlide(currentSlide - 1);
+      });
+      slideshow.querySelector(".git-vs-github-next").addEventListener("click", function () {
+        showSlide(currentSlide + 1);
+      });
+      dots.forEach(function (dot, dotIndex) {
+        dot.addEventListener("click", function () { showSlide(dotIndex); });
+      });
+    });
+
     // ---- YouTube video preview (click-to-load facade, no iframe until played) ----
     var DEFAULT_YT_ID = "1k-ZgZlx-sA"; // https://www.youtube.com/watch?v=1k-ZgZlx-sA
     document.querySelectorAll(".youtube-embed").forEach(function (el) {
