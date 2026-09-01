@@ -959,12 +959,69 @@ textarea:focus {
     height: auto;
     object-fit: contain;
     border: 0;
+    border-radius: 15px;
     background: transparent;
     box-shadow: none;
+    cursor: pointer;
 }
 
 .git-vs-github-slide:nth-child(2) img {
     width: min(100%, 420px);
+}
+
+.git-diagram-lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background: rgb(15 23 42 / 74%);
+}
+
+.git-diagram-lightbox.is-open {
+    display: flex;
+}
+
+.git-diagram-lightbox__content {
+    position: relative;
+    max-width: min(92vw, 1100px);
+    max-height: 92vh;
+    padding: 18px 18px 12px;
+    border-radius: 18px;
+    background: #fff;
+    box-shadow: 0 24px 80px rgb(15 23 42 / 38%);
+}
+
+.git-diagram-lightbox__image {
+    display: block;
+    width: auto;
+    max-width: min(92vw, 1000px);
+    max-height: 80vh;
+    object-fit: contain;
+    border-radius: 12px;
+}
+
+.git-diagram-lightbox__close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 36px;
+    height: 36px;
+    border: 0;
+    border-radius: 50%;
+    background: rgb(15 23 42 / 80%);
+    color: #fff;
+    font-size: 1.4rem;
+    cursor: pointer;
+}
+
+.git-diagram-lightbox__caption {
+    margin: 10px 8px 0;
+    color: #4c1d95;
+    text-align: center;
+    font-size: 0.95rem;
 }
 
 .git-vs-github-slide figcaption {
@@ -974,9 +1031,9 @@ textarea:focus {
     left: 12px;
     margin: 0;
     padding: 6px 12px;
-    border-radius: 4px;
-    background: rgb(0 0 0 / 52%);
-    color: #fff;
+    border-radius: 15px;
+    background: rgb(0 0 0 / 15%);
+    color: #7c3aed;
     font-size: 0.9rem;
 }
 

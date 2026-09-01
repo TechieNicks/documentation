@@ -157,6 +157,61 @@
       });
     });
 
+    var diagramModal = document.getElementById("git-diagram-lightbox");
+    if (!diagramModal) {
+      diagramModal = document.createElement("div");
+      diagramModal.id = "git-diagram-lightbox";
+      diagramModal.className = "git-diagram-lightbox";
+      diagramModal.setAttribute("role", "dialog");
+      diagramModal.setAttribute("aria-modal", "true");
+      diagramModal.setAttribute("aria-label", "Git diagram preview");
+      diagramModal.innerHTML = '<div class="git-diagram-lightbox__content"><button type="button" class="git-diagram-lightbox__close" aria-label="Close diagram preview">×</button><img class="git-diagram-lightbox__image" src="" alt=""><p class="git-diagram-lightbox__caption"></p></div>';
+      document.body.appendChild(diagramModal);
+
+      diagramModal.querySelector(".git-diagram-lightbox__close").addEventListener("click", function () {
+        diagramModal.classList.remove("is-open");
+        document.body.classList.remove("modal-open");
+      });
+
+      diagramModal.addEventListener("click", function (event) {
+        if (event.target === diagramModal) {
+          diagramModal.classList.remove("is-open");
+          document.body.classList.remove("modal-open");
+        }
+      });
+
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape" && diagramModal.classList.contains("is-open")) {
+          diagramModal.classList.remove("is-open");
+          document.body.classList.remove("modal-open");
+        }
+      });
+    }
+
+    document.querySelectorAll(".git-vs-github-slide img").forEach(function (img) {
+      img.setAttribute("tabindex", "0");
+      img.style.cursor = "pointer";
+
+      function openDiagramModal() {
+        var lightboxImage = diagramModal.querySelector(".git-diagram-lightbox__image");
+        var lightboxCaption = diagramModal.querySelector(".git-diagram-lightbox__caption");
+
+        lightboxImage.src = img.src;
+        lightboxImage.alt = img.alt || "Git diagram preview";
+        lightboxCaption.textContent = "";
+        diagramModal.classList.add("is-open");
+        document.body.classList.add("modal-open");
+      }
+
+      img.addEventListener("click", openDiagramModal);
+      img.addEventListener("keydown", function (event) {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          openDiagramModal();
+        }
+      });
+    });
+
     // ---- YouTube video preview (click-to-load facade, no iframe until played) ----
     var DEFAULT_YT_ID = "1k-ZgZlx-sA"; // https://www.youtube.com/watch?v=1k-ZgZlx-sA
     document.querySelectorAll(".youtube-embed").forEach(function (el) {
