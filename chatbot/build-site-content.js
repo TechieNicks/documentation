@@ -59,6 +59,19 @@ function stripHtml(html) {
     .trim();
 }
 
+function extractAnchors(html) {
+  var anchors = [];
+  var matches = html.matchAll(/<h[1-6][^>]*id=["']([^"']+)["'][^>]*>([\s\S]*?)<\/h[1-6]>/gi);
+
+  for (var match of matches) {
+    if (!match[1] || !match[2]) continue;
+    var label = stripHtml(match[2]).trim();
+    if (label) anchors.push(match[1] + " | " + label);
+  }
+
+  return anchors;
+}
+
 function main() {
   var files = listHtmlFiles();
   var chunks = [];
@@ -69,7 +82,9 @@ function main() {
     var titleMatch = html.match(/<title>([\s\S]*?)<\/title>/i);
     var title = titleMatch ? titleMatch[1].trim() : rel;
     var text = stripHtml(html);
-    chunks.push("=== PAGE: " + rel.replace(/\\/g, "/") + " ===\nTITLE: " + title + "\n\n" + text + "\n");
+    var anchors = extractAnchors(html);
+    var anchorBlock = anchors.length ? "ANCHORS:\n" + anchors.join("\n") + "\n\n" : "ANCHORS:\nnone\n\n";
+    chunks.push("=== PAGE: " + rel.replace(/\\/g, "/") + " ===\nTITLE: " + title + "\n\n" + anchorBlock + text + "\n");
   });
 
   var result = chunks.join("\n");

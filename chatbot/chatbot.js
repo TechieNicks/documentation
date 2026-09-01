@@ -60,8 +60,11 @@
     panel.innerHTML =
       '<div class="tn-chat-header">' +
       '<img class="tn-chat-avatar" src="/images/icons/robot.png" alt="">' +
-      "<div><h4>Chatbot</h4><p>Answers from this site's content</p></div>" +
-      "</div>" +
+      '<div class="tn-chat-header-copy">' +
+      '<h4>Chatbot</h4>' +
+      '<div class="tn-chat-meta"><p>Answers from this site</p><span class="tn-chat-status is-live" id="tnChatStatus">Live</span></div>' +
+      '</div>' +
+      '</div>' +
       '<div class="tn-chat-messages" id="tnChatMessages"></div>' +
       '<form class="tn-chat-form" id="tnChatForm">' +
       '<textarea class="tn-chat-input" id="tnChatInput" rows="1" placeholder="Ask about Git, Jira, REST APIs..." maxlength="800"></textarea>' +
@@ -79,7 +82,18 @@
   function renderMessage(container, role, text) {
     var el = document.createElement("div");
     el.className = "tn-chat-msg " + (role === "user" ? "tn-user" : role === "error" ? "tn-error" : "tn-bot");
-    el.textContent = text;
+
+    if (role === "assistant" || role === "bot") {
+      var escaped = String(text || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;");
+      var withLinks = escaped.replace(/(https?:\/\/[^\s]+)/g, '<a href="$1">$1</a>');
+      el.innerHTML = withLinks;
+    } else {
+      el.textContent = text;
+    }
+
     container.appendChild(el);
     container.scrollTop = container.scrollHeight;
     return el;
@@ -92,6 +106,32 @@
     container.appendChild(el);
     container.scrollTop = container.scrollHeight;
     return el;
+  }
+
+  function localFallbackAnswer(message) {
+    var text = String(message || "").toLowerCase();
+
+    if (/git.*github|github.*git|git\s+vs\s+github|github\s+vs\s+git|git\s+and\s+github/.test(text)) {
+      return "Here is the Git vs GitHub section: https://techienicks.com/pages/Git.html#git-vs-github";
+    }
+
+    if (/git|branch|commit|merge|clone|push|pull/.test(text)) {
+      return "Git is the version control tool; this site covers branching, commits, and workflow basics in the Git guide.";
+    }
+
+    if (/jira|atlassian|confluence|workflow|admin/.test(text)) {
+      return "This site includes Jira, Confluence, and Atlassian admin guidance for working with workflows and collaboration tools.";
+    }
+
+    if (/rest|api|integration|webhook|http/.test(text)) {
+      return "The REST API and integrations pages cover API usage patterns, connections, and practical examples for this site.";
+    }
+
+    if (/about|contact|who|you|techienicks/.test(text)) {
+      return "This site is about Atlassian tools, Git, REST APIs, and practical documentation from TechieNicks.";
+    }
+
+    return "I can help with Git, Jira, Atlassian tools, REST APIs, and integrations covered on this site. Ask a more specific question.";
   }
 
   function setUser(userId) {
@@ -121,7 +161,18 @@
     var form = panel.querySelector("#tnChatForm");
     var input = panel.querySelector("#tnChatInput");
     var sendBtn = panel.querySelector("#tnChatSend");
+    var statusEl = panel.querySelector("#tnChatStatus");
     var opened = false;
+
+    function setChatStatus(mode) {
+      if (!statusEl) return;
+      var isOffline = mode === "offline";
+      statusEl.textContent = isOffline ? "Offline mode" : "Live";
+      statusEl.classList.toggle("is-live", !isOffline);
+      statusEl.classList.toggle("is-offline", isOffline);
+    }
+
+    setChatStatus("live");
 
     // Restore any prior conversation from this browser tab session
     history.forEach(function (m) {
@@ -180,15 +231,24 @@
         typingEl.remove();
 
         if (!res.ok) {
-          renderMessage(messagesEl, "error", data.error || "Something went wrong. Please try again.");
+          setChatStatus("offline");
+          var fallbackReply = localFallbackAnswer(text);
+          renderMessage(messagesEl, "assistant", data.error ? fallbackReply : (data.answer || fallbackReply));
+          history.push({ role: "assistant", content: data.error ? fallbackReply : (data.answer || fallbackReply) });
+          saveHistory();
         } else {
+          setChatStatus("live");
           renderMessage(messagesEl, "assistant", data.answer);
           history.push({ role: "assistant", content: data.answer });
           saveHistory();
         }
       } catch (err) {
         typingEl.remove();
-        renderMessage(messagesEl, "error", "Couldn't reach the assistant. Check your connection and try again.");
+        setChatStatus("offline");
+        var offlineReply = localFallbackAnswer(text);
+        renderMessage(messagesEl, "assistant", offlineReply);
+        history.push({ role: "assistant", content: offlineReply });
+        saveHistory();
       } finally {
         input.disabled = false;
         sendBtn.disabled = false;
