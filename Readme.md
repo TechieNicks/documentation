@@ -39,6 +39,14 @@ netlify dev
 
 The site will be available at `http://localhost:8888`.
 
+## License
+
+This project and its content are licensed under the Creative Commons Attribution 4.0 International License (CC BY 4.0).
+
+You are free to share and adapt the material for any purpose, even commercially, as long as you provide appropriate attribution and link to the license.
+
+See the full license here: https://creativecommons.org/licenses/by/4.0/
+
 ## Deployment | [![Netlify Status](https://api.netlify.com/api/v1/badges/1223a208-95c8-4325-a3eb-9474a22bd3c2/deploy-status)](https://app.netlify.com/projects/documentation-techienicks/deploys)
 
 The project is deployed through Netlify:
