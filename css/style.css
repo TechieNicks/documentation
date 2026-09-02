@@ -76,6 +76,15 @@ body {
     transition: background 0.25s ease, color 0.25s ease;
 }
 
+.site-footer-notice {
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px solid var(--border);
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+
 img {
     max-width: 100%;
     display: block;
@@ -556,6 +565,18 @@ section {
 
 .card-link:hover svg {
     transform: translate(2px, -2px);
+}
+
+.legal-section {
+    padding: 24px 0 40px;
+}
+
+.legal-grid {
+    margin-top: 20px;
+}
+
+.legal-card p {
+    margin-bottom: 0.8rem;
 }
 
 /* ---------- Skill bars ---------- */
