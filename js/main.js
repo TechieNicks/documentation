@@ -61,7 +61,7 @@
 
     // ---- Chapter navigation for documentation guides ----
     var docContent = document.querySelector(".doc-content");
-    if (docContent) {
+    if (docContent && !document.querySelector('.chapter-box-diagrams[aria-label="Chapter-tabs"]')) {
       var chapters = Array.from(docContent.querySelectorAll(":scope > h2[id]"));
       if (chapters.length > 1) {
         var renderChapterNavs = function () {
@@ -191,10 +191,143 @@
       pre.appendChild(btn);
     });
 
+    // ---- Build chapter tabs from the remaining guide sections ----
+    document.querySelectorAll('.chapter-box-diagrams[aria-label="Chapter-tabs"]').forEach(function (chapterTabs) {
+      var article = chapterTabs.closest(".doc-content");
+      if (!article) return;
+
+      var slidesContainer = chapterTabs.querySelector(".chapter-box-slides");
+      var controls = chapterTabs.querySelector(".chapter-box-dots");
+      if (!slidesContainer || !controls) return;
+
+      // The regular page-level link would move into the last generated slide.
+      // Chapter tabs get one return link per topic instead.
+      article.querySelectorAll(":scope > .back-to-top").forEach(function (link) {
+        link.remove();
+      });
+
+      // Keep chapters already placed in slides and move the remaining top-level
+      // h2 sections into new slides in their existing document order.
+      var existingSlides = Array.from(slidesContainer.querySelectorAll(".chapter-box-slide"));
+      existingSlides.filter(function (slide) {
+        return !slide.querySelector(":scope > h2[id]");
+      }).forEach(function (placeholder) {
+        placeholder.remove();
+      });
+
+      var remainingNodes = [];
+      var cursor = chapterTabs.nextElementSibling;
+      while (cursor) {
+        remainingNodes.push(cursor);
+        cursor = cursor.nextElementSibling;
+      }
+
+      remainingNodes.forEach(function (node, nodeIndex) {
+        if (node.matches("h2[id]")) {
+          var slide = document.createElement("figure");
+          slide.className = "chapter-box-slide";
+          slide.hidden = true;
+          slide.appendChild(node);
+
+          var sectionNode = remainingNodes[nodeIndex + 1];
+          var sectionIndex = nodeIndex + 1;
+          while (sectionNode && !sectionNode.matches("h2[id]")) {
+            slide.appendChild(sectionNode);
+            sectionIndex++;
+            sectionNode = remainingNodes[sectionIndex];
+          }
+          slidesContainer.appendChild(slide);
+        }
+      });
+
+      controls.textContent = "";
+      Array.from(slidesContainer.querySelectorAll(":scope > .chapter-box-slide")).forEach(function (slide, index) {
+        var heading = slide.querySelector(":scope > h2[id]");
+        var dot = document.createElement("button");
+        dot.type = "button";
+        dot.setAttribute("aria-label", "Show chapter " + (index + 1) + (heading ? ": " + heading.textContent.trim() : ""));
+        if (index === 0) {
+          dot.className = "is-active";
+          dot.setAttribute("aria-current", "true");
+        }
+        controls.appendChild(dot);
+      });
+
+      var chapterSlides = Array.from(slidesContainer.querySelectorAll(":scope > .chapter-box-slide"));
+      var chapterDots = Array.from(controls.querySelectorAll("button"));
+      var previousButton = chapterTabs.querySelector(".chapter-box-prev");
+      var nextButton = chapterTabs.querySelector(".chapter-box-next");
+      var chapterLinks = Array.from(document.querySelectorAll(".doc-toc nav a"));
+      var currentChapter = 0;
+
+      chapterSlides.forEach(function (slide) {
+        var backToTop = document.createElement("a");
+        backToTop.className = "back-to-top chapter-box-back-to-top";
+        backToTop.href = "#video-walkthrough";
+        backToTop.textContent = "↑ Back to top";
+        slide.appendChild(backToTop);
+      });
+
+      function showChapter(index, updateHash) {
+        currentChapter = (index + chapterSlides.length) % chapterSlides.length;
+        chapterSlides.forEach(function (slide, slideIndex) {
+          var active = slideIndex === currentChapter;
+          slide.hidden = !active;
+          slide.classList.toggle("is-active", active);
+        });
+        chapterDots.forEach(function (dot, dotIndex) {
+          var active = dotIndex === currentChapter;
+          dot.classList.toggle("is-active", active);
+          if (active) dot.setAttribute("aria-current", "true");
+          else dot.removeAttribute("aria-current");
+        });
+
+        var heading = chapterSlides[currentChapter].querySelector(":scope > h2[id]");
+        chapterLinks.forEach(function (link) {
+          link.classList.toggle("active", Boolean(heading) && link.getAttribute("href") === "#" + heading.id);
+        });
+
+        if (heading && updateHash) {
+          window.history.replaceState(null, "", "#" + heading.id);
+        }
+      }
+
+      if (chapterSlides.length && previousButton && nextButton) {
+        previousButton.addEventListener("click", function () {
+          showChapter(currentChapter - 1, true);
+        });
+        nextButton.addEventListener("click", function () {
+          showChapter(currentChapter + 1, true);
+        });
+        chapterDots.forEach(function (dot, dotIndex) {
+          dot.addEventListener("click", function () {
+            showChapter(dotIndex, true);
+          });
+        });
+        chapterLinks.forEach(function (link) {
+          var targetId = link.getAttribute("href").slice(1);
+          var chapterIndex = chapterSlides.findIndex(function (slide) {
+            var heading = slide.querySelector(":scope > h2[id]");
+            return heading && heading.id === targetId;
+          });
+          if (chapterIndex < 0) return;
+          link.addEventListener("click", function (event) {
+            event.preventDefault();
+            showChapter(chapterIndex, true);
+            chapterTabs.scrollIntoView({ block: "start" });
+          });
+        });
+        showChapter(0, false);
+      }
+    });
+
     // ---- Manual Git vs GitHub diagram slideshow ----
-    document.querySelectorAll("[data-slideshow]").forEach(function (slideshow) {
-      var slides = Array.from(slideshow.querySelectorAll(".git-vs-github-slide"));
-      var dots = Array.from(slideshow.querySelectorAll(".git-vs-github-dots button"));
+    document.querySelectorAll("[data-slideshow]:not(.chapter-box-diagrams)").forEach(function (slideshow) {
+      var slides = Array.from(slideshow.querySelectorAll(".git-vs-github-slide, .chapter-box-slide"));
+      var dots = Array.from(slideshow.querySelectorAll(".git-vs-github-dots button, .chapter-box-dots button"));
+      var previousButton = slideshow.querySelector(".git-vs-github-prev, .chapter-box-prev");
+      var nextButton = slideshow.querySelector(".git-vs-github-next, .chapter-box-next");
+      if (!slides.length || !previousButton || !nextButton) return;
       var currentSlide = 0;
 
       function showSlide(index) {
@@ -212,10 +345,10 @@
         });
       }
 
-      slideshow.querySelector(".git-vs-github-prev").addEventListener("click", function () {
+      previousButton.addEventListener("click", function () {
         showSlide(currentSlide - 1);
       });
-      slideshow.querySelector(".git-vs-github-next").addEventListener("click", function () {
+      nextButton.addEventListener("click", function () {
         showSlide(currentSlide + 1);
       });
       dots.forEach(function (dot, dotIndex) {
@@ -254,7 +387,7 @@
       });
     }
 
-    document.querySelectorAll(".git-vs-github-slide img").forEach(function (img) {
+    document.querySelectorAll(".git-vs-github-slide img, .chapter-box-slide img").forEach(function (img) {
       img.setAttribute("tabindex", "0");
       img.style.cursor = "pointer";
 
