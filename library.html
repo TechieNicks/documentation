@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Library — TechieNicks</title>
+    <meta name="description" content="Browse TechieNicks documentation collections, chapters, and reference guides.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" href="images/favicon.ico" sizes="any">
+    <link rel="icon" href="images/favicon-transparent-32x32.png" type="image/png" sizes="32x32">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/engagement.css">
+    <link rel="stylesheet" href="chatbot/chatbot.css">
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="container nav">
+            <a class="brand" href="index.html">
+                <img src="images/favicon.png" alt="TechieNicks logo" width="36" height="36">
+                TechieNicks
+            </a>
+            <nav class="nav-links" id="navLinks">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="techspec.html">TechSpec</a>
+                <a href="search.html">Search</a>
+                <a href="contact.html">Contact</a>
+                <a href="https://www.youtube.com/@techienicks" target="_blank" rel="noopener">YouTube</a>
+            </nav>
+            <div class="nav-right">
+                <button class="theme-toggle" aria-pressed="false" aria-label="Switch to dark theme">
+                    <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
+                    </svg>
+                    <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="4" />
+                        <path
+                            d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l-1.41-1.41M17.66 6.34l-1.41-1.41" />
+                    </svg>
+                </button>
+                <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-label="Toggle menu"><svg
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 6h18M3 12h18M3 18h18" />
+                    </svg></button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-hero">
+            <div class="container">
+                <span class="eyebrow">// document library</span>
+                <div class="page-hero-heading">
+                    <h1>Learn by <span class="gradient-text">chapter.</span></h1>
+                    <div class="engagement engagement--hero" data-engagement></div>
+                </div>
+                <p class="lead" style="max-width:62ch;">A focused home for TechieNicks documentation. Choose a
+                    collection, follow its chapters, then watch the related video when you are ready.</p>
+                <div class="library-actions">
+                    <a class="btn btn-primary" href="search.html">Search the library</a>
+                    <a class="btn btn-ghost" href="techspec.html">Browse all guides</a>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="container library-list">
+                <article class="library-collection">
+                    <div class="library-collection__header">
+                        <div>
+                            <span class="eyebrow">Collection 01</span>
+                            <h2>Git and GitHub</h2>
+                            <p>Start with version control, move through Git internals and branches, then finish by
+                                publishing and syncing code with GitHub.</p>
+                        </div>
+                        <a class="card-link" href="pages/Git.html">Open guide</a>
+                    </div>
+                    <ol class="library-chapters">
+                        <li><a href="pages/Git.html#video-walkthrough"><span>01</span><strong>Video
+                                    walkthrough</strong><small>Start here</small></a></li>
+                        <li><a href="pages/Git.html#history"><span>02</span><strong>History and version
+                                    control</strong><small>Why Git exists</small></a></li>
+                        <li><a href="pages/Git.html#what-is-git"><span>03</span><strong>What is Git?</strong><small>Core
+                                    concepts</small></a></li>
+                        <li><a href="pages/Git.html#git-vs-github"><span>04</span><strong>Git versus
+                                    GitHub</strong><small>Local and remote work</small></a></li>
+                        <li><a href="pages/Git.html#git-lifecycle"><span>05</span><strong>Git
+                                    lifecycle</strong><small>Workspace to remote</small></a></li>
+                        <li><a href="pages/Git.html#download"><span>06</span><strong>Installation</strong><small>Set up
+                                    Git</small></a></li>
+                        <li><a href="pages/Git.html#configuration"><span>07</span><strong>Configuration</strong><small>SSH
+                                    and GitHub</small></a></li>
+                        <li><a href="pages/Git.html#first-config"><span>08</span><strong>First
+                                    configurations</strong><small>Git settings</small></a></li>
+                        <li><a href="pages/Git.html#use-cases"><span>09</span><strong>Use cases</strong><small>Daily
+                                    workflows</small></a></li>
+                    </ol>
+                </article>
+
+                <article class="library-collection">
+                    <div class="library-collection__header">
+                        <div>
+                            <span class="eyebrow">Collection 02</span>
+                            <h2>Atlassian and integrations</h2>
+                            <p>Practical references for organization administration, Jira, Confluence, REST APIs, and
+                                connecting tools.</p>
+                        </div>
+                        <a class="card-link" href="techspec.html">View collection</a>
+                    </div>
+                    <div class="library-guide-grid">
+                        <a class="library-guide" href="pages/AtlassianOrg.html"><strong>Atlassian Org
+                                admin</strong><span>Administration and organization setup</span></a>
+                        <a class="library-guide" href="pages/AtlassianJira.html"><strong>Atlassian
+                                Jira</strong><span>Configurations, use cases, and automation</span></a>
+                        <a class="library-guide" href="pages/Confluence.html"><strong>Atlassian
+                                Confluence</strong><span>Features and macros</span></a>
+                        <a class="library-guide" href="pages/REST.html"><strong>REST API</strong><span>Requests,
+                                integrations, and Postman</span></a>
+                        <a class="library-guide"
+                            href="pages/Integrations.html"><strong>Integrations</strong><span>Connect Atlassian with
+                                other tools</span></a>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">&copy; <span id="year"></span> Copyright by <i class="fas fa-heartbeat"></i> <a
+                href="https://github.com/nicks9188" target="_blank" rel="noopener">TechieNicks</a></div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/engagement.js"></script>
+    <script src="chatbot/chatbot.js"></script>
+    <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+
+</html>

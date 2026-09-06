@@ -1,6 +1,7 @@
 [build]
   publish = "."
   command = ""
+  pretty_urls = true
 
 [functions]
   directory = "chatbot/functions"

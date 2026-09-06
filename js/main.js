@@ -59,6 +59,72 @@
       if (href === current) a.classList.add("active");
     });
 
+    // ---- Chapter navigation for documentation guides ----
+    var docContent = document.querySelector(".doc-content");
+    if (docContent) {
+      var chapters = Array.from(docContent.querySelectorAll(":scope > h2[id]"));
+      if (chapters.length > 1) {
+        var renderChapterNavs = function () {
+          docContent.querySelectorAll(".chapter-nav").forEach(function (nav) {
+            nav.remove();
+          });
+
+          var nav = document.createElement("nav");
+          nav.className = "chapter-nav chapter-nav--bottom";
+          nav.setAttribute("aria-label", "Chapter navigation");
+
+          var currentIndex = chapters.findIndex(function (chapter) {
+            return chapter.id === window.location.hash.slice(1);
+          });
+          if (currentIndex < 0) currentIndex = 0;
+
+          var previous = chapters[currentIndex - 1];
+          var next = chapters[currentIndex + 1];
+          var label = document.createElement("span");
+          label.className = "chapter-nav__label";
+          label.textContent = "Chapter " + (currentIndex + 1) + " of " + chapters.length;
+          nav.appendChild(label);
+
+          var links = document.createElement("div");
+          links.className = "chapter-nav__links";
+
+          if (previous) {
+            var previousLink = document.createElement("a");
+            previousLink.href = "#" + previous.id;
+            var previousLabel = document.createElement("span");
+            previousLabel.textContent = "Previous";
+            var previousTitle = document.createElement("strong");
+            previousTitle.textContent = previous.textContent;
+            previousLink.appendChild(previousLabel);
+            previousLink.appendChild(previousTitle);
+            links.appendChild(previousLink);
+          } else {
+            links.appendChild(document.createElement("span"));
+          }
+
+          if (next) {
+            var nextLink = document.createElement("a");
+            nextLink.href = "#" + next.id;
+            var nextLabel = document.createElement("span");
+            nextLabel.textContent = "Next";
+            var nextTitle = document.createElement("strong");
+            nextTitle.textContent = next.textContent;
+            nextLink.appendChild(nextLabel);
+            nextLink.appendChild(nextTitle);
+            links.appendChild(nextLink);
+          } else {
+            links.appendChild(document.createElement("span"));
+          }
+
+          nav.appendChild(links);
+          docContent.appendChild(nav);
+        };
+
+        renderChapterNavs();
+        window.addEventListener("hashchange", renderChapterNavs);
+      }
+    }
+
     // ---- Terminal typing effect ----
     var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     var typedEls = document.querySelectorAll("[data-typed]");
