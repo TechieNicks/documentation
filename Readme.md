@@ -3,7 +3,7 @@
 <table>
 	<tr>
 		<td><a href="https://techienicks.com/"><img src="images/favicon-200x200.png" alt="TechieNicks"></a></td>
-		<td>This build of <a href="https://techienicks.com/">techienicks.com</a> uses static HTML/CSS/JS with no frontend framework or build step. It is deployed on Netlify, with serverless chatbot functionality and a light/dark theme toggle.</td>
+		<td>This build of <a href="https://techienicks.com/">techienicks.com</a> uses static HTML/CSS/JS with no frontend framework or build step. It is deployed on Netlify and Cloudflare Pages, with serverless chatbot functionality and a light/dark theme toggle.</td>
 	</tr>
 </table>
 
@@ -13,7 +13,7 @@
 - Responsive layout for desktop and mobile
 - Light and dark theme toggle
 - Technical documentation and project pages
-- Netlify deployment with continuous deployment
+- Netlify and Cloudflare Pages deployments with continuous deployment
 - AI chatbot powered by Gemini through a Netlify Function
 - Sitemap and custom domain configuration
 
@@ -23,6 +23,7 @@
 - CSS3
 - Vanilla JavaScript
 - Netlify Hosting
+- Cloudflare Pages hosting
 - Netlify Functions
 - Google Gemini API
 
@@ -47,16 +48,14 @@ You are free to share and adapt the material for any purpose, even commercially,
 
 See the full license here: https://creativecommons.org/licenses/by/4.0/
 
-## Deployment | [![Netlify Status](https://api.netlify.com/api/v1/badges/1223a208-95c8-4325-a3eb-9474a22bd3c2/deploy-status)](https://app.netlify.com/projects/documentation-techienicks/deploys)
+## Deployment | [![Netlify Status](https://api.netlify.com/api/v1/badges/1223a208-95c8-4325-a3eb-9474a22bd3c2/deploy-status)](https://app.netlify.com/projects/documentation-techienicks/deploys) | [![Cloudflare Pages availability](https://img.shields.io/website?label=Cloudflare%20Pages&url=https%3A%2F%2Ftechienicks.com)](https://techienicks.com/)
 
-The project is deployed through Netlify:
+The project is deployed through both Netlify and Cloudflare Pages:
 
-- Publish directory: `.`
-- Build command: none
 - Functions directory: `chatbot/functions`
 - Production domain: [techienicks.com](https://techienicks.com/)
 
-Changes pushed to the repository are deployed automatically by Netlify.
+Changes pushed to the repository are deployed automatically by both providers. Netlify provides the serverless functions used by the chatbot, while Cloudflare Pages provides an additional static hosting deployment.
 
 
 
