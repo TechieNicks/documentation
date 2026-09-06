@@ -70,6 +70,8 @@
         widget.querySelector("[data-like]").addEventListener("click", function () {
             var nextLiked = !localStorage.getItem(likeKey) || localStorage.getItem(likeKey) !== "true";
             localStorage.setItem(likeKey, nextLiked);
+            var localLikes = Number(localStorage.getItem("tn-likes:" + page) || 0);
+            localStorage.setItem("tn-likes:" + page, Math.max(0, localLikes + (nextLiked ? 1 : -1)));
             setLiked(nextLiked);
             request(nextLiked ? "like" : "unlike").then(setValues).catch(localFallback);
         });
