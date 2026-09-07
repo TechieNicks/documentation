@@ -317,7 +317,26 @@
             chapterTabs.scrollIntoView({ block: "start" });
           });
         });
-        showChapter(0, false);
+
+        // Respect a chapter id already in the URL (bookmarked links, search
+        // results, or the "back to top" / TOC anchors pointing at a chapter
+        // other than the first one) instead of always opening on chapter 1.
+        function chapterIndexForHash() {
+          var hash = window.location.hash.slice(1);
+          if (!hash) return -1;
+          return chapterSlides.findIndex(function (slide) {
+            var heading = slide.querySelector(":scope > h2[id]");
+            return heading && heading.id === hash;
+          });
+        }
+
+        var initialChapter = chapterIndexForHash();
+        showChapter(initialChapter >= 0 ? initialChapter : 0, false);
+
+        window.addEventListener("hashchange", function () {
+          var chapterIndex = chapterIndexForHash();
+          if (chapterIndex >= 0) showChapter(chapterIndex, false);
+        });
       }
     });
 
