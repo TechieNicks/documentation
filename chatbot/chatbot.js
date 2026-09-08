@@ -1,14 +1,17 @@
 // ============================================================
 // TechieNicks — chatbot.js
 // Floating chat widget that asks questions against site content
-// via the /.netlify/functions/chat serverless endpoint.
+// via the /api/chat endpoint. This resolves natively on Cloudflare
+// Pages (functions/api/chat.js) and, on Netlify, via the /api/chat
+// redirect in netlify.toml pointing at /.netlify/functions/chat —
+// so this file doesn't need to know which host it's running on.
 // Include AFTER css/chatbot.css. No frameworks.
 // ============================================================
 
 (function () {
   "use strict";
 
-  var ENDPOINT = "/.netlify/functions/chat";
+  var ENDPOINT = "/api/chat";
   var STORAGE_KEY = "tn-chat-history";
   var MAX_STORED_TURNS = 12;
   var activeUserId = null;

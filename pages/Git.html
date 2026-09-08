@@ -13,6 +13,7 @@
     <link rel="apple-touch-icon" href="../images/apple-touch-icon.png">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/engagement.css">
+    <link rel="stylesheet" href="../css/chapter-slide.css">
     <link rel="stylesheet" href="../chatbot/chatbot.css">
 </head>
 
@@ -103,6 +104,44 @@
                     <h2 id="video-walkthrough">Video walkthrough</h2>
 
                     <div class="youtube-embed" data-video-id="0e8h9oUl6xM" data-title="Git video walkthrough"></div>
+
+
+
+                    <!-- Chapters 02–09 live inside this shell. main.js auto-collects every
+                         top-level <h2> that follows this element into its own slide, so no
+                         chapter content needs to be hand-duplicated here — just leave the
+                         headings below exactly where they already are. -->
+                    <div class="chapter-box-diagrams" data-slideshow="" aria-label="Chapter-tabs">
+                        <div class="chapter-box-slides"></div>
+                        <div class="chapter-box-controls">
+                            <button type="button" class="chapter-box-prev" aria-label="Previous chapter">
+                                <span class="chapter-box-nav-label">Previous</span>
+                                <strong class="chapter-box-nav-title"></strong>
+                            </button>
+                            <div class="chapter-box-dots" aria-label="Choose chapter"></div>
+                            <button type="button" class="chapter-box-next" aria-label="Next chapter">
+                                <span class="chapter-box-nav-label">Next</span>
+                                <strong class="chapter-box-nav-title"></strong>
+                            </button>
+                        </div>
+                        <!-- Kept outside the chapter slideshow on purpose: always visible,
+                                                                     regardless of which chapter is open. -->
+                        <div class="cheat-sheet-cta">
+                            <div>
+                                <span class="eyebrow">Keep it handy</span>
+                                <h3>Git Cheat Sheet</h3>
+                                <p>One page of the commands you reach for most, ready to save or print.</p>
+                            </div>
+                            <a class="btn btn-primary" href="../downloads/Git-Cheat-Sheet.pdf" download
+                                style="color: white;">
+                                <svg viewBox=" 0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
+                                    stroke-width="2" aria-hidden="true">
+                                    <path d="M12 3v12M7 10l5 5 5-5M5 21h14" />
+                                </svg>
+                                Download PDF
+                            </a>
+                        </div>
+                    </div>
 
                     <h2 id="history">History</h2>
 
@@ -332,26 +371,6 @@
 
                     <h2 id="git-lifecycle">Git lifecycle</h2>
                     <p>Every change moves through a handful of areas on its way from your editor to a shared remote.</p>
-
-                    <div class="cheat-sheet-cta">
-                        <div>
-                            <span class="eyebrow">Keep it handy</span>
-                            <h3>Git Cheat Sheet</h3>
-                            <p>One page of the commands you reach for most, ready to save or print.</p>
-                        </div>
-                        <a class="btn btn-primary" href="../downloads/Git-Cheat-Sheet.pdf" download
-                            style="color: white;">
-                            <svg viewBox=" 0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
-                                stroke-width="2" aria-hidden="true">
-                                <path d="M12 3v12M7 10l5 5 5-5M5 21h14" />
-                            </svg>
-                            Download PDF
-                        </a>
-                    </div>
-                    <!---Testing Starts---->
-
-
-                    <!----Testing ends-->
 
                     <div class="git-workflow-diagram">
                         <img src="../images/images/GitWorkflow-Basic.svg" alt="Basic Git workflow diagram">
@@ -653,8 +672,6 @@ git push origin main
 # 6. Verify
 git log --oneline -n 5</code></pre>
 
-                    <a class="back-to-top" href="#history">↑ Back to top</a>
-
                 </article>
             </div>
         </section>
@@ -670,7 +687,7 @@ git log --oneline -n 5</code></pre>
     <script src="../js/main.js?v=2"></script>
     <script src="../js/engagement.js"></script>
     <script src="../chatbot/chatbot.js"></script>
-    <script>
+    <!-- <script>
         document.getElementById('year').textContent = new Date().getFullYear();
 
         // Highlight the active TOC entry as you scroll
@@ -685,7 +702,7 @@ git log --oneline -n 5</code></pre>
         };
         document.addEventListener('scroll', setActive, { passive: true });
         setActive();
-    </script>
+    </script> -->
 </body>
 
 </html>

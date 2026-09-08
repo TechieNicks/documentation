@@ -7,7 +7,7 @@
     var widget;
 
     function request(action) {
-        return fetch("/.netlify/functions/engagement", {
+        return fetch("/api/engagement", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ page: page, action: action }),

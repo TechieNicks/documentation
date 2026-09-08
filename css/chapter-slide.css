@@ -45,10 +45,6 @@
     cursor: pointer;
 }
 
-.chapter-box-slide:nth-child(2) img {
-    width: min(100%, 420px);
-}
-
 /* Keep the nested legacy Git/GitHub carousel on its original image sizing. */
 .chapter-box-slide .git-vs-github-slide img {
     max-height: calc(100% - 42px);
@@ -157,6 +153,43 @@
 .chapter-box-controls button:focus-visible {
     border-color: var(--purple);
     color: var(--purple);
+}
+
+.chapter-box-prev,
+.chapter-box-next {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+    min-width: 120px;
+    max-width: 220px;
+    text-align: left;
+}
+
+.chapter-box-next {
+    align-items: flex-end;
+    text-align: right;
+}
+
+.chapter-box-nav-label {
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.chapter-box-nav-title {
+    display: block;
+    overflow: hidden;
+    max-width: 100%;
+    font-weight: 600;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.chapter-box-prev[hidden],
+.chapter-box-next[hidden] {
+    display: none;
 }
 
 .chapter-box-dots {

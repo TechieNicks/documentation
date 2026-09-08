@@ -1,26 +1,45 @@
-// netlify/functions/chat.js
+// functions/api/chat.js
 // --------------------------------------------------------------
-// Serverless endpoint the chat widget calls. Keeps GEMINI_API_KEY
-// on the server — it is never sent to the browser.
+// Cloudflare Pages Functions port of chatbot/functions/chat.js
+// (the Netlify function). Same behaviour, same prompt, same
+// site-content.txt — just adapted to Cloudflare's request/env
+// signature instead of Netlify's `exports.handler`.
 //
-// Uses Google's Gemini API free tier.
+// Deployed automatically by Cloudflare Pages at:
+//   /api/chat
+// (any file under /functions maps 1:1 to that URL path)
 //
-// Deployed automatically by Netlify at:
-//   /.netlify/functions/chat
+// Requires, in the Cloudflare Pages project settings:
+//   Settings -> Environment variables -> GEMINI_API_KEY
+// (this is a SEPARATE value from the one already set in Netlify —
+// each platform keeps its own copy of the secret.)
 // --------------------------------------------------------------
-
-const fs = require("fs");
-const path = require("path");
-
-const SITE_CONTENT = fs.readFileSync(
-  path.join(__dirname, "site-content.txt"),
-  "utf8"
-);
 
 const MAX_MESSAGE_LENGTH = 800;
-const MAX_HISTORY_TURNS = 6; // last N messages kept for context
+const MAX_HISTORY_TURNS = 6;
 const MODEL = "gemini-3.6-flash";
 const UNAVAILABLE_MESSAGE = "Sorry the content is not available yet";
+
+const CORS_HEADERS = {
+  "Access-Control-Allow-Origin": "*", // tighten to your domain once you're happy it's stable
+  "Access-Control-Allow-Headers": "Content-Type",
+  "Access-Control-Allow-Methods": "POST, OPTIONS",
+};
+
+// The Netlify function reads this file straight off disk. Cloudflare
+// Pages Functions don't get filesystem access, but they do get an
+// ASSETS binding that can fetch any other file in the same deployment,
+// so both platforms end up reading the exact same source file —
+// regenerate it with `node chatbot/build-site-content.js` as usual and
+// both chat.js copies pick up the change automatically.
+let cachedSiteContent = null;
+async function getSiteContent(env, request) {
+  if (cachedSiteContent) return cachedSiteContent;
+  const url = new URL("/chatbot/functions/site-content.txt", request.url);
+  const res = await env.ASSETS.fetch(new Request(url));
+  cachedSiteContent = res.ok ? await res.text() : "";
+  return cachedSiteContent;
+}
 
 function normalizeText(value) {
   return String(value || "")
@@ -37,7 +56,7 @@ function extractKeywords(question) {
     "into", "over", "under", "after", "before", "there", "here", "please",
     "tell", "me", "show", "give", "need", "know", "more", "some", "just",
     "like", "using", "used", "also", "very", "does", "do", "are", "is",
-    "was", "were", "you", "your", "we", "our", "i", "my", "a", "an"
+    "was", "were", "you", "your", "we", "our", "i", "my", "a", "an",
   ]);
 
   const words = normalizeText(question).split(" ").filter(function (word) {
@@ -47,13 +66,13 @@ function extractKeywords(question) {
   return Array.from(new Set(words)).slice(0, 8);
 }
 
-function buildRelevantContext(question) {
+function buildRelevantContext(question, siteContent) {
   const keywords = extractKeywords(question);
   if (!keywords.length) {
-    return SITE_CONTENT.slice(0, 2600);
+    return siteContent.slice(0, 2600);
   }
 
-  const pageSections = SITE_CONTENT.split(/\n=== PAGE: /g)
+  const pageSections = siteContent.split(/\n=== PAGE: /g)
     .map(function (section) {
       if (!section.trim()) return null;
       const clean = section.trim();
@@ -69,7 +88,7 @@ function buildRelevantContext(question) {
     .slice(0, 3);
 
   if (!pageSections.length) {
-    return SITE_CONTENT.slice(0, 2600);
+    return siteContent.slice(0, 2600);
   }
 
   return pageSections
@@ -108,9 +127,9 @@ function detectTopic(question) {
   return Array.from(new Set(matchLabels)).slice(0, 2).join(" or ");
 }
 
-function findRelevantPageLink(question) {
+function findRelevantPageLink(question, siteContent) {
   const text = normalizeText(question);
-  const entries = SITE_CONTENT.split(/\n=== PAGE: /g).map(function (entry) {
+  const entries = siteContent.split(/\n=== PAGE: /g).map(function (entry) {
     if (!entry.trim()) return null;
 
     const firstLine = (entry.split(/\n/)[0] || "").replace(/\s*===\s*$/, "").trim();
@@ -166,8 +185,8 @@ function findRelevantPageLink(question) {
   return "https://techienicks.com" + publicPath;
 }
 
-function buildGuidedFallback(question) {
-  const pageLink = findRelevantPageLink(question);
+function buildGuidedFallback(question, siteContent) {
+  const pageLink = findRelevantPageLink(question, siteContent);
   if (pageLink) {
     return "Here is a relevant section: " + pageLink;
   }
@@ -180,8 +199,8 @@ function buildGuidedFallback(question) {
   return "I can help with Git, Jira, Atlassian tools, REST APIs, and integrations covered on this site. Ask a more specific question.";
 }
 
-function buildSystemPrompt(question) {
-  const relevantContext = buildRelevantContext(question);
+function buildSystemPrompt(question, siteContent) {
+  const relevantContext = buildRelevantContext(question, siteContent);
 
   return [
     "You are the Chatbot, the help assistant embedded on techienicks.com, a personal site about Atlassian tools, Git, and REST APIs. If asked your name, say you're the Chatbot.",
@@ -195,108 +214,87 @@ function buildSystemPrompt(question) {
   ].join("\n");
 }
 
-exports.handler = async function (event) {
-  var headers = {
-    "Access-Control-Allow-Origin": "*", // tighten to your domain once live, see README
-    "Access-Control-Allow-Headers": "Content-Type",
-    "Access-Control-Allow-Methods": "POST, OPTIONS",
-  };
+export async function onRequestOptions() {
+  return new Response(null, { status: 204, headers: CORS_HEADERS });
+}
 
-  if (event.httpMethod === "OPTIONS") {
-    return { statusCode: 204, headers: headers, body: "" };
-  }
+export async function onRequestPost(context) {
+  const { request, env } = context;
 
-  if (event.httpMethod !== "POST") {
-    return { statusCode: 405, headers: headers, body: "Method not allowed" };
-  }
-
-  var apiKey = process.env.GEMINI_API_KEY;
+  const apiKey = env.GEMINI_API_KEY;
   if (!apiKey) {
-    return {
-      statusCode: 500,
-      headers: headers,
-      body: JSON.stringify({ error: "Server is missing GEMINI_API_KEY. Set it in Netlify env vars." }),
-    };
+    return json(500, { error: "Server is missing GEMINI_API_KEY. Set it in Cloudflare Pages env vars." });
   }
 
-  var payload;
+  let payload;
   try {
-    payload = JSON.parse(event.body || "{}");
+    payload = await request.json();
   } catch (e) {
-    return { statusCode: 400, headers: headers, body: JSON.stringify({ error: "Invalid JSON body" }) };
+    return json(400, { error: "Invalid JSON body" });
   }
 
-  var message = (payload.message || "").toString().trim();
-  var history = Array.isArray(payload.history) ? payload.history : [];
+  const message = String(payload.message || "").trim();
+  const history = Array.isArray(payload.history) ? payload.history : [];
 
-  if (!message) {
-    return { statusCode: 400, headers: headers, body: JSON.stringify({ error: "Message is required" }) };
-  }
-  if (message.length > MAX_MESSAGE_LENGTH) {
-    return { statusCode: 400, headers: headers, body: JSON.stringify({ error: "Message too long" }) };
-  }
+  if (!message) return json(400, { error: "Message is required" });
+  if (message.length > MAX_MESSAGE_LENGTH) return json(400, { error: "Message too long" });
 
-  console.log("Chatbot query:", JSON.stringify({
-    userId: payload.userId || "anonymous",
-    message: message,
-  }));
+  const siteContent = await getSiteContent(env, request);
 
-  // Gemini uses "user" / "model" roles and nests text in parts[].
-  var trimmedHistory = history.slice(-MAX_HISTORY_TURNS).map(function (m) {
+  const trimmedHistory = history.slice(-MAX_HISTORY_TURNS).map(function (m) {
     return {
       role: m.role === "assistant" ? "model" : "user",
       parts: [{ text: String(m.content || "").slice(0, MAX_MESSAGE_LENGTH) }],
     };
   });
 
-  var contents = trimmedHistory.concat([{ role: "user", parts: [{ text: message }] }]);
+  const contents = trimmedHistory.concat([{ role: "user", parts: [{ text: message }] }]);
 
-  var url =
+  const url =
     "https://generativelanguage.googleapis.com/v1beta/models/" +
     MODEL +
     ":generateContent?key=" +
     apiKey;
 
   try {
-    var systemPrompt = buildSystemPrompt(message);
+    const systemPrompt = buildSystemPrompt(message, siteContent);
 
-    var response = await fetch(url, {
+    const response = await fetch(url, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         system_instruction: { parts: [{ text: systemPrompt }] },
         contents: contents,
-        generationConfig: {
-          maxOutputTokens: 400,
-          temperature: 0.3,
-        },
+        generationConfig: { maxOutputTokens: 400, temperature: 0.3 },
       }),
     });
 
-    var data = await response.json();
+    const data = await response.json();
 
     if (!response.ok) {
-      return {
-        statusCode: response.status,
-        headers: headers,
-        body: JSON.stringify({ error: (data && data.error && data.error.message) || "Upstream error" }),
-      };
+      return json(response.status, { error: (data && data.error && data.error.message) || "Upstream error" });
     }
 
-    var candidate = (data.candidates || [])[0];
-    var part = candidate && candidate.content && candidate.content.parts && candidate.content.parts[0];
-    var answer = part && part.text ? part.text : UNAVAILABLE_MESSAGE;
+    const candidate = (data.candidates || [])[0];
+    const part = candidate && candidate.content && candidate.content.parts && candidate.content.parts[0];
+    let answer = part && part.text ? part.text : UNAVAILABLE_MESSAGE;
 
     if (!part && candidate && candidate.finishReason) {
-      answer = buildGuidedFallback(message);
+      answer = buildGuidedFallback(message, siteContent);
     }
-
     if (answer === UNAVAILABLE_MESSAGE) {
-      answer = buildGuidedFallback(message);
+      answer = buildGuidedFallback(message, siteContent);
     }
 
-    return { statusCode: 200, headers: headers, body: JSON.stringify({ answer: answer }) };
+    return json(200, { answer: answer });
   } catch (err) {
-    return { statusCode: 502, headers: headers, body: JSON.stringify({ error: "Failed to reach the AI service" }) };
+    return json(502, { error: "Failed to reach the AI service" });
   }
-};
+}
+
+function json(status, body) {
+  return new Response(JSON.stringify(body), {
+    status: status,
+    headers: Object.assign({ "Content-Type": "application/json" }, CORS_HEADERS),
+  });
+}

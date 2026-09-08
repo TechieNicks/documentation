@@ -257,8 +257,15 @@
       var chapterDots = Array.from(controls.querySelectorAll("button"));
       var previousButton = chapterTabs.querySelector(".chapter-box-prev");
       var nextButton = chapterTabs.querySelector(".chapter-box-next");
+      var previousTitleEl = previousButton && previousButton.querySelector(".chapter-box-nav-title");
+      var nextTitleEl = nextButton && nextButton.querySelector(".chapter-box-nav-title");
       var chapterLinks = Array.from(document.querySelectorAll(".doc-toc nav a"));
       var currentChapter = 0;
+
+      function chapterTitle(slide) {
+        var heading = slide && slide.querySelector(":scope > h2[id]");
+        return heading ? heading.textContent.trim() : "";
+      }
 
       chapterSlides.forEach(function (slide) {
         var backToTop = document.createElement("a");
@@ -289,6 +296,18 @@
 
         if (heading && updateHash) {
           window.history.replaceState(null, "", "#" + heading.id);
+        }
+
+        // chai-aur-git-style Previous/Next buttons: show the neighbouring
+        // chapter's own title, not just a bare arrow.
+        if (chapterSlides.length > 1) {
+          var previousIndex = (currentChapter - 1 + chapterSlides.length) % chapterSlides.length;
+          var nextIndex = (currentChapter + 1) % chapterSlides.length;
+          if (previousTitleEl) previousTitleEl.textContent = chapterTitle(chapterSlides[previousIndex]);
+          if (nextTitleEl) nextTitleEl.textContent = chapterTitle(chapterSlides[nextIndex]);
+        } else {
+          if (previousButton) previousButton.hidden = true;
+          if (nextButton) nextButton.hidden = true;
         }
       }
 

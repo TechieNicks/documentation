@@ -5,3 +5,17 @@
 
 [functions]
   directory = "chatbot/functions"
+
+# The frontend calls /api/chat and /api/engagement. On Cloudflare Pages
+# those resolve natively to functions/api/chat.js and
+# functions/api/engagement.js. On Netlify, proxy the same paths through
+# to the existing Netlify Functions so both hosts answer identical URLs.
+[[redirects]]
+  from = "/api/chat"
+  to = "/.netlify/functions/chat"
+  status = 200
+
+[[redirects]]
+  from = "/api/engagement"
+  to = "/.netlify/functions/engagement"
+  status = 200
