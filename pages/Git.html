@@ -687,22 +687,9 @@ git log --oneline -n 5</code></pre>
     <script src="../js/main.js?v=2"></script>
     <script src="../js/engagement.js"></script>
     <script src="../chatbot/chatbot.js"></script>
-    <!-- <script>
+    <script>
         document.getElementById('year').textContent = new Date().getFullYear();
-
-        // Highlight the active TOC entry as you scroll
-        const tocLinks = document.querySelectorAll('.doc-toc nav a');
-        const targets = Array.from(tocLinks).map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
-        const setActive = () => {
-            let current = targets[0];
-            for (const t of targets) {
-                if (t.getBoundingClientRect().top - 100 <= 0) current = t;
-            }
-            tocLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + current.id));
-        };
-        document.addEventListener('scroll', setActive, { passive: true });
-        setActive();
-    </script> -->
+    </script>
 </body>
 
 </html>
