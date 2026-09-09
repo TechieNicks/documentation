@@ -1,0 +1,507 @@
+:root {
+    --ink: #23241f;
+    --paper: #faf8f4;
+    --panel: #f1ede4;
+    --line: #dcd6c8;
+    --amber: #b8792f;
+    --amber-soft: #eadfc8;
+    --muted: #736f61;
+    --code-bg: #23241f;
+    --code-text: #efe9db;
+    --serif: Georgia, 'Iowan Old Style', 'Palatino Linotype', serif;
+    --sans: 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+}
+
+/* Chapter pages use their own warm paper palette rather than style.css's
+     --bg/--surface/--text vars, so the header's theme toggle needs its own
+     dark-mode remap here too, or this page never visibly changes. */
+[data-theme="dark"] {
+    --ink: #f3efe8;
+    --paper: #15111c;
+    --panel: #211a2c;
+    --line: #332a40;
+    --amber: #e0a458;
+    --amber-soft: #3a2f22;
+    --muted: #b2a8c2;
+    /* --code-bg / --code-text stay put: code blocks should stay dark-on-light
+         text in both themes rather than following the page's own inversion. */
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--sans);
+    color: var(--ink);
+    background: var(--paper);
+}
+
+/* ---------- Top bar ---------- */
+.topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 28px;
+    border-bottom: 1px solid var(--line);
+    background: var(--paper);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.topbar .brand {
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-decoration: none;
+    color: var(--ink);
+}
+
+.topbar .brand span {
+    color: var(--amber);
+}
+
+.topbar nav a {
+    margin-left: 22px;
+    font-size: 0.88rem;
+    color: var(--muted);
+    text-decoration: none;
+}
+
+.topbar nav a:hover {
+    color: var(--ink);
+}
+
+.layout {
+    display: grid;
+    grid-template-columns: 250px minmax(0, 1fr) 210px;
+    gap: 0;
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+/* ---------- Left: chapter nav ---------- */
+.sidebar {
+    padding: 32px 20px;
+    border-right: 1px solid var(--line);
+    align-self: start;
+    position: sticky;
+    top: 53px;
+    max-height: calc(100vh - 53px);
+    overflow-y: auto;
+}
+
+.sidebar .book-title {
+    font-family: var(--serif);
+    font-size: 1.05rem;
+    margin: 0 0 16px 0;
+}
+
+.sidebar ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.sidebar li {
+    margin: 1px 0;
+}
+
+.sidebar a {
+    display: block;
+    padding: 7px 10px;
+    border-radius: 5px;
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.89rem;
+    border-left: 2px solid transparent;
+}
+
+.sidebar a:hover {
+    background: var(--amber-soft);
+    color: var(--ink);
+}
+
+.sidebar a.active {
+    background: var(--amber-soft);
+    border-left-color: var(--amber);
+    color: var(--ink);
+    font-weight: 600;
+}
+
+/* ---------- Center: content ---------- */
+.content {
+    padding: 40px 48px 24px 48px;
+    min-width: 0;
+}
+
+.breadcrumb {
+    font-size: 0.82rem;
+}
+
+.breadcrumb a {
+    color: var(--muted);
+    text-decoration: none;
+}
+
+.breadcrumb a:hover {
+    color: var(--amber);
+}
+
+.content h1 {
+    font-family: var(--serif);
+    font-size: 2rem;
+    margin: 10px 0 10px 0;
+}
+
+.byline {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--muted);
+    font-size: 0.85rem;
+    margin: 0 0 28px 0;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--line);
+}
+
+.byline .dot {
+    opacity: 0.5;
+}
+
+.avatar {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--amber);
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    font-family: var(--serif);
+}
+
+.content h2 {
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    margin: 34px 0 12px 0;
+    scroll-margin-top: 70px;
+}
+
+.content p {
+    line-height: 1.7;
+    font-size: 0.97rem;
+    margin: 0 0 16px 0;
+    max-width: 66ch;
+}
+
+.content code {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 1px 6px;
+    font-size: 0.88em;
+}
+
+.content pre {
+    position: relative;
+    background: var(--code-bg);
+    color: var(--code-text);
+    padding: 16px 18px;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    margin: 0 0 20px 0;
+}
+
+.content ul {
+    line-height: 1.7;
+    padding-left: 22px;
+    margin: 0 0 20px 0;
+    max-width: 66ch;
+}
+
+.note {
+    background: var(--panel);
+    border-left: 3px solid var(--amber);
+    padding: 12px 16px;
+    font-size: 0.92rem;
+    margin: 0 0 24px 0;
+    max-width: 66ch;
+}
+
+.note a {
+    color: var(--amber);
+}
+
+.ref-list {
+    margin: 0 0 28px 0;
+    padding: 0;
+    list-style: none;
+}
+
+.ref-list li {
+    margin-bottom: 6px;
+}
+
+.ref-list a {
+    color: var(--amber);
+    text-decoration: none;
+    font-size: 0.92rem;
+    border-bottom: 1px solid transparent;
+}
+
+.ref-list a:hover {
+    border-bottom-color: var(--amber);
+}
+
+/* ---------- Footer prev/next ---------- */
+.page-footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 20px 0 40px 0;
+    border-top: 1px solid var(--line);
+    margin-top: 30px;
+    /* max-width: 66ch; */
+}
+
+.page-link {
+    text-decoration: none;
+    color: var(--ink);
+    display: flex;
+    flex-direction: column;
+    padding: 10px 16px;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    background: var(--panel);
+}
+
+.page-link {
+    text-decoration: none;
+    color: var(--ink);
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    /* NEW — each link grows to share available space equally */
+    padding: 10px 16px;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    background: var(--panel);
+}
+
+.page-link:hover {
+    border-color: var(--amber);
+}
+
+.page-link.next {
+    text-align: right;
+    /* margin-left: auto; */
+}
+
+.page-link .dir {
+    font-size: 0.72rem;
+    color: var(--muted);
+}
+
+.page-link .title {
+    font-family: var(--serif);
+    font-size: 0.95rem;
+}
+
+/* ---------- Right: on this page ---------- */
+.toc {
+    padding: 40px 24px;
+    align-self: start;
+    position: sticky;
+    top: 53px;
+    max-height: calc(100vh - 53px);
+    overflow-y: auto;
+}
+
+.toc h4 {
+    font-size: 0.75rem;
+    color: var(--muted);
+    margin: 0 0 12px 0;
+    font-weight: 600;
+}
+
+.toc ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-left: 1px solid var(--line);
+}
+
+.toc li {
+    margin: 2px 0;
+}
+
+.toc a {
+    display: block;
+    padding: 5px 0 5px 14px;
+    margin-left: -1px;
+    border-left: 2px solid transparent;
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.84rem;
+    line-height: 1.4;
+}
+
+.toc a:hover {
+    color: var(--ink);
+}
+
+.toc a.current {
+    border-left-color: var(--amber);
+    color: var(--ink);
+    font-weight: 600;
+}
+
+@media (max-width: 980px) {
+    .layout {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar,
+    .toc {
+        position: static;
+        max-height: none;
+        border-right: none;
+        border-bottom: 1px solid var(--line);
+    }
+
+    .content {
+        padding: 28px 22px;
+    }
+}
+
+.book-title {
+    font-family: var(--serif);
+    font-size: 1.05rem;
+    margin: 0 0 16px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.book-title img {
+    display: inline-block;
+    /* undo the global img{display:block} reset */
+    flex-shrink: 0;
+}
+
+/* ---------- Additional content elements (headings, lists, tables, links, callouts) ---------- */
+.content h3 {
+    font-family: var(--serif);
+    font-size: 1.08rem;
+    margin: 26px 0 10px 0;
+    scroll-margin-top: 70px;
+}
+
+.content ol {
+    line-height: 1.7;
+    padding-left: 22px;
+    margin: 0 0 20px 0;
+    max-width: 66ch;
+}
+
+.content ul ul,
+.content ol ul,
+.content ul ol,
+.content ol ol {
+    margin: 6px 0;
+}
+
+.content a {
+    color: var(--amber);
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    text-underline-offset: 2px;
+}
+
+.content a:hover {
+    text-decoration-color: currentColor;
+}
+
+.content pre code {
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: 1em;
+}
+
+.content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 14px 0 24px 0;
+    font-size: 0.88rem;
+    display: block;
+    overflow-x: auto;
+    max-width: 66ch;
+}
+
+.content th,
+.content td {
+    border: 1px solid var(--line);
+    padding: 10px 12px;
+    text-align: left;
+    vertical-align: top;
+}
+
+.content th {
+    background: var(--panel);
+    font-family: var(--serif);
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.content .callout {
+    background: var(--panel);
+    border-left: 3px solid var(--amber);
+    padding: 12px 16px;
+    font-size: 0.92rem;
+    margin: 0 0 24px 0;
+    max-width: 66ch;
+    border-radius: 0 6px 6px 0;
+}
+
+.content .callout a {
+    color: var(--amber);
+}
+
+.content .callout p:last-child {
+    margin-bottom: 0;
+}
+
+/* ---------- Chapter slideshow (Prev / Next + dots) ---------- */
+.chapter-nav {
+    margin-top: 30px;
+}
+
+button.page-link {
+    font: inherit;
+    text-align: inherit;
+    cursor: pointer;
+}
+
+button.page-link:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.chapter-nav .page-link .title {
+    display: block;
+    font-family: var(--serif);
+    font-size: 0.95rem;
+    min-height: 1.3em;
+}

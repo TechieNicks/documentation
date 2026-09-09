@@ -138,7 +138,7 @@ p {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    padding: 12px 22px;
+    padding: 5px 10px;
     border-radius: 999px;
     font-family: var(--font-body);
     font-weight: 600;
