@@ -4,20 +4,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Atlassian — TechSpec — TechieNicks</title>
+    <!-- TODO: page title -->
+    <title>Atlassian REST API — TechSpec — TechieNicks</title>
+    <!-- TODO: one-line SEO description of this guide -->
     <meta name="description"
-        content="Git reference guide: version control basics, lifecycle, configuration, and everyday commands.">
+        content="Atlassian REST API reference guide: [[one line describing what this guide covers]].">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="icon" href="../images/favicon.ico" sizes="any">
     <link rel="icon" href="../images/favicon-transparent-32x32.png" type="image/png" sizes="32x32">
     <link rel="apple-touch-icon" href="../images/apple-touch-icon.png">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/engagement.css">
+    <link rel="stylesheet" href="../css/chapter.css">
     <link rel="stylesheet" href="../chatbot/chatbot.css">
 </head>
 
 <body>
-
     <header class="site-header">
         <div class="container nav">
             <a class="brand" href="../index.html">
@@ -52,82 +54,449 @@
             </div>
         </div>
     </header>
+    <!----------------Top Navigation Closed------------------>
 
-    <main>
-        <section class="page-hero">
-            <div class="container">
-                <a class="btn btn-ghost" href="../techspec.html" style="margin-bottom:20px;">
-                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M19 12H5M12 19l-7-7 7-7" />
-                    </svg>
-                    Back
-                </a>
+    <div class="layout">
 
-                <span class="eyebrow">// <a href="../techspec.html">techspec</a> / git</span>
+        <!-- Left: chapter navigation.
+             Each sidebar link's href must match the id on one of the chapter
+             sections below (id="chapter-two" pairs with href="#chapter-two")
+             — that's how the sidebar knows which slide to jump to.
+             Add/remove/reorder <li> items to match your chapters, in order. -->
+        <aside class="sidebar">
+            <p class="book-title">
+                <img src="../images/icons/api.png" alt="REST logo" width="28" height="28">
+                Atlassian REST API — Reference guide
+            </p>
+            <ul>
+                <li><a href="#welcome" class="active">Welcome</a></li>
+                <li><a href="#chapter-two">[[Chapter 2 title]]</a></li>
+                <li><a href="#chapter-three">[[Chapter 3 title]]</a></li>
+                <li><a href="#chapter-four">[[Chapter 4 title]]</a></li>
+                <!-- add more chapters here -->
+            </ul>
+        </aside>
 
-                <div class="page-hero-heading">
-                    <div style="display:flex; align-items:center; gap:16px; margin-bottom:4px;">
-                        <img src="../images/icons/api.png" alt="Atlassian logo" width="40" height="40"
-                            style="border-radius: 10px;">
-                        <h1 style="margin:0;">Atlassian REST API <span class="gradient-text">reference guide</span></h1>
-                    </div>
-                    <div class="engagement engagement--hero" data-engagement></div>
+        <!-- Center: page content -->
+        <main class="content">
+            <a class="btn btn-ghost" href="../techspec.html" style="margin-bottom:20px;">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M19 12H5M12 19l-7-7 7-7" />
+                </svg>
+                Back
+            </a>
+
+            <span class="eyebrow">// <a href="../techspec.html">techspec</a> / [[topic-slug]]</span>
+            <div class="page-hero-heading">
+                <div style="display:flex; align-items:center; gap:16px; margin-bottom:4px;">
+                    <img src="../images/icons/api.png" alt="[[TOPIC]] logo" width="56" height="56"
+                        style="border-radius:12px;">
+                    <h1 style="margin:0;">Atlassian REST API <span class="gradient-text">reference guide</span></h1>
+                </div>
+                <!-- Engagement (likes/views/share) stays fixed regardless of which
+                     chapter is open — leave this exactly as-is, engagement.js wires it up. -->
+                <div class="engagement engagement--hero" data-engagement></div>
+            </div>
+            <br>
+
+            <!-- ============================================================
+                 CHAPTERS
+                 Each chapter is one chapter-slide section (see the markup
+                 below for the exact pattern). Only one is visible at a time;
+                 Prev/Next and the sidebar switch between them. Rules that matter:
+
+                 1. Give every chapter section a unique, url-safe id (e.g.
+                    "chapter-two"). That id is also what the matching sidebar
+                    link and any deep link (yourpage.html#chapter-two) must use.
+                 2. Put exactly ONE main heading per section: h1 for the very
+                    first (Welcome) section, h2 for every other section. This
+                    heading's text is what shows up in Prev/Next and in the
+                    top-level "On this page" entry.
+                 3. Use h3 for sub-headings inside a chapter if it's long —
+                    they auto-populate the "On this page" panel and get
+                    scrollspy highlighting as the reader scrolls.
+                 4. Do NOT put an id on the main h1/h2 heading itself — the
+                    wrapping section already carries the id. (Duplicate ids
+                    break the page.) h3 sub-headings ARE auto-assigned an id
+                    by the script if you don't add one.
+                 ============================================================ -->
+            <section class="chapter-slide" id="welcome">
+                <h1>Welcome</h1>
+                <div class="byline">
+                    <!-- <span class="avatar">TN</span>
+                    <span>TechieNicks Core Team</span>
+                    <span class="dot">·</span>
+                    <span>6 min read</span>
+                    <span class="dot">·</span>
+                    <span>Updated Sep 8, 2026</span> -->
                 </div>
 
+                <p>
+                    Welcome to TechieNicks Atlassian REST API reference guide. Coming Soon...
+                </p>
+                <br>
+                <h3 id="video-walkthrough">Video walkthrough</h3>
 
-                <p class="lead" style="max-width:60ch;">Atlassian REST API set-up, use-cases, etc.</p>
+                <!-- Optional: remove this whole <div> if there's no companion video. -->
+                <div class="youtube-embed" data-video-id="0e8h9oUl6xM" data-title="[[TOPIC]] video walkthrough">
+                </div>
+            </section>
+
+            <section class="chapter-slide" id="chapter-two">
+                <h2>[[Chapter 2 title]]</h2>
+
+                <p>
+                    Ordinary body copy goes in a plain <code>&lt;p&gt;</code>. Use <code>&lt;code&gt;</code> for
+                    inline code, file names, or commands like <code>git status</code>.
+                </p>
+
+                <h3>An unordered list</h3>
+                <ul>
+                    <li><strong>Bold lead-in</strong> — use this pattern for scannable bullet points.</li>
+                    <li>A second point.</li>
+                    <li>A third point, with a nested list:
+                        <ul>
+                            <li>Nested item one.</li>
+                            <li>Nested item two.</li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <h3>An ordered list</h3>
+                <ol>
+                    <li>Use ordered lists for anything sequential — install steps, a lifecycle, etc.</li>
+                    <li>Second step.</li>
+                    <li>Third step.</li>
+                </ol>
+
+                <!-- .callout = amber accent bar, for tips/warnings/reference links -->
+                <div class="callout">
+                    <p><strong>Useful links</strong></p>
+                    <ul style="margin-bottom:0;">
+                        <li><a href="#" target="_blank" rel="noopener">Official documentation</a></li>
+                        <li><a href="#" target="_blank" rel="noopener">Official downloads</a></li>
+                    </ul>
+                </div>
+
+                <h3>A code block</h3>
+                <p>Code blocks automatically get a "Copy Code" button — no extra markup needed.</p>
+                <pre><code>$ example-command --flag value
+$ another-line-of-output</code></pre>
+            </section>
+
+            <section class="chapter-slide" id="chapter-three">
+                <h2>[[Chapter 3 title]]</h2>
+
+                <!-- .note = same amber accent style as .callout; use whichever
+                     class fits your content's semantics (both are styled identically). -->
+                <div class="note">
+                    A short, single-idea note or warning goes here. Keep it to a sentence or two —
+                    for anything longer, use a full paragraph instead.
+                </div>
+
+                <h3>A table</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Field</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>example.field</code></td>
+                            <td>What this field controls.</td>
+                        </tr>
+                        <tr>
+                            <td><code>example.other</code></td>
+                            <td>What this field controls.</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>An image</h3>
+                <p>Drop a diagram or screenshot in like any other image — no special wrapper needed
+                    unless it's part of a multi-image slideshow (see the Git guide's "Git vs GitHub"
+                    chapter in <code>Git.html</code> for that pattern).</p>
+                <img src="../images/icons/[[example]].png" alt="[[Describe the image for accessibility]]"
+                    style="max-width:100%; border-radius:8px;">
+            </section>
+
+            <section class="chapter-slide" id="chapter-four">
+                <h2>[[Chapter 4 title]]</h2>
+
+                <p>
+                    A good closing chapter often links out to related references. Replace the list
+                    below with your own, or delete this chapter if you don't need one.
+                </p>
+
+                <ul class="ref-list">
+                    <li><a href="#">Related reference one</a></li>
+                    <li><a href="#">Related reference two</a></li>
+                    <li><a href="#">Related reference three</a></li>
+                </ul>
+            </section>
+            <div class="page-footer chapter-nav">
+                <button type="button" class="page-link prev chapter-nav-prev" aria-label="Previous chapter">
+                    <span class="dir">← Previous</span>
+                    <span class="title"></span>
+                </button>
+                <button type="button" class="page-link next chapter-nav-next" aria-label="Next chapter">
+                    <span class="dir">Next →</span>
+                    <span class="title"></span>
+                </button>
             </div>
-        </section>
 
-        <section>
-            <div class="container doc-layout">
-
-                <aside class="doc-toc">
-                    <span class="eyebrow">On this page</span>
-                    <nav>
-                        <a href="#history">Org-Admin API</a>
-                        <a href="#download">Text &amp; text</a>
-                    </nav>
-                </aside>
-
-                <article class="doc-content">
-
-                    <h2 id="history">Coming Soon...</h2>
-
-
-
-                    <a class="back-to-top" href="#history">↑ Back to top</a>
-
-                </article>
+            <div class="cheat-sheet-cta">
+                <!-- Optional — delete this whole <div> if this guide has no
+                     downloadable cheat sheet. It stays fixed at the bottom
+                     regardless of which chapter is open. -->
+                <div>
+                    <span class="eyebrow">Keep it handy</span>
+                    <h3>[[TOPIC]] Cheat Sheet</h3>
+                    <p>One page of the commands you reach for most, ready to save or print.</p>
+                </div>
+                <a class="btn btn-primary" href="../downloads/[[TOPIC]]-Cheat-Sheet.pdf" download style="color: white;">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"
+                        aria-hidden="true">
+                        <path d="M12 3v12M7 10l5 5 5-5M5 21h14" />
+                    </svg>
+                    Download PDF
+                </a>
             </div>
-        </section>
-    </main>
+        </main>
 
+        <!-- Right: on this page (reflects the currently open chapter) -->
+        <aside class="toc">
+            <h4>On this page</h4>
+            <ol></ol>
+        </aside>
+
+    </div>
+
+    <!------------------------------Footer---------------------------->
     <footer class="site-footer">
         <div class="container">
             &copy; <span id="year"></span> Copyright by <i class="fas fa-heartbeat"></i> <a
                 href="https://github.com/nicks9188" target="_blank" rel="noopener">TechieNicks</a>
         </div>
     </footer>
-
-    <script src="../js/main.js"></script>
+    <!------------------------------Script---------------------------->
+    <script src="../js/main.js?v=2"></script>
     <script src="../js/engagement.js"></script>
     <script src="../chatbot/chatbot.js"></script>
     <script>
         document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
 
-        // Highlight the active TOC entry as you scroll
-        const tocLinks = document.querySelectorAll('.doc-toc nav a');
-        const targets = Array.from(tocLinks).map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
-        const setActive = () => {
-            let current = targets[0];
-            for (const t of targets) {
-                if (t.getBoundingClientRect().top - 100 <= 0) current = t;
+    <!-- Chapter slideshow: shows one chapter at a time ("Welcome" first, then
+         History, and so on), keeps the cheat-sheet download and engagement
+         stats constant, and syncs the right-hand "On this page" panel +
+         Prev/Next titles + sidebar highlight to whichever chapter is open.
+         Every lookup is null-checked so a missing element degrades that one
+         feature instead of silently killing the whole script. -->
+    <script>
+        (function () {
+            var slides = Array.prototype.slice.call(document.querySelectorAll('.chapter-slide'));
+            if (!slides.length) return;
+
+            var prevBtn = document.querySelector('.chapter-nav-prev');
+            var nextBtn = document.querySelector('.chapter-nav-next');
+            var tocList = document.querySelector('.toc ol');
+            var sidebarLinks = Array.prototype.slice.call(document.querySelectorAll('.sidebar a'));
+            var current = 0;
+
+            function slugify(str) {
+                return str.toLowerCase().trim()
+                    .replace(/[^a-z0-9]+/g, '-')
+                    .replace(/(^-|-$)/g, '');
             }
-            tocLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + current.id));
-        };
-        document.addEventListener('scroll', setActive, { passive: true });
-        setActive();
+
+            // A slide's "main" heading is its first h1 or h2 (the slide's own id
+            // is used for navigation, so the heading itself doesn't need one).
+            function mainHeading(slide) {
+                return slide.querySelector('h1, h2');
+            }
+
+            function chapterTitle(slide) {
+                var h = mainHeading(slide);
+                return h ? h.textContent.trim() : '';
+            }
+
+            function updateNav() {
+                if (!prevBtn || !nextBtn) return;
+                var prevSlide = slides[current - 1];
+                var nextSlide = slides[current + 1];
+
+                prevBtn.disabled = !prevSlide;
+                var prevTitleEl = prevBtn.querySelector('.title');
+                if (prevTitleEl) prevTitleEl.textContent = prevSlide ? chapterTitle(prevSlide) : '';
+
+                nextBtn.disabled = !nextSlide;
+                var nextTitleEl = nextBtn.querySelector('.title');
+                if (nextTitleEl) nextTitleEl.textContent = nextSlide ? chapterTitle(nextSlide) : '';
+            }
+
+            function updateToc() {
+                if (!tocList) return;
+                tocList.innerHTML = '';
+                var active = slides[current];
+
+                var mainHead = mainHeading(active);
+                if (mainHead) {
+                    var topLi = document.createElement('li');
+                    var topA = document.createElement('a');
+                    topA.href = '#' + active.id;
+                    topA.textContent = mainHead.textContent.trim();
+                    topA.classList.add('current');
+                    topLi.appendChild(topA);
+                    tocList.appendChild(topLi);
+                }
+
+                var subHeadings = active.querySelectorAll('h3');
+                subHeadings.forEach(function (h) {
+                    if (h.closest('.toc-item')) return; // skip lifecycle-diagram card titles
+                    if (!h.id) h.id = slugify(h.textContent);
+                    var li = document.createElement('li');
+                    var a = document.createElement('a');
+                    a.href = '#' + h.id;
+                    a.textContent = h.textContent.trim();
+                    a.style.paddingLeft = '24px';
+                    li.appendChild(a);
+                    tocList.appendChild(li);
+                });
+            }
+
+            function updateSidebar() {
+                sidebarLinks.forEach(function (a) { a.classList.remove('active'); });
+                var link = document.querySelector('.sidebar a[href="#' + slides[current].id + '"]');
+                if (link) link.classList.add('active');
+            }
+
+            // Scrollspy: highlights whichever heading in the *current* chapter
+            // is currently at/above the top of the viewport, so the "On this
+            // page" panel tracks scroll position instead of only updating
+            // when the chapter itself changes.
+            var scrollSpyTicking = false;
+            function updateTocScrollSpy() {
+                if (!tocList) return;
+                var links = Array.prototype.slice.call(tocList.querySelectorAll('a'));
+                if (!links.length) return;
+
+                var offset = 90; // clears the sticky top bar
+                var activeLink = links[0];
+                links.forEach(function (link) {
+                    var target = document.getElementById(link.getAttribute('href').slice(1));
+                    if (target && target.getBoundingClientRect().top - offset <= 0) {
+                        activeLink = link;
+                    }
+                });
+
+                links.forEach(function (l) { l.classList.remove('current'); });
+                activeLink.classList.add('current');
+            }
+
+            function onScroll() {
+                if (scrollSpyTicking) return;
+                scrollSpyTicking = true;
+                window.requestAnimationFrame(function () {
+                    updateTocScrollSpy();
+                    scrollSpyTicking = false;
+                });
+            }
+            window.addEventListener('scroll', onScroll, { passive: true });
+
+            function showSlide(i) {
+                if (i < 0 || i >= slides.length || i === current) return;
+                slides[current].hidden = true;
+                current = i;
+                slides[current].hidden = false;
+                // Keep the URL in sync so a reload (or a shared link) lands
+                // back on this chapter instead of always resetting to slide 0.
+                if (window.history && window.history.replaceState) {
+                    window.history.replaceState(null, '', '#' + slides[current].id);
+                }
+                updateNav();
+                updateToc();
+                updateTocScrollSpy();
+                updateSidebar();
+                var contentEl = document.querySelector('.content');
+                if (contentEl) contentEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+
+            sidebarLinks.forEach(function (a) {
+                var href = a.getAttribute('href') || '';
+                if (href.charAt(0) !== '#') return;
+                var idx = slides.findIndex(function (s) { return s.id === href.slice(1); });
+                if (idx === -1) return;
+                a.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    showSlide(idx);
+                });
+            });
+
+            if (prevBtn) prevBtn.addEventListener('click', function () { showSlide(current - 1); });
+            if (nextBtn) nextBtn.addEventListener('click', function () { showSlide(current + 1); });
+
+            // Deep-link support: Git.html#git-lifecycle opens straight to that chapter
+            var hashId = window.location.hash.replace('#', '');
+            var startIdx = slides.findIndex(function (s) { return s.id === hashId; });
+            if (startIdx === -1) startIdx = 0;
+
+            slides.forEach(function (s, i) { s.hidden = i !== startIdx; });
+            current = startIdx;
+            updateNav();
+            updateToc();
+            updateTocScrollSpy();
+            updateSidebar();
+
+            // main.js's copy-code-button feature only targets ".doc-content pre",
+            // which this layout no longer uses (it's ".content pre" here), so it's
+            // reproduced here to keep the "Copy Code" button on every code block.
+            function fallbackCopy(text, cb) {
+                var ta = document.createElement('textarea');
+                ta.value = text;
+                ta.style.position = 'fixed';
+                ta.style.opacity = '0';
+                document.body.appendChild(ta);
+                ta.select();
+                try { document.execCommand('copy'); } catch (e) { /* no-op */ }
+                document.body.removeChild(ta);
+                if (cb) cb();
+            }
+
+            document.querySelectorAll('.content pre').forEach(function (pre) {
+                if (pre.querySelector('.copy-code-btn')) return;
+                var codeEl = pre.querySelector('code') || pre;
+
+                var btn = document.createElement('button');
+                btn.type = 'button';
+                btn.className = 'copy-code-btn';
+                btn.textContent = 'Copy Code';
+                btn.setAttribute('aria-label', 'Copy code block to clipboard');
+
+                btn.addEventListener('click', function () {
+                    var text = codeEl.textContent;
+                    var showCopied = function () {
+                        btn.textContent = 'Copied!';
+                        btn.classList.add('copied');
+                        setTimeout(function () {
+                            btn.textContent = 'Copy Code';
+                            btn.classList.remove('copied');
+                        }, 1500);
+                    };
+                    if (navigator.clipboard && navigator.clipboard.writeText) {
+                        navigator.clipboard.writeText(text).then(showCopied).catch(function () {
+                            fallbackCopy(text, showCopied);
+                        });
+                    } else {
+                        fallbackCopy(text, showCopied);
+                    }
+                });
+
+                pre.appendChild(btn);
+            });
+        })();
     </script>
 </body>
 
