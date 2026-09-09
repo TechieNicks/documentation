@@ -109,6 +109,12 @@ p {
     color: var(--text-muted);
 }
 
+
+p.justified-text {
+    text-align: justify !important;
+    hyphens: auto;
+}
+
 .container {
     width: 100%;
     max-width: 1080px;

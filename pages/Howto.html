@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- TODO: page title -->
+    <title>FAQ — TechieNicks</title>
+    <!-- TODO: one-line SEO description of this guide -->
+    <meta name="description" content="Frequently Asked Questions: basic set-up questions.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" href="../images/favicon.ico" sizes="any">
+    <link rel="icon" href="../images/favicon-transparent-32x32.png" type="image/png" sizes="32x32">
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/engagement.css">
+    <link rel="stylesheet" href="../css/chapter.css">
+    <link rel="stylesheet" href="../chatbot/chatbot.css">
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="container nav">
+            <a class="brand" href="../index.html">
+                <img src="../images/favicon.png" alt="TechieNicks logo" width="36" height="36">
+                TechieNicks
+            </a>
+            <nav class="nav-links" id="navLinks">
+                <a href="../index.html">Home</a>
+                <a href="../about.html">About</a>
+                <a href="../techspec.html" class="active">TechSpec</a>
+                <a href="../search.html">Search</a>
+                <!--a href="projects.html">Projects</a-->
+                <a href="../contact.html">Contact</a>
+                <a href="https://www.youtube.com/@techienicks" target="_blank" rel="noopener">YouTube</a>
+            </nav>
+            <div class="nav-right">
+                <button class="theme-toggle" aria-pressed="false" aria-label="Switch to dark theme">
+                    <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
+                    </svg>
+                    <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="4" />
+                        <path
+                            d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+                    </svg>
+                </button>
+                <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-label="Toggle menu">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 6h18M3 12h18M3 18h18" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+    <!----------------Top Navigation Closed------------------>
+
+    <div class="layout">
+
+        <!-- Left: chapter navigation.
+             Each sidebar link's href must match the id on one of the chapter
+             sections below (id="chapter-two" pairs with href="#chapter-two")
+             — that's how the sidebar knows which slide to jump to.
+             Add/remove/reorder <li> items to match your chapters, in order. -->
+        <aside class="sidebar">
+            <p class="book-title">
+                <img src="../images/images/faq.png" alt="FAQ logo" width="28" height="28">
+                Frequently Asked Questions — How to?
+            </p>
+            <ul>
+                <li><a href="#welcome" class="active">Welcome</a></li>
+                <li><a href="#chapter-two">Visual Studio Code</a></li>
+                <li><a href="#chapter-three">Environment Variables</a></li>
+                <li><a href="#chapter-four">Virtual Machine</a></li>
+                <!-- add more chapters here -->
+            </ul>
+        </aside>
+
+        <!-- Center: page content -->
+        <main class="content">
+            <a class="btn btn-ghost" href="../techspec.html" style="margin-bottom:20px;">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M19 12H5M12 19l-7-7 7-7" />
+                </svg>
+                Back
+            </a>
+
+            <span class="eyebrow">// <a href="../techspec.html">techspec</a> / FAQ</span>
+            <div class="page-hero-heading">
+                <div style="display:flex; align-items:center; gap:16px; margin-bottom:4px;">
+                    <img src="../images/images/faq.png" alt="FAQ logo" width="56" height="56"
+                        style="border-radius:12px;">
+                    <h1 style="margin:0;">Frequently <span class="gradient-text">Asked Questions</span>
+                    </h1>
+                </div>
+                <!-- Engagement (likes/views/share) stays fixed regardless of which
+                     chapter is open — leave this exactly as-is, engagement.js wires it up. -->
+                <div class="engagement engagement--hero" data-engagement></div>
+            </div>
+            <br>
+
+            <!-- ============================================================
+                 CHAPTERS
+                 Each chapter is one chapter-slide section (see the markup
+                 below for the exact pattern). Only one is visible at a time;
+                 Prev/Next and the sidebar switch between them. Rules that matter:
+
+                 1. Give every chapter section a unique, url-safe id (e.g.
+                    "chapter-two"). That id is also what the matching sidebar
+                    link and any deep link (yourpage.html#chapter-two) must use.
+                 2. Put exactly ONE main heading per section: h1 for the very
+                    first (Welcome) section, h2 for every other section. This
+                    heading's text is what shows up in Prev/Next and in the
+                    top-level "On this page" entry.
+                 3. Use h3 for sub-headings inside a chapter if it's long —
+                    they auto-populate the "On this page" panel and get
+                    scrollspy highlighting as the reader scrolls.
+                 4. Do NOT put an id on the main h1/h2 heading itself — the
+                    wrapping section already carries the id. (Duplicate ids
+                    break the page.) h3 sub-headings ARE auto-assigned an id
+                    by the script if you don't add one.
+                 ============================================================ -->
+            <section class="chapter-slide" id="welcome">
+
+                <div class="byline">
+                    <!-- <span class="avatar">TN</span>
+                    <span>TechieNicks Core Team</span>
+                    <span class="dot">·</span>
+                    <span>6 min read</span>
+                    <span class="dot">·</span>
+                    <span>Updated Sep 8, 2026</span> -->
+                </div>
+
+                <div style="display:flex; align-items:center; justify-content:center; gap:14px;">
+                    <img src="../images/images/TechieNicks.png" alt="How-to logo"
+                        style="border-radius:12px; flex-shrink:0;">
+                    <div>
+                        <h3 style="margin:0 0 6px 0;">Do you also wonder, on How-to ...?</h3><br>
+                        <p style="margin:0;">Please drop your feedback on the right ->.</p>
+                    </div>
+
+                </div>
+
+                <br>
+            </section>
+
+            <section class="chapter-slide" id="chapter-two">
+                <h2>VS Code</h2>
+                <div class="byline">
+                    <!-- <span class="avatar">TN</span>
+                    <span>TechieNicks Core Team</span>
+                    <span class="dot">·</span>
+                    <span>6 min read</span>
+                    <span class="dot">·</span>
+                    <span>Updated Sep 8, 2026</span> -->
+                </div>
+                <h3>How to set up VS Code for the first time (Best extensions & settings)</h3>
+                <p>
+                    Coming Soon...
+                </p>
+                <h4>Some Sample Text</h4>
+                <p class="justified-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi id gravida
+                    elit. Fusce malesuada dui
+                    id lorem condimentum
+                    dapibus. Proin volutpat metus vel mauris consectetur, ac pretium mi euismod. Nam sagittis eros ut mi
+                    consequat sagittis.
+                    Praesent finibus lectus et felis ullamcorper venenatis. Aenean non est libero. Etiam risus diam,
+                    mollis vel magna sit
+                    amet, ullamcorper scelerisque quam. Nunc laoreet porttitor tortor, nec sollicitudin tortor eleifend
+                    ac.
+                </p>
+                <p class="justified-text">
+                    Suspendisse velit eros, convallis at sem ut, imperdiet scelerisque enim. Vivamus quis venenatis
+                    tellus. Nullam cursus
+                    justo sed justo sollicitudin, ut fermentum tellus dignissim. Quisque porttitor imperdiet finibus.
+                    Sed rhoncus sem ac
+                    risus vestibulum placerat. Vivamus venenatis non purus quis tincidunt. Etiam faucibus sodales diam,
+                    eget efficitur magna
+                    ullamcorper sit amet. Praesent commodo justo a tellus dignissim molestie. Sed sit amet luctus nibh.
+                    Sed non risus quis
+                    orci faucibus ultrices varius gravida metus. In sodales turpis ac dui faucibus, id eleifend eros
+                    consectetur. Morbi
+                    egestas nulla ac vestibulum dictum. In hac habitasse platea dictumst. Sed dignissim tincidunt
+                    finibus.
+                </p>
+                <p class="justified-text">
+                    Morbi lobortis cursus tellus sed vestibulum. Donec vehicula augue non nisi sagittis pellentesque.
+                    Fusce vitae pulvinar
+                    mi. Cras eget aliquam diam, et tincidunt sapien. Nullam sagittis imperdiet enim et vestibulum. Sed
+                    sapien diam, pretium
+                    ut consequat a, elementum sed massa. Aliquam erat volutpat.
+                </p>
+
+                <br>
+                <h3 id="video-walkthrough">Video walkthrough</h3>
+
+                <!-- Optional: remove this whole <div> if there's no companion video. -->
+                <div class="youtube-embed" data-video-id="0e8h9oUl6xM" data-title="[[TOPIC]] video walkthrough">
+                </div>
+
+            </section>
+
+            <section class="chapter-slide" id="chapter-three">
+                <h2>Environment Variables</h2>
+                <div class="byline">
+                    <!-- <span class="avatar">TN</span>
+                    <span>TechieNicks Core Team</span>
+                    <span class="dot">·</span>
+                    <span>6 min read</span>
+                    <span class="dot">·</span>
+                    <span>Updated Sep 8, 2026</span> -->
+                </div>
+
+                <h3>How to set JAVA_HOME and Path environment variables in Windows/Linux?</h3>
+
+                <p>Coming Soon...</p>
+
+                <h4>Some Sample Text</h4>
+                <p class="justified-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi id gravida
+                    elit. Fusce malesuada dui
+                    id lorem condimentum
+                    dapibus. Proin volutpat metus vel mauris consectetur, ac pretium mi euismod. Nam sagittis eros ut mi
+                    consequat sagittis.
+                    Praesent finibus lectus et felis ullamcorper venenatis. Aenean non est libero. Etiam risus diam,
+                    mollis vel magna sit
+                    amet, ullamcorper scelerisque quam. Nunc laoreet porttitor tortor, nec sollicitudin tortor eleifend
+                    ac.
+                </p>
+                <p class="justified-text">
+                    Suspendisse velit eros, convallis at sem ut, imperdiet scelerisque enim. Vivamus quis venenatis
+                    tellus. Nullam cursus
+                    justo sed justo sollicitudin, ut fermentum tellus dignissim. Quisque porttitor imperdiet finibus.
+                    Sed rhoncus sem ac
+                    risus vestibulum placerat. Vivamus venenatis non purus quis tincidunt. Etiam faucibus sodales diam,
+                    eget efficitur magna
+                    ullamcorper sit amet. Praesent commodo justo a tellus dignissim molestie. Sed sit amet luctus nibh.
+                    Sed non risus quis
+                    orci faucibus ultrices varius gravida metus. In sodales turpis ac dui faucibus, id eleifend eros
+                    consectetur. Morbi
+                    egestas nulla ac vestibulum dictum. In hac habitasse platea dictumst. Sed dignissim tincidunt
+                    finibus.
+                </p>
+                <p class="justified-text">
+                    Morbi lobortis cursus tellus sed vestibulum. Donec vehicula augue non nisi sagittis pellentesque.
+                    Fusce vitae pulvinar
+                    mi. Cras eget aliquam diam, et tincidunt sapien. Nullam sagittis imperdiet enim et vestibulum. Sed
+                    sapien diam, pretium
+                    ut consequat a, elementum sed massa. Aliquam erat volutpat.
+                </p>
+
+                <h3>How to install Python and add Python to Path?</h3>
+                <p>Coming Soon...</p>
+
+                <h4>Some Sample Text</h4>
+                <p class="justified-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi id gravida
+                    elit. Fusce malesuada dui
+                    id lorem condimentum
+                    dapibus. Proin volutpat metus vel mauris consectetur, ac pretium mi euismod. Nam sagittis eros ut mi
+                    consequat sagittis.
+                    Praesent finibus lectus et felis ullamcorper venenatis. Aenean non est libero. Etiam risus diam,
+                    mollis vel magna sit
+                    amet, ullamcorper scelerisque quam. Nunc laoreet porttitor tortor, nec sollicitudin tortor eleifend
+                    ac.
+                </p>
+                <p class="justified-text">
+                    Suspendisse velit eros, convallis at sem ut, imperdiet scelerisque enim. Vivamus quis venenatis
+                    tellus. Nullam cursus
+                    justo sed justo sollicitudin, ut fermentum tellus dignissim. Quisque porttitor imperdiet finibus.
+                    Sed rhoncus sem ac
+                    risus vestibulum placerat. Vivamus venenatis non purus quis tincidunt. Etiam faucibus sodales diam,
+                    eget efficitur magna
+                    ullamcorper sit amet. Praesent commodo justo a tellus dignissim molestie. Sed sit amet luctus nibh.
+                    Sed non risus quis
+                    orci faucibus ultrices varius gravida metus. In sodales turpis ac dui faucibus, id eleifend eros
+                    consectetur. Morbi
+                    egestas nulla ac vestibulum dictum. In hac habitasse platea dictumst. Sed dignissim tincidunt
+                    finibus.
+                </p>
+                <p class="justified-text">
+                    Morbi lobortis cursus tellus sed vestibulum. Donec vehicula augue non nisi sagittis pellentesque.
+                    Fusce vitae pulvinar
+                    mi. Cras eget aliquam diam, et tincidunt sapien. Nullam sagittis imperdiet enim et vestibulum. Sed
+                    sapien diam, pretium
+                    ut consequat a, elementum sed massa. Aliquam erat volutpat.
+                </p>
+
+                <br>
+                <h3 id="video-walkthrough">Video walkthrough</h3>
+
+                <!-- Optional: remove this whole <div> if there's no companion video. -->
+                <div class="youtube-embed" data-video-id="0e8h9oUl6xM" data-title="[[TOPIC]] video walkthrough">
+                </div>
+            </section>
+
+            <section class="chapter-slide" id="chapter-four">
+                <h2>Virtual Machine</h2>
+                <div class="byline">
+                    <!-- <span class="avatar">TN</span>
+                    <span>TechieNicks Core Team</span>
+                    <span class="dot">·</span>
+                    <span>6 min read</span>
+                    <span class="dot">·</span>
+                    <span>Updated Sep 8, 2026</span> -->
+                </div>
+                <h3>How to set up a virtual machine using VirtualBox?</h3>
+                <p>Coming Soon...</p>
+                <h4>Some Sample Text</h4>
+                <p class="justified-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi id gravida
+                    elit. Fusce malesuada dui
+                    id lorem condimentum
+                    dapibus. Proin volutpat metus vel mauris consectetur, ac pretium mi euismod. Nam sagittis eros ut mi
+                    consequat sagittis.
+                    Praesent finibus lectus et felis ullamcorper venenatis. Aenean non est libero. Etiam risus diam,
+                    mollis vel magna sit
+                    amet, ullamcorper scelerisque quam. Nunc laoreet porttitor tortor, nec sollicitudin tortor eleifend
+                    ac.
+                </p>
+                <p class="justified-text">
+                    Suspendisse velit eros, convallis at sem ut, imperdiet scelerisque enim. Vivamus quis venenatis
+                    tellus. Nullam cursus
+                    justo sed justo sollicitudin, ut fermentum tellus dignissim. Quisque porttitor imperdiet finibus.
+                    Sed rhoncus sem ac
+                    risus vestibulum placerat. Vivamus venenatis non purus quis tincidunt. Etiam faucibus sodales diam,
+                    eget efficitur magna
+                    ullamcorper sit amet. Praesent commodo justo a tellus dignissim molestie. Sed sit amet luctus nibh.
+                    Sed non risus quis
+                    orci faucibus ultrices varius gravida metus. In sodales turpis ac dui faucibus, id eleifend eros
+                    consectetur. Morbi
+                    egestas nulla ac vestibulum dictum. In hac habitasse platea dictumst. Sed dignissim tincidunt
+                    finibus.
+                </p>
+                <p class="justified-text">
+                    Morbi lobortis cursus tellus sed vestibulum. Donec vehicula augue non nisi sagittis pellentesque.
+                    Fusce vitae pulvinar
+                    mi. Cras eget aliquam diam, et tincidunt sapien. Nullam sagittis imperdiet enim et vestibulum. Sed
+                    sapien diam, pretium
+                    ut consequat a, elementum sed massa. Aliquam erat volutpat.
+                </p>
+                <br>
+                <h3 id="video-walkthrough">Video walkthrough</h3>
+
+                <!-- Optional: remove this whole <div> if there's no companion video. -->
+                <div class="youtube-embed" data-video-id="0e8h9oUl6xM" data-title="[[TOPIC]] video walkthrough">
+                </div>
+            </section>
+            <div class="page-footer chapter-nav">
+                <button type="button" class="page-link prev chapter-nav-prev" aria-label="Previous chapter">
+                    <span class="dir">← Previous</span>
+                    <span class="title"></span>
+                </button>
+                <button type="button" class="page-link next chapter-nav-next" aria-label="Next chapter">
+                    <span class="dir">Next →</span>
+                    <span class="title"></span>
+                </button>
+            </div>
+
+        </main>
+
+        <!-- Right: on this page (reflects the currently open chapter) -->
+        <aside class="toc">
+            <h4>On this page</h4>
+            <ol></ol>
+        </aside>
+
+    </div>
+
+    <!------------------------------Footer---------------------------->
+    <footer class="site-footer">
+        <div class="container">
+            &copy; <span id="year"></span> Copyright by <i class="fas fa-heartbeat"></i> <a
+                href="https://github.com/nicks9188" target="_blank" rel="noopener">TechieNicks</a>
+        </div>
+    </footer>
+    <!------------------------------Script---------------------------->
+    <script src="../js/main.js?v=2"></script>
+    <script src="../js/engagement.js"></script>
+    <script src="../chatbot/chatbot.js"></script>
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+
+    <!-- Chapter slideshow: shows one chapter at a time ("Welcome" first, then
+         History, and so on), keeps the cheat-sheet download and engagement
+         stats constant, and syncs the right-hand "On this page" panel +
+         Prev/Next titles + sidebar highlight to whichever chapter is open.
+         Every lookup is null-checked so a missing element degrades that one
+         feature instead of silently killing the whole script. -->
+    <script>
+        (function () {
+            var slides = Array.prototype.slice.call(document.querySelectorAll('.chapter-slide'));
+            if (!slides.length) return;
+
+            var prevBtn = document.querySelector('.chapter-nav-prev');
+            var nextBtn = document.querySelector('.chapter-nav-next');
+            var tocList = document.querySelector('.toc ol');
+            var sidebarLinks = Array.prototype.slice.call(document.querySelectorAll('.sidebar a'));
+            var current = 0;
+
+            function slugify(str) {
+                return str.toLowerCase().trim()
+                    .replace(/[^a-z0-9]+/g, '-')
+                    .replace(/(^-|-$)/g, '');
+            }
+
+            // A slide's "main" heading is its first h1 or h2 (the slide's own id
+            // is used for navigation, so the heading itself doesn't need one).
+            function mainHeading(slide) {
+                return slide.querySelector('h1, h2');
+            }
+
+            function chapterTitle(slide) {
+                var h = mainHeading(slide);
+                return h ? h.textContent.trim() : '';
+            }
+
+            function updateNav() {
+                if (!prevBtn || !nextBtn) return;
+                var prevSlide = slides[current - 1];
+                var nextSlide = slides[current + 1];
+
+                prevBtn.disabled = !prevSlide;
+                var prevTitleEl = prevBtn.querySelector('.title');
+                if (prevTitleEl) prevTitleEl.textContent = prevSlide ? chapterTitle(prevSlide) : '';
+
+                nextBtn.disabled = !nextSlide;
+                var nextTitleEl = nextBtn.querySelector('.title');
+                if (nextTitleEl) nextTitleEl.textContent = nextSlide ? chapterTitle(nextSlide) : '';
+            }
+
+            function updateToc() {
+                if (!tocList) return;
+                tocList.innerHTML = '';
+                var active = slides[current];
+
+                var mainHead = mainHeading(active);
+                if (mainHead) {
+                    var topLi = document.createElement('li');
+                    var topA = document.createElement('a');
+                    topA.href = '#' + active.id;
+                    topA.textContent = mainHead.textContent.trim();
+                    topA.classList.add('current');
+                    topLi.appendChild(topA);
+                    tocList.appendChild(topLi);
+                }
+
+                var subHeadings = active.querySelectorAll('h3');
+                subHeadings.forEach(function (h) {
+                    if (h.closest('.toc-item')) return; // skip lifecycle-diagram card titles
+                    if (!h.id) h.id = slugify(h.textContent);
+                    var li = document.createElement('li');
+                    var a = document.createElement('a');
+                    a.href = '#' + h.id;
+                    a.textContent = h.textContent.trim();
+                    a.style.paddingLeft = '24px';
+                    li.appendChild(a);
+                    tocList.appendChild(li);
+                });
+            }
+
+            function updateSidebar() {
+                sidebarLinks.forEach(function (a) { a.classList.remove('active'); });
+                var link = document.querySelector('.sidebar a[href="#' + slides[current].id + '"]');
+                if (link) link.classList.add('active');
+            }
+
+            // Scrollspy: highlights whichever heading in the *current* chapter
+            // is currently at/above the top of the viewport, so the "On this
+            // page" panel tracks scroll position instead of only updating
+            // when the chapter itself changes.
+            var scrollSpyTicking = false;
+            function updateTocScrollSpy() {
+                if (!tocList) return;
+                var links = Array.prototype.slice.call(tocList.querySelectorAll('a'));
+                if (!links.length) return;
+
+                var offset = 90; // clears the sticky top bar
+                var activeLink = links[0];
+                links.forEach(function (link) {
+                    var target = document.getElementById(link.getAttribute('href').slice(1));
+                    if (target && target.getBoundingClientRect().top - offset <= 0) {
+                        activeLink = link;
+                    }
+                });
+
+                links.forEach(function (l) { l.classList.remove('current'); });
+                activeLink.classList.add('current');
+            }
+
+            function onScroll() {
+                if (scrollSpyTicking) return;
+                scrollSpyTicking = true;
+                window.requestAnimationFrame(function () {
+                    updateTocScrollSpy();
+                    scrollSpyTicking = false;
+                });
+            }
+            window.addEventListener('scroll', onScroll, { passive: true });
+
+            function showSlide(i) {
+                if (i < 0 || i >= slides.length || i === current) return;
+                slides[current].hidden = true;
+                current = i;
+                slides[current].hidden = false;
+                // Keep the URL in sync so a reload (or a shared link) lands
+                // back on this chapter instead of always resetting to slide 0.
+                if (window.history && window.history.replaceState) {
+                    window.history.replaceState(null, '', '#' + slides[current].id);
+                }
+                updateNav();
+                updateToc();
+                updateTocScrollSpy();
+                updateSidebar();
+                var contentEl = document.querySelector('.content');
+                if (contentEl) contentEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+
+            sidebarLinks.forEach(function (a) {
+                var href = a.getAttribute('href') || '';
+                if (href.charAt(0) !== '#') return;
+                var idx = slides.findIndex(function (s) { return s.id === href.slice(1); });
+                if (idx === -1) return;
+                a.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    showSlide(idx);
+                });
+            });
+
+            if (prevBtn) prevBtn.addEventListener('click', function () { showSlide(current - 1); });
+            if (nextBtn) nextBtn.addEventListener('click', function () { showSlide(current + 1); });
+
+            // Deep-link support: Git.html#git-lifecycle opens straight to that chapter
+            var hashId = window.location.hash.replace('#', '');
+            var startIdx = slides.findIndex(function (s) { return s.id === hashId; });
+            if (startIdx === -1) startIdx = 0;
+
+            slides.forEach(function (s, i) { s.hidden = i !== startIdx; });
+            current = startIdx;
+            updateNav();
+            updateToc();
+            updateTocScrollSpy();
+            updateSidebar();
+
+            // main.js's copy-code-button feature only targets ".doc-content pre",
+            // which this layout no longer uses (it's ".content pre" here), so it's
+            // reproduced here to keep the "Copy Code" button on every code block.
+            function fallbackCopy(text, cb) {
+                var ta = document.createElement('textarea');
+                ta.value = text;
+                ta.style.position = 'fixed';
+                ta.style.opacity = '0';
+                document.body.appendChild(ta);
+                ta.select();
+                try { document.execCommand('copy'); } catch (e) { /* no-op */ }
+                document.body.removeChild(ta);
+                if (cb) cb();
+            }
+
+            document.querySelectorAll('.content pre').forEach(function (pre) {
+                if (pre.querySelector('.copy-code-btn')) return;
+                var codeEl = pre.querySelector('code') || pre;
+
+                var btn = document.createElement('button');
+                btn.type = 'button';
+                btn.className = 'copy-code-btn';
+                btn.textContent = 'Copy Code';
+                btn.setAttribute('aria-label', 'Copy code block to clipboard');
+
+                btn.addEventListener('click', function () {
+                    var text = codeEl.textContent;
+                    var showCopied = function () {
+                        btn.textContent = 'Copied!';
+                        btn.classList.add('copied');
+                        setTimeout(function () {
+                            btn.textContent = 'Copy Code';
+                            btn.classList.remove('copied');
+                        }, 1500);
+                    };
+                    if (navigator.clipboard && navigator.clipboard.writeText) {
+                        navigator.clipboard.writeText(text).then(showCopied).catch(function () {
+                            fallbackCopy(text, showCopied);
+                        });
+                    } else {
+                        fallbackCopy(text, showCopied);
+                    }
+                });
+
+                pre.appendChild(btn);
+            });
+        })();
+    </script>
+</body>
+
+</html>
