@@ -1,6 +1,9 @@
 node_modules
 .git
 .wrangler
+.venv
+worker
+functions
 /images/Techie Nicks.mp4
 downloads/Git-Cheat-Sheet.docx
 downloads/Git-Cheat-Sheet1.pdf
