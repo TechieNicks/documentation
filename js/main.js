@@ -517,11 +517,8 @@
       '<span class="eyebrow">// feedback</span>' +
       '<h2 id="feedback-title">Help shape what comes next.</h2>' +
       '<p>Was something useful, unclear, or missing? A quick note helps improve the guides and tutorials.</p>' +
-      '<form class="form-grid" name="feedback-modal" method="POST" action="/thank-you.html" data-netlify="true" netlify-honeypot="feedback-bot-field">' +
-      '<input type="hidden" name="form-name" value="feedback">' +
-      '<input type="hidden" name="submission-form" value="feedback">' +
-      '<input type="hidden" name="submission-date-time" value="">' +
-      '<p class="hidden" style="display:none;"><label>Don\'t fill this out if you\'re human: <input name="feedback-bot-field"></label></p>' +
+      '<form class="form-grid" name="feedback-modal">' +
+      '<p class="hidden" style="display:none;"><label>Don\'t fill this out if you\'re human: <input name="feedback-bot-field" autocomplete="off" tabindex="-1"></label></p>' +
       '<div><label for="feedback-rating">How was your experience?</label><div class="feedback-rating" id="feedback-rating">' +
       '<label><input type="radio" name="rating" value="excellent"> Excellent</label>' +
       '<label><input type="radio" name="rating" value="good"> Good</label>' +
@@ -547,8 +544,6 @@
       if (event.target === feedbackDialog) closeFeedback();
     });
     feedbackDialog.querySelector("form").addEventListener("submit", function (event) {
-      event.target.querySelector("[name=\"submission-date-time\"]").value = new Date().toISOString();
-      if (location.hostname !== "localhost" && location.hostname !== "127.0.0.1") return;
       event.preventDefault();
       var form = event.target;
       var notice = form.querySelector(".feedback-notice");
@@ -557,12 +552,66 @@
         notice.className = "feedback-notice";
         form.appendChild(notice);
       }
-      notice.textContent = "Thanks for the feedback. It was captured for this local preview.";
-      form.reset();
+      notice.textContent = "Sending...";
+      fetch("/api/feedback", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          "bot-field": form.querySelector("[name='feedback-bot-field']").value,
+          rating: (form.querySelector("input[name='rating']:checked") || {}).value || "",
+          feedback: form.querySelector("[name='feedback']").value,
+          email: form.querySelector("[name='email']").value,
+        }),
+      })
+        .then(function (res) {
+          return res.json().then(function (data) { return { ok: res.ok, data: data }; });
+        })
+        .then(function (result) {
+          if (result.ok) {
+            window.location.href = "/thank-you.html";
+          } else {
+            notice.textContent = (result.data && result.data.error) || "Something went wrong. Please try again.";
+          }
+        })
+        .catch(function () {
+          notice.textContent = "Something went wrong. Please try again.";
+        });
     });
     document.querySelectorAll("form[name=\"contact\"]").forEach(function (form) {
-      form.addEventListener("submit", function () {
-        form.querySelector("[name=\"submission-date-time\"]").value = new Date().toISOString();
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        var status = form.querySelector(".form-status");
+        if (!status) {
+          status = document.createElement("p");
+          status.className = "form-status";
+          status.setAttribute("aria-live", "polite");
+          form.appendChild(status);
+        }
+        status.textContent = "Sending...";
+        fetch("/api/contact", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            "bot-field": (form.querySelector("[name='bot-field']") || {}).value || "",
+            name: form.querySelector("[name='name']").value,
+            email: form.querySelector("[name='email']").value,
+            message: form.querySelector("[name='message']").value,
+          }),
+        })
+          .then(function (res) {
+            return res.json().then(function (data) { return { ok: res.ok, data: data }; });
+          })
+          .then(function (result) {
+            if (result.ok) {
+              form.reset();
+              status.textContent = "Thanks — your message has been sent.";
+            } else {
+              status.textContent = (result.data && result.data.error) || "Something went wrong. Please try again.";
+            }
+          })
+          .catch(function () {
+            status.textContent = "Something went wrong. Please try again.";
+          });
       });
     });
     document.addEventListener("keydown", function (event) {

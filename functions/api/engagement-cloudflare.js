@@ -47,13 +47,25 @@ export async function onRequestPost(context) {
     return json(400, { error: "Invalid page or action" });
   }
 
+  // Cloudflare Pages spins up a preview deploy for every push (and every
+  // branch), but by default they all read/write the SAME KV namespace as
+  // production. Opening a preview URL to check a push therefore fires
+  // real view/like calls straight into your live counters — which is
+  // exactly what was pulling the numbers down. CF_PAGES_BRANCH is set
+  // automatically; only the real production branch writes to the real
+  // key, everything else (previews, other branches) gets a "preview:"
+  // prefixed key in the same namespace so it can never touch live data.
+  // Adjust "main" below if your production branch has a different name.
+  const isProduction = env.CF_PAGES_BRANCH === "main";
+  const key = (isProduction ? "" : "preview:") + page;
+
   try {
-    const existing = await env.ENGAGEMENT_KV.get(page, { type: "json" });
+    const existing = await env.ENGAGEMENT_KV.get(key, { type: "json" });
     const current = existing || { views: 0, likes: 0 };
     if (action === "view") current.views += 1;
     if (action === "like") current.likes += 1;
     if (action === "unlike") current.likes = Math.max(0, current.likes - 1);
-    await env.ENGAGEMENT_KV.put(page, JSON.stringify(current));
+    await env.ENGAGEMENT_KV.put(key, JSON.stringify(current));
     return json(200, current);
   } catch (error) {
     return json(500, { error: "Engagement storage is unavailable" });

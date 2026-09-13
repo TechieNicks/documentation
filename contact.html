@@ -108,7 +108,19 @@
         <div>
           <h2>Send a message</h2>
           <!-- Netlify Forms: works automatically once deployed on Netlify, no backend needed. -->
-          <form class="form-grid" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+          <form class="form-grid" name="contact" id="contactForm">
+            <p class="hidden" style="display:none;">
+              <label>Don't fill this out if you're human: <input name="bot-field" autocomplete="off"
+                  tabindex="-1"></label>
+            </p>
+            <div><label for="name">Name</label><input type="text" id="name" name="name" required></div>
+            <div><label for="email">Email</label><input type="email" id="email" name="email" required></div>
+            <div><label for="message">Message</label><textarea id="message" name="message" rows="5" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Send message</button>
+            <p class="form-status" aria-live="polite"></p>
+          </form>
+          <!-- <form class="form-grid" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
             <input type="hidden" name="form-name" value="contact">
             <input type="hidden" name="submission-form" value="contact">
             <input type="hidden" name="submission-date-time" value="">
@@ -128,7 +140,7 @@
               <textarea id="message" name="message" rows="5" required></textarea>
             </div>
             <button type="submit" class="btn btn-primary">Send message</button>
-          </form>
+          </form> -->
         </div>
       </div>
     </section>
@@ -164,7 +176,7 @@
       </div>
     </section>
 
-    <form name="feedback" method="POST" data-netlify="true" netlify-honeypot="feedback-bot-field" hidden>
+    <!-- <form name="feedback" method="POST" data-netlify="true" netlify-honeypot="feedback-bot-field" hidden>
       <input type="hidden" name="form-name" value="feedback">
       <input type="hidden" name="submission-form" value="feedback">
       <input type="hidden" name="submission-date-time" value="">
@@ -174,7 +186,7 @@
       <input type="radio" name="rating" value="needs-improvement">
       <textarea name="feedback"></textarea>
       <input type="email" name="email">
-    </form>
+    </form> -->
   </main>
 
   <footer class="site-footer">
