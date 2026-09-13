@@ -1,11 +1,10 @@
 // functions/api/engagement.js
 // --------------------------------------------------------------
-// Cloudflare Pages Function port of chatbot/functions/engagement.js
-// (the Netlify function). Same behaviour, but uses a Cloudflare KV
-// namespace instead of @netlify/blobs for persistence.
-//
-// Deployed automatically by Cloudflare Pages at:
-//   /api/engagement
+// Cloudflare Pages Function — the single source of truth for view/
+// like counts. Netlify's engagement.js no longer keeps its own
+// separate counter; it proxies every request here, so a visitor
+// sees the same number regardless of which host actually served
+// the page. Direct visits to Cloudflare are also handled as before.
 //
 // One-time setup required in the Cloudflare dashboard:
 //   1. Workers & Pages -> KV -> Create namespace (e.g. "engagement")
@@ -18,7 +17,7 @@ const ALLOWED_ACTIONS = ["view", "get", "like", "unlike"];
 
 const CORS_HEADERS = {
   "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Headers": "Content-Type",
+  "Access-Control-Allow-Headers": "Content-Type, X-Deploy-Context",
   "Access-Control-Allow-Methods": "POST, OPTIONS",
   "Content-Type": "application/json",
 };
@@ -49,14 +48,18 @@ export async function onRequestPost(context) {
 
   // Cloudflare Pages spins up a preview deploy for every push (and every
   // branch), but by default they all read/write the SAME KV namespace as
-  // production. Opening a preview URL to check a push therefore fires
-  // real view/like calls straight into your live counters — which is
-  // exactly what was pulling the numbers down. CF_PAGES_BRANCH is set
-  // automatically; only the real production branch writes to the real
-  // key, everything else (previews, other branches) gets a "preview:"
-  // prefixed key in the same namespace so it can never touch live data.
-  // Adjust "main" below if your production branch has a different name.
-  const isProduction = env.CF_PAGES_BRANCH === "main";
+  // production — and now Netlify proxies here too. Requests forwarded by
+  // Netlify's engagement.js carry an X-Deploy-Context header ("production"
+  // or "preview") telling us which context THEY are calling from; direct
+  // visits to Cloudflare fall back to checking CF_PAGES_BRANCH itself.
+  // Only real production traffic (from either host) writes to the real
+  // key — everything else gets a "preview:" prefixed key in the same
+  // namespace so it can never touch live data. Adjust "main" below if
+  // your production branch has a different name.
+  const forwardedContext = request.headers.get("x-deploy-context");
+  const isProduction = forwardedContext
+    ? forwardedContext === "production"
+    : env.CF_PAGES_BRANCH === "main";
   const key = (isProduction ? "" : "preview:") + page;
 
   try {

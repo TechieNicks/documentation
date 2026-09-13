@@ -1,16 +1,25 @@
 // chatbot/functions/engagement.js
 // --------------------------------------------------------------
-// Netlify Function version of functions/api/engagement.js (the
-// Cloudflare Pages version). Reached via the /api/engagement ->
-// /.netlify/functions/engagement redirect in netlify.toml. Uses
-// Netlify Blobs (already in package.json as @netlify/blobs) instead
-// of a Cloudflare KV namespace for persistence — no extra setup
-// needed, it works automatically once deployed on Netlify.
+// Netlify Function version of functions/api/engagement.js.
+//
+// As of the move to Cloudflare, Cloudflare KV is the single source
+// of truth for view/like counts — this function no longer keeps its
+// own separate Netlify Blobs counter (which was showing a different
+// number than Cloudflare depending on which host served a visitor).
+// Instead it forwards every request to the live Cloudflare
+// deployment, so the count is identical no matter which host
+// answered the page.
+//
+// Requires, in Netlify: Site configuration -> Environment variables
+//   CLOUDFLARE_ENGAGEMENT_URL = https://documentation.nicketa-tech.workers.dev
+// (your Cloudflare Pages project's stable *.pages.dev/*.workers.dev
+// URL — NOT the techienicks.com custom domain, since that may not
+// always resolve to Cloudflare during a migration. If this variable
+// isn't set, the hardcoded default below is used as a fallback.)
 // --------------------------------------------------------------
 
-const { getStore } = require("@netlify/blobs");
-
 const ALLOWED_ACTIONS = ["view", "get", "like", "unlike"];
+const DEFAULT_CLOUDFLARE_URL = "https://documentation.nicketa-tech.workers.dev";
 
 const CORS_HEADERS = {
   "Access-Control-Allow-Origin": "*",
@@ -37,28 +46,27 @@ exports.handler = async function (event) {
     return json(400, { error: "Invalid page or action" });
   }
 
-  // Netlify's docs confirm getStore() is shared across every deploy of the
-  // site by default — including deploy previews and branch deploys, not
-  // just production. Visiting a preview URL to check a fresh push fires
-  // real view/like calls into the SAME store your live site reads from,
-  // which is what was pulling counts down. process.env.CONTEXT is set
-  // automatically by Netlify ("production", "deploy-preview",
-  // "branch-deploy", or "dev"); only production writes to the real key,
-  // everything else gets a "preview:" prefixed key in the same store.
-  const isProduction = process.env.CONTEXT === "production";
-  const key = (isProduction ? "" : "preview:") + page;
+  const cloudflareUrl = (process.env.CLOUDFLARE_ENGAGEMENT_URL || DEFAULT_CLOUDFLARE_URL).replace(/\/$/, "");
+
+  // Tell Cloudflare which context WE are calling from, so a Netlify
+  // deploy preview / branch deploy can't accidentally increment the
+  // real production count sitting in Cloudflare KV.
+  const deployContext = process.env.CONTEXT === "production" ? "production" : "preview";
 
   try {
-    const store = getStore("engagement");
-    const existing = await store.get(key, { type: "json" });
-    const current = existing || { views: 0, likes: 0 };
-    if (action === "view") current.views += 1;
-    if (action === "like") current.likes += 1;
-    if (action === "unlike") current.likes = Math.max(0, current.likes - 1);
-    await store.setJSON(key, current);
-    return json(200, current);
+    const res = await fetch(cloudflareUrl + "/api/engagement", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-Deploy-Context": deployContext,
+      },
+      body: JSON.stringify({ page: page, action: action }),
+    });
+
+    const data = await res.json();
+    return json(res.status, data);
   } catch (error) {
-    return json(500, { error: "Engagement storage is unavailable" });
+    return json(502, { error: "Could not reach the engagement counter" });
   }
 };
 
