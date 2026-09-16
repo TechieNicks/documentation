@@ -1718,3 +1718,29 @@ textarea:focus {
     border-radius: 8px;
     box-shadow: var(--shadow);
 }
+
+/********Welcome************/
+.title-with-icon {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.title-icon {
+    /* height: 80px; */
+    width: 19%;
+    flex-shrink: 0;
+}
+
+@media (max-width: 600px) {
+    .title-icon {
+        height: 44px;
+        width: 44px;
+    }
+
+    .title-with-icon h1 {
+        font-size: 1.5rem;
+        /* adjust to match your existing mobile h1 size */
+    }
+}
