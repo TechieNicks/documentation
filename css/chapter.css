@@ -83,7 +83,8 @@ body {
     display: grid;
     grid-template-columns: 250px minmax(0, 1fr) 210px;
     gap: 0;
-    max-width: 1280px;
+    max-width: 1600px;
+    /*-------Was 1280px ------*/
     margin: 0 auto;
 }
 
@@ -157,7 +158,7 @@ body {
 
 .content h1 {
     font-family: var(--serif);
-    font-size: 2rem;
+    font-size: 2.6rem;
     margin: 10px 0 10px 0;
 }
 
@@ -191,7 +192,7 @@ body {
 
 .content h2 {
     font-family: var(--serif);
-    font-size: 1.3rem;
+    font-size: 2.0rem;
     margin: 34px 0 12px 0;
     scroll-margin-top: 70px;
 }
@@ -200,7 +201,7 @@ body {
     line-height: 1.7;
     font-size: 0.97rem;
     margin: 0 0 16px 0;
-    max-width: 80ch;
+    max-width: 120ch;
 }
 
 .content code {
@@ -227,7 +228,7 @@ body {
     line-height: 1.7;
     padding-left: 22px;
     margin: 0 0 20px 0;
-    max-width: 66ch;
+    max-width: 86ch;
 }
 
 .note {
@@ -236,7 +237,7 @@ body {
     padding: 12px 16px;
     font-size: 0.92rem;
     margin: 0 0 24px 0;
-    max-width: 66ch;
+    max-width: 86ch;
 }
 
 .note a {
@@ -412,7 +413,7 @@ body {
     line-height: 1.7;
     padding-left: 22px;
     margin: 0 0 20px 0;
-    max-width: 66ch;
+    max-width: 86ch;
 }
 
 .content ul ul,
@@ -447,7 +448,7 @@ body {
     font-size: 0.88rem;
     display: block;
     overflow-x: auto;
-    max-width: 66ch;
+    max-width: 86ch;
 }
 
 .content th,
@@ -471,7 +472,7 @@ body {
     padding: 12px 16px;
     font-size: 0.92rem;
     margin: 0 0 24px 0;
-    max-width: 66ch;
+    max-width: 86ch;
     border-radius: 0 6px 6px 0;
 }
 
@@ -504,4 +505,18 @@ button.page-link:disabled {
     font-family: var(--serif);
     font-size: 0.95rem;
     min-height: 1.3em;
+}
+
+.box {
+    /* background: var(--panel); */
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 14px 18px;
+    /* margin: 0 0 20px 0; */
+    margin: 20px auto;
+    /* auto left/right = centers it */
+    width: fit-content;
+    /* box only as wide as its content */
+    max-width: 100%;
+    /* prevents overflow on small screens */
 }

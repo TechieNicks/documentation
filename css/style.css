@@ -937,6 +937,19 @@ textarea:focus {
     font-weight: 600;
 }
 
+.toc-column {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    flex: 1 1 180px;
+    min-width: 160px;
+}
+
+.toc-column .toc-item {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
 .doc-content h2 {
     font-size: 1.5rem;
     margin-top: 52px;
@@ -1137,13 +1150,17 @@ textarea:focus {
 }
 
 .git-vs-github-diagrams {
-    margin: 28px 0 32px;
+    /* margin: 28px 0 32px; */
+    margin: 28px auto 32px;
+    /* top | left-right auto | bottom */
+    max-width: 750px;
+    width: 100%;
 }
 
 .git-vs-github-slides {
     display: grid;
     align-items: center;
-    height: 340px;
+    height: 380px;
 }
 
 .git-vs-github-slide {
@@ -1158,7 +1175,7 @@ textarea:focus {
     padding: 18px 18px 12px;
     text-align: center;
     overflow: hidden;
-    background: #fff;
+    /* background: #fff; */
     border: 2px solid #7c3aed;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgb(124 58 237 / 18%);
@@ -1169,9 +1186,11 @@ textarea:focus {
 }
 
 .git-vs-github-slide img {
-    width: min(100%, 606px);
+    height: 100%;
     max-height: calc(100% - 42px);
-    height: auto;
+    width: auto;
+    max-width: 100%;
+
     object-fit: contain;
     border: 0;
     border-radius: 15px;
@@ -1180,9 +1199,9 @@ textarea:focus {
     cursor: pointer;
 }
 
-.git-vs-github-slide:nth-child(2) img {
+/* .git-vs-github-slide:nth-child(2) img {
     width: min(100%, 420px);
-}
+} */
 
 .git-diagram-lightbox {
     position: fixed;
@@ -1447,7 +1466,7 @@ textarea:focus {
 /* ---------- YouTube video preview ---------- */
 .youtube-embed {
     position: relative;
-    width: 100%;
+    width: 75%;
     aspect-ratio: 16 / 9;
     border-radius: var(--radius, 12px);
     overflow: hidden;

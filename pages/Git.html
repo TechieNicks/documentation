@@ -64,6 +64,7 @@
                 <li><a href="#welcome" class="active">Welcome</a></li>
                 <li><a href="#history">History</a></li>
                 <li><a href="#what-is-git">What is Git?</a></li>
+                <li><a href="#core-git-terms">Core Git Terms</a></li>
                 <li><a href="#git-vs-github">Git vs GitHub</a></li>
                 <li><a href="#git-lifecycle">Git lifecycle</a></li>
                 <li><a href="#download">Installation</a></li>
@@ -133,6 +134,7 @@
                     <span>Updated Sep 8, 2026</span> -->
                 </div>
 
+
                 <h3>What is version control?</h3>
                 <p><strong>Version control</strong> is a system that helps track and manage changes to files,
                     especially in software development. It lets multiple people collaborate on a project without
@@ -180,6 +182,7 @@
                         </ul>
                     </li>
                 </ol>
+
 
                 <div class="callout">
                     <p><strong>Git references</strong></p>
@@ -235,6 +238,13 @@
                     <li><strong>Security &amp; integrity</strong> — every change is stored using cryptographic
                         hashing, preventing accidental or malicious alterations.</li>
                 </ul>
+                <p>Git helps developers work on projects independently, merge changes efficiently, and revert to
+                    previous versions if
+                    needed. Unlike traditional centralized version control systems, Git is <strong>distributed</strong>,
+                    meaning every
+                    developer has a
+                    complete copy of the project. This makes Git fast, reliable, and essential for software development.
+                </p>
 
 
             </section>
@@ -249,12 +259,16 @@
                     <span class="dot">·</span>
                     <span>Updated Sep 8, 2026</span> -->
                 </div>
-                <p><strong>Git</strong> is a <u>distributed</u> version control system that helps developers track
+                <p><strong>Git</strong> is a <code>distributed version control system(VSC)</code> that helps
+                    developers track
                     changes,
                     collaborate efficiently, and manage different versions of a project. It was created by
                     <strong>Linus Torvalds</strong> in 2005 to manage the Linux kernel, but its advantages quickly
                     made it industry standard.
                 </p>
+                <p>Whether working on a solo project or a large team, Git ensures code integrity and efficient
+                    collaboration.</p>
+                <h3>Why use Git?</h3>
                 <ul>
                     <li><strong>Version control</strong> — keeps a history of all changes, allowing developers to
                         revert previous version if
@@ -270,9 +284,75 @@
                 <p>In Git, every developer has a complete copy of the repository — including its entire history — on
                     their local machine. Unlike centralized systems, Git lets developers work independently without
                     needing constant access to a central server.</p>
+                <h3>How does git works?</h3>
+                <p>Git has a very simple workflow:</p>
+                
+
+                <img src="../images/images/GitWorkflow-Basic-Page-4.svg" alt="workflow">
+                <br>
+                <div class="box">
+                    <p class="book-title">
+                        <img src="../images/images/lightbulb.png" alt="bulb" width="50" height="50">A file can contain both staged 
+                        and unstaged changes. Git tracks changes only, not whole-file labels.
+                    </p>
+                </div>
+                
+
+                <!------->
+                           <!------->
 
 
             </section>
+
+            <section class="chapter-slide" id="core-git-terms">
+                <h2>Git Terminology</h2>
+                <div class="byline">
+                    <!-- <span class="avatar">TN</span>
+                    <span>TechieNicks Core Team</span>
+                    <span class="dot">·</span>
+                    <span>6 min read</span>
+                    <span class="dot">·</span>
+                    <span>Updated Sep 8, 2026</span> -->
+                </div>
+
+                <h3>Basic Concepts</h3>
+                <ul>
+                    <li><strong>Repository (repo)</strong> — A project folder tracked by Git, containing all files and their full history.</li>
+                    <li><strong>Working directory</strong> — The actual files on your disk that you're editing.</li>
+                    <li><strong>Staging area (index)</strong> — A holding area where changes are placed before being committed.</li>
+                    <li><strong>Commit</strong> — A saved snapshot of staged changes, with a message describing it.</li>
+                    <li><strong>HEAD</strong> — A pointer to the current commit/branch you're working on.</li>
+                </ul>
+
+                <h3>File States</h3>
+                <ul>
+                    <li><strong>Untracked</strong> — A file Git doesn't monitor yet (new, never added).</li>
+                    <li><strong>Tracked</strong> — A file Git is monitoring (added at least once).</li>
+                    <li><strong>Modified</strong> — A tracked file with unsaved changes since the last commit.</li>
+                    <li><strong>Staged</strong> — Changes marked (via <code>git add</code>) to be included in the next commit.</li>
+                </ul>
+
+            <h3>Branching &amp; Merging</h3>
+            <ul>
+                <li><strong>Branch</strong> — An independent line of development, letting you work without affecting the main codebase.</li>
+                <li><strong>Main/Master</strong> — The default primary branch in most repos.</li>
+                <li><strong>Checkout</strong> — Switching to a different branch or commit.</li>
+                <li><strong>Merge</strong> — Combining changes from one branch into another.</li>
+                <li><strong>Merge conflict</strong> — When Git can't automatically reconcile changes from two branches.</li>
+                <li><strong>Rebase</strong> — Reapplying commits from one branch onto another, creating a cleaner linear history.</li>
+                <li><strong>Fast-forward</strong> — A merge where the target branch simply moves forward, with no new merge commit needed.</li>
+            </ul>
+
+            <h3>Remote Work</h3>
+            <ul>
+                <li><strong>Remote</strong> — A version of the repo hosted elsewhere (e.g. GitHub, GitLab).</li>
+                <li><strong>Origin</strong> — The default name for the main remote repo you cloned from.</li>
+
+
+            </section>
+
+
+ 
 
             <section class="chapter-slide" id="git-vs-github">
                 <h2>Git vs GitHub</h2>
@@ -284,22 +364,38 @@
                     <span class="dot">·</span>
                     <span>Updated Sep 8, 2026</span> -->
                 </div>
-                <p>Git is the engine; GitHub is the garage where teams collaborate.</p>
+                <p>Git is the engine; GitHub is the garage where teams collaborate. Git and GitHub are often confused, but they're different layers of the same workflow.</p>
+                <h3>Git</h3>
                 <ul>
-                    <li><strong>Git</strong> is a <strong>distributed version control system</strong> that runs
+                    <li>A <strong>distributed version control system</strong> that runs
                         locally on a
                         developer's
                         machine and allows developers track changes in their code, collaborate
                         efficiently, and manage different versions of offline work.</li>
-                    <li><strong>GitHub</strong> is a <strong>web-based platform</strong> that hosts Git
+                    <li>Tracks changes to files over time, lets you create branches, merge, revert, and view history.</li>
+                    <li>Works entirely offline; no internet or account needed.</li>
+                    <li>Used via command line (or GUI tools like GitKraken, Sourcetree).</li>
+                    
+                </ul>
+                <h3>Github</h3>
+                <ul>
+                    <li>Is a <strong>web-based platform</strong> for Git repositories that hosts Git
                         repositories, adding additional collaboration tools
                         like
                         pull requests, issue tracking, and project management.</li>
+                    <li>Lets you store your Git repos online, collaborate with others, and back up your code remotely.</li>
+                    <li>Adds features Git itself doesn't have: pull requests, issues, code review, project boards, GitHub Actions (CI/CD), wikis.</li>
+                    <li>Requires an internet connection and an account.</li>
+                    <li>Owned by Microsoft (acquired in 2018).</li>
                 </ul>
 
                 <div class="git-vs-github-diagrams" data-slideshow aria-label="Git vs GitHub diagrams">
                     <div class="git-vs-github-slides">
                         <figure class="git-vs-github-slide is-active">
+                            <img src="../images/images/GitvsGIthub-Page-4.svg"
+                                alt="Gitvsgithub">
+                        </figure>
+                        <figure class="git-vs-github-slide" hidden>
                             <img src="../images/images/GitvsGIthub.svg"
                                 alt="Git is a tool and GitHub is a toolbox diagram">
                             <figcaption>If Git is the tool, the GitHub is the toolbox. Git is the local snapshot
@@ -327,6 +423,12 @@
                         </div>
                         <button type="button" class="git-vs-github-next" aria-label="Next diagram">Next</button>
                     </div>
+                </div>
+
+                <div class="box">
+                    <p class="book-title">
+                        <img src="../images/images/lightbulb.png" alt="bulb" width="50" height="50"><strong>Key point</strong> You can use Git without ever touching GitHub (just tracking history locally). But you can't use GitHub without Git — it's built specifically to host Git repositories. Other alternatives to GitHub exist too, like GitLab and Bitbucket, all of which are also just hosting platforms for Git repos.
+                    </p>
                 </div>
 
                 <h3>Key differences</h3>
@@ -400,30 +502,10 @@
                 </div>
 
                 <div class="table-of-contents">
-                    <div class="toc-item" style="background-color: antiquewhite;">
-                        <h3>Stash</h3><br>
-
-                        <ul>
-                            <li><span style="background: lightgrey;" class="courier-font">
-                                    git stash</span> — Stash current changes.</li>
-                            <li><span style="background: lightgrey;" class="courier-font">
-                                    git stash list</span> — View stashed changes.</li>
-                            <li><span style="background: lightgrey;" class="courier-font">
-                                    git stash pop</span> — Apply and remove the latest stash.
-                            </li>
-                            <li><span style="background: lightgrey;" class="courier-font">
-                                    git stash apply</span> — Apply the latest stash without
-                                removing it.</li>
-                            <li><span style="background: lightgrey;" class="courier-font">
-                                    git stash drop</span> — Delete a specific stash.</li>
-                        </ul>
-                        <p class="newspaper-text">A temporary locker for changes you're not ready to commit yet.
-                        </p>
-                    </div>
                     <div class="toc-item" style="background-color: beige">
                         <h3>Workspace <br>(working directory)</h3>
-
-                        <ul>
+                        <!-- unchanged -->
+                         <ul>
                             <li><span style="background: lightgrey;" class="courier-font">
                                     git status</span> — Show changes in the working directory and
                                 staging area.</li>
@@ -440,10 +522,11 @@
                         <p class="newspaper-text">Where you create or modify files. Changes here aren't yet
                             tracked by Git.</p>
                     </div>
-                    <div class="toc-item" style="background-color: khaki;">
-                        <h3>Index <br>(staging area)</h3>
-
-                        <ul>
+                    <div class="toc-column">
+                        <div class="toc-item" style="background-color: khaki;">
+                            <h3>Index <br>(staging area)</h3>
+                            <!-- ...index content stays the same... -->
+                             <ul>
                             <li><span style="background: lightgrey;" class="courier-font">
                                     git status</span> — Show changes in the working directory and
                                 staging area.</li>
@@ -458,11 +541,36 @@
                                     git diff --cached</span> — View staged changes</li>
                         </ul>
                         <p class="newspaper-text">Where you prepare changes before committing.</p>
+                        </div>
+                        <div class="toc-item" style="background-color: antiquewhite;">
+                            <h3>Stash</h3><br>
+                            <!-- ...stash content stays the same... -->
+                             <ul>
+                            <li><span style="background: lightgrey;" class="courier-font">
+                                    git stash</span> — Stash current changes.</li>
+                            <li><span style="background: lightgrey;" class="courier-font">
+                                    git stash list</span> — View stashed changes.</li>
+                            <li><span style="background: lightgrey;" class="courier-font">
+                                    git stash pop</span> — Apply and remove the latest stash.
+                            </li>
+                            <li><span style="background: lightgrey;" class="courier-font">
+                                    git stash apply</span> — Apply the latest stash without
+                                removing it.</li>
+                            <li><span style="background: lightgrey;" class="courier-font">
+                                    git stash drop</span> — Delete a specific stash.</li>
+                        </ul>
+                        <p class="newspaper-text">A temporary locker for changes you're not ready to commit yet.
+                        </p>
+                        </div>
+                        
                     </div>
-                    <div class="toc-item" style="background-color: lavender;">
-                        <h3>Local repository</h3><br>
 
-                        <ul>
+                    
+
+                    <div class="toc-item" style="background-color: lavender;">
+                        <h3>Local repository</h3>
+                        <!-- unchanged -->
+                         <ul>
                             <li><span style="background: lightgrey;" class="courier-font">
                                     git commit -m "commit message"
                                 </span> — Commit staged changes</li>
@@ -478,10 +586,11 @@
                         </ul>
                         <p class="newspaper-text">Where committed changes are stored locally.</p>
                     </div>
+
                     <div class="toc-item" style="background-color: lightgray;">
                         <h3>Upstream <br>(remote repository)</h3>
-
-                        <ul>
+                        <!-- unchanged -->
+                         <ul>
                             <li><span style="background: bisque;" class="courier-font">
                                     git remote -v
                                 </span> — Show remote URLs</li>
@@ -501,6 +610,36 @@
                         <p class="newspaper-text">The shared repository for collaboration — e.g. GitHub.</p>
                     </div>
                 </div>
+
+
+
+                <!-- <div class="table-of-contents">
+                    <div class="toc-item" style="background-color: antiquewhite;">
+                        <h3>Stash</h3><br>
+
+                        
+                    </div>
+                    <div class="toc-item" style="background-color: beige">
+                        <h3>Workspace <br>(working directory)</h3>
+
+                        
+                    </div>
+                    <div class="toc-item" style="background-color: khaki;">
+                        <h3>Index <br>(staging area)</h3>
+
+                        
+                    </div>
+                    <div class="toc-item" style="background-color: lavender;">
+                        <h3>Local repository</h3><br>
+
+                        
+                    </div>
+                    <div class="toc-item" style="background-color: lightgray;">
+                        <h3>Upstream <br>(remote repository)</h3>
+
+                        
+                    </div>
+                </div> -->
 
                 <h3>Walkthrough: stash, fix, and return</h3>
                 <p><strong>Scenario:</strong> you're mid-feature but need to fix a bug on <code>main</code> right
@@ -529,8 +668,8 @@ git push origin main
 # 7. Return to the feature branch
 git checkout feature/login-form
 
-# 8. Reapply the stash — files are restored as they were
-git stash pop</code></pre>
+# 8. Reapply the stash, restoring the original staged/unstaged split
+git stash pop --index</code></pre>
 
                 <table>
                     <thead>
