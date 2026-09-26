@@ -222,6 +222,7 @@ body {
     font-size: 0.85rem;
     line-height: 1.6;
     margin: 0 0 20px 0;
+    max-width: 105ch;
 }
 
 .content ul {

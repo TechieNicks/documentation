@@ -178,7 +178,7 @@
                             <li>Each user has a full copy of the repository, allowing offline work and better
                                 redundancy.</li>
                             <li>Examples: <strong>Git, Mercurial</strong>.</li>
-                            <li>More flexible and resilient, as changes can be merged from multipe sources.</li>
+                            <li>More flexible and resilient, as changes can be merged from multiple sources.</li>
                         </ul>
                     </li>
                 </ol>
@@ -209,7 +209,7 @@
                         collaboration are lost unless backups exist.</li>
                     <li><strong>Requires constant connectivity</strong> — developers must be connected to the
                         central server to commit changes or access previous versions.</li>
-                    <li><strong>Limited offline work</strong> — unlike DVCS,no independent access to the central
+                    <li><strong>Limited offline work</strong> — unlike DVCS, no independent access to the central
                         repository.
                     </li>
                     <li><strong>Slower performance</strong> — every operation talks to the central server, which can
@@ -259,7 +259,7 @@
                     <span class="dot">·</span>
                     <span>Updated Sep 8, 2026</span> -->
                 </div>
-                <p><strong>Git</strong> is a <code>distributed version control system(VSC)</code> that helps
+                <p><strong>Git</strong> is a <code>distributed version control system(VCS)</code> that helps
                     developers track
                     changes,
                     collaborate efficiently, and manage different versions of a project. It was created by
@@ -347,8 +347,34 @@
             <ul>
                 <li><strong>Remote</strong> — A version of the repo hosted elsewhere (e.g. GitHub, GitLab).</li>
                 <li><strong>Origin</strong> — The default name for the main remote repo you cloned from.</li>
+            </ul>
+<br>
+<h3 id="what-is-open-source">What is Open Source?</h3>
 
+<p><strong>Open source</strong> software has its source code made publicly available, so anyone can view, use, modify, and distribute it — usually under a license that defines the terms.</p>
 
+<h4>Why it matters</h4>
+<ul>
+    <li><strong>Transparency</strong> — anyone can inspect the code for bugs, security issues, or how it works.</li>
+    <li><strong>Collaboration</strong> — contributors from anywhere can improve the project.</li>
+    <li><strong>Cost</strong> — most open source software is free to use.</li>
+    <li><strong>Community-driven</strong> — decisions are often made publicly, not behind closed doors.</li>
+</ul>
+
+<h3>Common open source licenses</h3>    
+<table>
+    <thead>
+        <tr><th>License</th><th>Key characteristic</th></tr>
+    </thead>
+    <tbody>
+        <tr><td>MIT</td><td>Very permissive — minimal restrictions on reuse.</td></tr>
+        <tr><td>Apache 2.0</td><td>Permissive, with explicit patent protection.</td></tr>
+        <tr><td>GPL</td><td>Copyleft — derivative works must also be open source.</td></tr>
+        <tr><td>BSD</td><td>Permissive, similar to MIT with slight variations.</td></tr>
+    </tbody>
+</table>
+
+<p>Git itself is open source, and platforms like GitHub, GitLab, and Bitbucket have made it far easier for developers to discover, use, and contribute to open source projects.</p>
             </section>
 
 
@@ -370,7 +396,7 @@
                     <li>A <strong>distributed version control system</strong> that runs
                         locally on a
                         developer's
-                        machine and allows developers track changes in their code, collaborate
+                        machine and to allows developers track changes in their code, collaborate
                         efficiently, and manage different versions of offline work.</li>
                     <li>Tracks changes to files over time, lets you create branches, merge, revert, and view history.</li>
                     <li>Works entirely offline; no internet or account needed.</li>
@@ -463,7 +489,7 @@
                         </tr>
                         <tr>
                             <td>Ownership</td>
-                            <td>Open-source (Linux Foundation)</td>
+                            <td>Open-source (Software Freedom Conservancy).<br>The Git Project is a member project of Software Freedom Conservancy, which holds the Git trademark on the project's behalf.</td>
                             <td>Owned by Microsoft</td>
                         </tr>
                     </tbody>
@@ -742,7 +768,8 @@ git stash pop --index</code></pre>
                 <ol>
                     <li>Open a terminal (Git Bash on Windows, Terminal on macOS/Linux).</li>
                     <li>Generate a new RSA key pair:
-                        <pre><code>ssh-keygen -t rsa -b 4096 -C "your_email@example.com"</code></pre>
+                        <!--pre><code>ssh-keygen -t rsa -b 4096 -C "your_email@example.com"</code></pre-->
+                        <pre><code>ssh-keygen -t ed25519 -C "your_email@example.com"</code></pre>
                         Replace the email with your GitHub email.
                     </li>
                     <li>Press <strong>Enter</strong> to accept the default file location
@@ -751,8 +778,8 @@ git stash pop --index</code></pre>
                 </ol>
                 <br>
                 <h3>Step 2: add the key to the SSH agent(using gitbash/terminal)</h3>
-                <pre><code>eval "$(ssh-agent -s)"
-ssh-add ~/.ssh/id_rsa</code></pre>
+                
+                <pre><code>eval "$(ssh-agent -s)" ssh-add ~/.ssh/id_rsa</code></pre>
                 <br>
                 <h3>Step 3: add the key to GitHub</h3>
                 <ol>
@@ -851,7 +878,8 @@ git commit -m "Resolved merge conflicts"
 git push origin main</code></pre>
                     </li>
                 </ol>
-
+<img src="../images/images/GitWorkflow-Basic-Page-2.png" alt="git-remote">
+<br>
                 <h3>Syncing local changes to the remote</h3>
                 <p>Keeps your local branch up to date and your contributions integrated with everyone else's.</p>
                 <pre><code># 1. Check what's changed
@@ -873,6 +901,197 @@ git push origin main
 # 6. Verify
 git log --oneline -n 5</code></pre>
 
+<img src="../images/images/GitWorkflow-Basic-Page-3.png" alt="git-remote">
+<hr>
+<h3 id="branching-merging">Git Branching & Merging</h3>
+
+<p>Branches let you work on new features, fixes, or experiments without touching the stable code on <code>main</code>. Once your work is ready, you merge it back in.</p>
+
+<h3>Creating and switching branches</h3>
+<ul>
+    <li><code>git branch</code> — List all local branches.</li>
+    <li><code>git branch feature/login</code> — Create a new branch, but stay on the current one.</li>
+    <li><code>git checkout feature/login</code> — Switch to that branch.</li>
+    <li><code>git checkout -b feature/login</code> — Create and switch in one step.</li>
+    <li><code>git switch feature/login</code> — Modern alternative to <code>checkout</code> for switching branches.</li>
+</ul>
+
+<h3>Merging a branch back in</h3>
+<pre><code>git checkout main
+git merge feature/login</code></pre>
+
+<div class="note">
+    <p>If <code>main</code> hasn't changed since you branched off, this is a <strong>fast-forward merge</strong> — Git just moves the <code>main</code> pointer forward, no new commit needed.</p>
+</div>
+
+<h3>Deleting a branch after merging</h3>
+<pre><code>git branch -d feature/login          # delete locally
+git push origin --delete feature/login   # delete on remote too</code></pre>
+
+<p>Branching is cheap in Git — create one for every feature, bug fix, or experiment. It keeps <code>main</code> stable and makes it easy to abandon work that doesn't pan out.</p>
+
+
+<h3 id="merge-conflicts">How to Fix & Resolve Merge Conflicts (Without Panicking)</h3>
+
+<p>A merge conflict happens when Git can't automatically combine changes — usually because two branches edited the same lines of the same file. It's normal, not a sign something's broken.</p>
+
+<h4>Step 1: Trigger the conflict</h4>
+<pre><code>git pull origin main
+# or
+git merge feature/login</code></pre>
+<p>Git will pause and tell you which files have conflicts.</p>
+
+<h4>Step 2: Find the conflict markers</h4>
+<p>Open the affected file — Git marks the conflicting sections directly in the file:</p>
+<pre><code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+Your current branch's version
+=======
+The incoming branch's version
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; feature/login</code></pre>
+
+<h4>Step 3: Resolve manually</h4>
+<p>Edit the file to keep the correct content, and remove the <code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code>, <code>=======</code>, and <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code> markers entirely.</p>
+
+<h4>Step 4: Mark it resolved</h4>
+<pre><code>git add &lt;resolved-file&gt;
+git commit -m "Resolved merge conflict"</code></pre>
+
+<div class="callout">
+    <p><strong>Tip:</strong> Run <code>git status</code> at any point during a conflict — it lists exactly which files still need resolving.</p>
+</div>
+
+<p>If things go sideways, you can always back out safely with <code>git merge --abort</code> to return to the state before the merge started.</p>
+
+<hr>
+
+<h3 id="first-pull-request">How to Make Your First Open Source Pull Request (PR)</h3>
+
+<p>Contributing to open source is one of the best ways to learn Git and collaborate with other developers. Here's the typical workflow.</p>
+
+<h4>Step 1: Fork the repository</h4>
+<p>On GitHub, click <strong>Fork</strong> on the project you want to contribute to. This creates your own copy under your account.</p>
+
+<h4>Step 2: Clone your fork</h4>
+<pre><code>git clone https://github.com/your-username/project-name.git
+cd project-name</code></pre>
+
+<h4>Step 3: Create a branch for your change</h4>
+<pre><code>git checkout -b fix/typo-in-readme</code></pre>
+
+<h4>Step 4: Make your changes and commit</h4>
+<pre><code>git add .
+git commit -m "Fix typo in README"</code></pre>
+
+<h4>Step 5: Push to your fork</h4>
+<pre><code>git push origin fix/typo-in-readme</code></pre>
+
+<h4>Step 6: Open the pull request</h4>
+<p>Go to the original repository on GitHub — it usually shows a prompt to open a PR from your recently pushed branch. Add a clear title and description, then submit.</p>
+
+<div class="note">
+    <p>Before contributing, check the project's <code>CONTRIBUTING.md</code> file if it has one — it often explains code style, testing requirements, and how maintainers prefer PRs to be structured.</p>
+</div>
+<hr>
+<h3 id="undo-mistakes">How to Undo Mistakes in Git (<code>git checkout</code>, <code>git reset</code>, <code>git revert</code>)</h3>
+
+<p>Git gives you several tools for undoing changes, depending on what you need to undo and whether it's already been shared with others.</p>
+
+<table>
+    <thead>
+        <tr><th>Command</th><th>Undoes</th><th>Safe on shared history?</th></tr>
+    </thead>
+    <tbody>
+        <tr><td><code>git checkout -- &lt;file&gt;</code></td><td>Unstaged changes in a file</td><td>Yes</td></tr>
+        <tr><td><code>git reset &lt;file&gt;</code></td><td>Unstages a file (keeps edits)</td><td>Yes</td></tr>
+        <tr><td><code>git reset --soft HEAD^</code></td><td>Last commit, keeps changes staged</td><td>Only if not pushed</td></tr>
+        <tr><td><code>git reset --hard HEAD</code></td><td>All uncommitted changes, permanently</td><td>Only if not pushed</td></tr>
+        <tr><td><code>git revert &lt;commit&gt;</code></td><td>A specific commit, via a new commit</td><td>Yes — safe for shared branches</td></tr>
+    </tbody>
+</table>
+
+<h4>Discard changes to a file</h4>
+<pre><code>git checkout -- login.js</code></pre>
+
+<h4>Undo the last commit, keep the changes</h4>
+<pre><code>git reset --soft HEAD^</code></pre>
+
+<h4>Undo a pushed commit safely</h4>
+<pre><code>git revert &lt;commit-hash&gt;
+git push origin main</code></pre>
+
+<div class="callout">
+    <p><strong>Rule of thumb:</strong> use <code>reset</code> for commits only you have (not yet pushed), and <code>revert</code> for commits others may already have pulled.</p>
+</div>
+
+<hr>
+<h3 id="gitignore">What Is <code>.gitignore</code> and How to Use It Properly</h3>
+
+<p>A <code>.gitignore</code> file tells Git which files or folders to never track — things like build output, dependencies, or secrets that don't belong in version control.</p>
+
+<h4>Creating one</h4>
+<pre><code>touch .gitignore</code></pre>
+
+<h4>Example rules</h4>
+<pre><code># Dependencies
+node_modules/
+
+# Build output
+dist/
+build/
+
+# Environment variables
+.env
+
+# OS-generated files
+.DS_Store
+Thumbs.db
+
+# Log files
+*.log</code></pre>
+
+<h4>Common patterns</h4>
+<ul>
+    <li><code>folder/</code> — ignores an entire folder.</li>
+    <li><code>*.log</code> — ignores every file with that extension.</li>
+    <li><code>!important.log</code> — un-ignores a specific file, even if a broader rule above would exclude it.</li>
+</ul>
+
+<div class="note">
+    <p><code>.gitignore</code> only stops <strong>untracked</strong> files from being added. If a file is already tracked, adding it to <code>.gitignore</code> won't remove it — run <code>git rm --cached &lt;file&gt;</code> first.</p>
+</div>
+
+<p>Most languages and frameworks have well-maintained starter templates at <a href="https://github.com/github/gitignore" target="_blank" rel="noopener">github.com/github/gitignore</a>.</p>
+
+<hr>
+
+<h3 id="pull-vs-fetch"><code>git pull</code> vs. <code>git fetch</code>: What's the Difference?</h3>
+
+<p>Both commands get changes from a remote repository — the difference is whether they also merge those changes into your current branch.</p>
+
+<table>
+    <thead>
+        <tr><th></th><th><code>git fetch</code></th><th><code>git pull</code></th></tr>
+    </thead>
+    <tbody>
+        <tr><td>Downloads remote changes</td><td>Yes</td><td>Yes</td></tr>
+        <tr><td>Merges into your branch</td><td>No</td><td>Yes</td></tr>
+        <tr><td>Safe to run anytime</td><td>Yes — no effect on your files</td><td>Can cause conflicts if you have local changes</td></tr>
+    </tbody>
+</table>
+
+<h4><code>git fetch</code> — download only</h4>
+<pre><code>git fetch origin</code></pre>
+<p>This updates your local knowledge of the remote (e.g. <code>origin/main</code>) without touching your current branch. You can inspect what changed before deciding to merge:</p>
+<pre><code>git log main..origin/main
+git diff main origin/main</code></pre>
+
+<h4><code>git pull</code> — download and merge</h4>
+<pre><code>git pull origin main</code></pre>
+<p>This is shorthand for <code>git fetch</code> followed immediately by <code>git merge</code>.</p>
+
+<div class="callout">
+    <p><strong>When to prefer <code>fetch</code>:</strong> if you want to review incoming changes before merging, or you have uncommitted local work and don't want an automatic merge to trigger conflicts unexpectedly.</p>
+</div>
 
             </section>
 
