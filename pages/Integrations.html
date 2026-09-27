@@ -437,9 +437,18 @@ $ another-line-of-output</code></pre>
             if (prevBtn) prevBtn.addEventListener('click', function () { showSlide(current - 1); });
             if (nextBtn) nextBtn.addEventListener('click', function () { showSlide(current + 1); });
 
-            // Deep-link support: Git.html#git-lifecycle opens straight to that chapter
+            // Deep-link support: Page.html#some-chapter opens straight to that chapter.
+            // Page.html#some-subheading (a heading INSIDE a chapter, e.g. from search
+            // results) opens the chapter that contains it and scrolls to that heading.
             var hashId = window.location.hash.replace('#', '');
             var startIdx = slides.findIndex(function (s) { return s.id === hashId; });
+            var targetEl = null;
+            if (startIdx === -1 && hashId) {
+                targetEl = document.getElementById(hashId);
+                if (targetEl) {
+                    startIdx = slides.findIndex(function (s) { return s.contains(targetEl); });
+                }
+            }
             if (startIdx === -1) startIdx = 0;
 
             slides.forEach(function (s, i) { s.hidden = i !== startIdx; });
@@ -448,6 +457,12 @@ $ another-line-of-output</code></pre>
             updateToc();
             updateTocScrollSpy();
             updateSidebar();
+
+            if (targetEl) {
+                requestAnimationFrame(function () {
+                    targetEl.scrollIntoView({ behavior: 'auto', block: 'start' });
+                });
+            }
 
             // main.js's copy-code-button feature only targets ".doc-content pre",
             // which this layout no longer uses (it's ".content pre" here), so it's
