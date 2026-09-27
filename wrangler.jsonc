@@ -12,5 +12,11 @@
 			"id": "822c32d7362f48558cd45e10165e44b3",
 			"remote": true
 		}
+	],
+	"vectorize": [
+		{
+			"binding": "VECTOR_INDEX",
+			"index_name": "techienicks-docs"
+		}
 	]
 }
