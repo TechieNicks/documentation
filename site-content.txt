@@ -19,10 +19,7 @@ TechieNicks
 
  // Learner - Creator · mumbai 
 
- Hi, Welcome to TechieNicks — Dream it, Believe it, Achieve
- it one
- pipeline at a
- time. 
+ Hi, Welcome to TechieNicks- Envision your goal, believe in your potential, and execute with determination
 
  An enthusiastic learner and creator working across Atlassian tools, Integrations,
  REST Api and more. I document what I learn so the next person doesn't have to Google it twice.

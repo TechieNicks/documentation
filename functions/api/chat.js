@@ -1,4 +1,4 @@
-// functions/api/chat.js (Cloudflare Pages)
+// functions/api/chat.js (Cloudflare Pages Function)
 
 const MODEL = "gemini-1.5-flash";
 
@@ -15,13 +15,13 @@ export async function onRequestOptions() {
 export async function onRequestPost(context) {
   const { request, env } = context;
 
-  // 1. Check environment variable via context.env
+  // 1. Ensure GEMINI_API_KEY is present in Cloudflare Pages
   const apiKey = env.GEMINI_API_KEY;
   if (!apiKey) {
     return jsonResponse({ error: "Missing GEMINI_API_KEY in Cloudflare environment variables." }, 500);
   }
 
-  // 2. Parse request JSON
+  // 2. Parse request payload
   let payload;
   try {
     payload = await request.json();
@@ -35,14 +35,34 @@ export async function onRequestPost(context) {
   if (!message) return jsonResponse({ error: "Message is required" }, 400);
   if (message.length > 800) return jsonResponse({ error: "Message too long" }, 400);
 
-  // 3. Construct System Prompt
-  const systemPrompt = `
-You are the official help assistant embedded on techienicks.com.
-Answer the user's question accurately and concisely (2-4 sentences) using knowledge on Git workflows, Jira administration, Atlassian tools, and REST APIs.
-If a question is completely unrelated to topics on TechieNicks, inform the user gracefully.
-`.trim();
+  // 3. Load site-content.txt via internal fetch
+  let siteContent = "";
+  try {
+    const origin = new URL(request.url).origin;
+    const contentRes = await fetch(`${origin}/site-content.txt`);
+    if (contentRes.ok) {
+      siteContent = await contentRes.text();
+    }
+  } catch (e) {
+    console.error("Could not load site-content.txt", e);
+  }
 
-  // 4. Map history for Gemini API
+  // 4. Build System Prompt with Full Content
+  const systemPrompt = [
+    "You are the official help assistant embedded on techienicks.com.",
+    "Answer the user's question accurately and concisely (2-4 sentences) using ONLY the WEBSITE CONTENT below.",
+    "Rules:",
+    "1. Do NOT use outside knowledge or make up facts not present in the content.",
+    "2. If the user asks something not covered in the content below, respond with:",
+    "   'I couldn't find that specific information on TechieNicks. Try asking about Git workflows, Jira administration, or REST APIs.'",
+    "",
+    "WEBSITE CONTENT:",
+    "---",
+    siteContent,
+    "---"
+  ].join("\n");
+
+  // 5. Build conversation turns for Gemini
   const trimmedHistory = history.slice(-6).map((m) => ({
     role: m.role === "assistant" ? "model" : "user",
     parts: [{ text: String(m.content || "").slice(0, 800) }],
@@ -68,7 +88,7 @@ If a question is completely unrelated to topics on TechieNicks, inform the user 
       return jsonResponse({ error: data?.error?.message || "Upstream AI Service Error" }, apiRes.status);
     }
 
-    const candidate = data.candidates?.[0];
+    const candidate = data?.candidates?.[0];
     const part = candidate?.content?.parts?.[0];
     const answer = part?.text || "I couldn't find that specific information on TechieNicks.";
 
