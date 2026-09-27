@@ -49,7 +49,7 @@ async function handleEngagement(request, env) {
 
     const page = String(payload.page || "").replace(/^\//, "");
     const action = String(payload.action || "");
-    if (!/^[a-zA-Z0-9_./-]+\.html$/.test(page) || !ALLOWED_ACTIONS.includes(action)) {
+    if (!/^[a-zA-Z0-9_./-]+$/.test(page) || !ALLOWED_ACTIONS.includes(action)) {
         return json(400, { error: "Invalid page or action" });
     }
 
