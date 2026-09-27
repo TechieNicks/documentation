@@ -218,7 +218,11 @@ function buildRelevantContext(question, siteContent) {
         .map((section) => {
             if (!section.trim()) return null;
             const clean = section.trim();
-            const score = keywords.reduce((total, k) => total + (clean.toLowerCase().includes(k) ? 2 : 0), 0);
+            const lower = clean.toLowerCase();
+            const score = keywords.reduce((total, k) => {
+                const count = lower.split(k).length - 1; // frequency, not just presence
+                return total + count;
+            }, 0);
             return score > 0 ? { score, text: clean } : null;
         })
         .filter(Boolean)
@@ -226,7 +230,7 @@ function buildRelevantContext(question, siteContent) {
         .slice(0, 3);
 
     if (!pageSections.length) return siteContent.slice(0, 2600);
-    return pageSections.map((item) => item.text.slice(0, 1200)).join("\n\n---\n\n");
+    return pageSections.map((item) => item.text.slice(0, 1800)).join("\n\n---\n\n");
 }
 
 function detectTopic(question) {
