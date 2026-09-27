@@ -45,7 +45,15 @@
         { title: "Git installation", description: "Download Git and prepare it for use on your system.", topics: "git download install windows macos linux", url: "pages/Git.html#download" },
         { title: "Git configuration", description: "Generate SSH keys, configure Git, and connect to GitHub.", topics: "git configuration ssh key ssh-agent github authentication", url: "pages/Git.html#configuration" },
         { title: "Connecting to a remote repository", description: "Add a remote repository and push local code to GitHub.", topics: "git remote origin push github repository", url: "pages/Git.html#use-cases" },
-        { title: "Syncing local changes to the remote", description: "Keep local and remote repositories synchronized.", topics: "git pull fetch push sync remote github", url: "pages/Git.html#use-cases" }
+        { title: "Syncing local changes to the remote", description: "Keep local and remote repositories synchronized.", topics: "git pull fetch push sync remote github", url: "pages/Git.html#use-cases" },
+        { title: "Core Git terms", description: "A glossary of essential Git terminology and file states.", topics: "git terminology glossary tracked untracked staged modified commit branch remote", url: "pages/Git.html#core-git-terms" },
+        { title: "What is Open Source?", description: "What open source software is, why it matters, and common licenses.", topics: "open source license mit apache gpl bsd transparency collaboration community", url: "pages/Git.html#what-is-open-source" },
+        { title: "Git Branching & Merging for Beginners", description: "Creating, switching, and merging branches in Git.", topics: "git branch merge branching checkout switch fast-forward feature branch", url: "pages/Git.html#branching-merging" },
+        { title: "How to Fix & Resolve Merge Conflicts", description: "Step-by-step guide to resolving Git merge conflicts.", topics: "git merge conflict resolve conflict markers abort", url: "pages/Git.html#merge-conflicts" },
+        { title: "How to Make Your First Open Source Pull Request", description: "Fork, clone, branch, and open your first pull request.", topics: "open source pull request pr fork clone github contributing", url: "pages/Git.html#first-pull-request" },
+        { title: "How to Undo Mistakes in Git", description: "Using git checkout, git reset, and git revert to undo changes.", topics: "git undo mistake checkout reset revert soft hard", url: "pages/Git.html#undo-mistakes" },
+        { title: "What Is .gitignore and How to Use It", description: "Excluding files from version control with .gitignore.", topics: "gitignore ignore untracked files node_modules env", url: "pages/Git.html#gitignore" },
+        { title: "git pull vs. git fetch", description: "The difference between fetching and pulling remote changes.", topics: "git pull fetch difference merge remote", url: "pages/Git.html#pull-vs-fetch" }
     ];
 
     var input = document.getElementById("docSearchInput");
@@ -101,10 +109,16 @@
         });
     }
 
+    var stopWords = ["what", "is", "are", "the", "a", "an", "how", "do", "does", "to", "for", "of", "in", "on", "and", "or"];
+
     function search(query) {
         var normalizedQuery = normalize(query);
         if (!normalizedQuery) return entries;
-        var words = normalizedQuery.split(/\s+/).filter(Boolean);
+        var words = normalizedQuery.split(/\s+/).filter(function (word) {
+            return word && stopWords.indexOf(word) === -1;
+        });
+        if (!words.length) words = normalizedQuery.split(/\s+/).filter(Boolean);
+
         return entries.map(function (entry) {
             var searchable = normalize(entry.title + " " + entry.description + " " + entry.topics);
             var score = words.reduce(function (total, word) {
@@ -112,7 +126,7 @@
             }, 0);
             return { entry: entry, score: score };
         }).filter(function (match) {
-            return match.score === words.length;
+            return match.score > 0;
         }).sort(function (a, b) {
             return b.score - a.score;
         }).map(function (match) {
