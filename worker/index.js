@@ -182,7 +182,7 @@ async function handleFeedback(request, env) {
 // ---------------------------------------------------------------
 const MAX_MESSAGE_LENGTH = 800;
 const MAX_HISTORY_TURNS = 6;
-const MODEL = "gemini-2.5-flash";
+const MODEL = "gemini-3.8-flash";
 const EMBED_MODEL = "gemini-embedding-001";
 const EMBED_DIMENSIONS = 768; // must match the Vectorize index's --dimensions
 const TOP_K = 5;

@@ -17,6 +17,11 @@
 		{
 			"binding": "VECTOR_INDEX",
 			"index_name": "techienicks-docs"
+		},
+		{
+			"binding": "VECTORIZE",
+			"index_name": "techienicks-docs",
+			"remote": true
 		}
 	]
 }
