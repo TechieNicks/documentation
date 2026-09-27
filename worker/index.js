@@ -181,7 +181,7 @@ async function handleFeedback(request, env) {
 // ---------------------------------------------------------------
 const MAX_MESSAGE_LENGTH = 800;
 const MAX_HISTORY_TURNS = 6;
-const MODEL = "gemini-3.6-flash";
+const MODEL = "gemini-2.5-flash";
 const UNAVAILABLE_MESSAGE = "Sorry the content is not available yet";
 
 let cachedSiteContent = null;
