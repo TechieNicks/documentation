@@ -297,7 +297,12 @@ async function handleChat(request, env) {
             body: JSON.stringify({
                 system_instruction: { parts: [{ text: systemPrompt }] },
                 contents,
-                generationConfig: { maxOutputTokens: 400, temperature: 0.3 },
+                // generationConfig: { maxOutputTokens: 400, temperature: 0.3 },
+                generationConfig: {
+                    maxOutputTokens: 600,
+                    temperature: 0.3,
+                    thinkingConfig: { thinkingLevel: "low" },
+                },
             }),
         });
 
